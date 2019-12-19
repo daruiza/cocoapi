@@ -1,0 +1,14 @@
+.toolbar {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #eee;
+  color: #575756;
+  font-size: 28px;
+}
+
+.spacer {
+  flex: 0.9;
+}
+
+/*# sourceMappingURL=header_toolbarr.css.map */
