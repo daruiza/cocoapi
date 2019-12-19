@@ -7,9 +7,14 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { ToolbarrComponent } from './modules/header/toolbarr/toolbarr.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ToolbarrComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +26,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         strictActionImmutability: true
       }
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatSidenavModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
