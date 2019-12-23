@@ -10,11 +10,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ToolbarrComponent } from './modules/header/toolbarr/toolbarr.component';
+import { AuthComponent } from './modules/header/auth/auth.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarrComponent
+    ToolbarrComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
