@@ -1,13 +1,17 @@
 .mat-icon {
-  color: blue;
+  color: #575756;
+  background: #eee;
   padding: 7px;
   margin: 5px;
-  background: #ead6b2;
   border-radius: 50%;
-  cursor: pointer;
   font-size: 30px;
   height: 30px;
   width: 30px;
+  cursor: pointer;
+}
+.mat-icon:hover {
+  background: #575756;
+  color: #eee;
 }
 
 /*# sourceMappingURL=header_auth.css.map */

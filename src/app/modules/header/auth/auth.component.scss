@@ -1,12 +1,15 @@
 .mat-icon{
-    color: blue;
+    color: $icon-colors;
+    background: $icon-colors-background;
     padding: 7px;
     margin: 5px;
-    background:
-    #ead6b2;
     border-radius: 50%;
-    cursor: pointer;
     font-size: 30px;
     height: 30px;
     width: 30px;
+    cursor: pointer;
+    &:hover {
+        background: $icon-colors;
+        color: $icon-colors-background;
+    }
 }
