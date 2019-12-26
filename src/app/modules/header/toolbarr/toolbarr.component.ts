@@ -12,7 +12,6 @@ export class ToolbarrComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnChanges(): void {
-    console.log(`Titulo ${this.title}`);
   }
 
   ngOnInit() {

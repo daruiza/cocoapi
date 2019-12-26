@@ -12,7 +12,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { ToolbarrComponent } from './modules/header/toolbarr/toolbarr.component';
 import { AuthComponent } from './modules/header/auth/auth.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
