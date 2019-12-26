@@ -1,10 +1,27 @@
 .toolbar {
-    height: 60px;    
+    height: $toolbar-height;    
     display: flex;
     align-items: center;
     // background-color: #eee;
     color: #575756;
     font-size: 28px;
+    img{
+        cursor: pointer;
+        width: 40px;
+        border-radius: 50%;
+
+        &:hover{
+            background: $icon-colors-background;
+        }
+
+        &:active{
+            width: 36px;
+            -webkit-box-shadow: 2px 2px 6px 0px $icon-colors;
+            -moz-box-shadow: 2px 2px 6px 0px $icon-colors;
+            box-shadow: 2px 2px 6px 0px $icon-colors;
+            margin-right: 4px;           
+        }
+    }
 }
 
 .spacer {

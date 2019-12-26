@@ -8,6 +8,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 export class ToolbarrComponent implements OnInit, OnChanges {
 
   @Input() title: string;
+  @Input() sidenav: any;
 
   constructor() { }
 

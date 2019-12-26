@@ -1,6 +1,16 @@
-<app-toolbarr [title]="title"></app-toolbarr>
+<app-toolbarr [sidenav]="sidenav" [title]="title"></app-toolbarr>
 <section class="section">
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
+  <mat-sidenav-container class="example-container">
+
+    <mat-sidenav #sidenav [mode]="'over'">
+      <mat-icon aria-hidden="false" aria-label="Example home icon">notifications</mat-icon>
+      <mat-icon aria-hidden="false" aria-label="Example home icon">person</mat-icon>
+      <mat-icon aria-hidden="false" aria-label="Example home icon">power_settings_new</mat-icon>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
 </section>
