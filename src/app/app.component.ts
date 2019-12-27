@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['../assets/css/app.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Cocolú';
+  title = 'InterGrupo';
   sidenavMode: string;
   toolbarHeight = 60; // 60 es una bariable de configuracion de sass: $toolbar-height
   windowHeight: number;

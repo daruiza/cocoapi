@@ -1,10 +1,12 @@
 .toolbar {
+  position: absolute;
+  width: 100%;
+  top: 0px;
   height: 60px;
   display: flex;
   align-items: center;
   color: #575756;
   font-size: 28px;
-  padding-left: 11px;
 }
 .toolbar img {
   cursor: pointer;
