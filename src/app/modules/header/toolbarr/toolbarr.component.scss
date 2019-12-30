@@ -2,7 +2,7 @@
     position: absolute;
     width: 100%;
     top: 0px;
-
+    z-index: 2;
     height: $toolbar-height;
     display: flex;
     align-items: center;
@@ -31,4 +31,8 @@
 
 .spacer {
     flex: 0.97;
+}
+
+.sidenav-toggle{
+    // box-shadow: $shadow-left-toolbar 2px 6px 0px $shadow-color;
 }

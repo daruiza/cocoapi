@@ -1,14 +1,29 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-toolbarr',
   templateUrl: './toolbarr.component.html',
-  styleUrls: ['../../../../assets/css/header_toolbarr.css']
+  styleUrls: ['../../../../assets/css/header_toolbarr.css'],
+  animations: [
+    trigger('animationSideToggle', [
+      state('open', style({
+        boxShadow: '69px 2px 6px 0px #575756',
+        // height: '200px',
+      })),
+      state('closed', style({
+        boxShadow: '69px 2px 6px 0px transparent',
+        // height: '100px',
+      })),
+      transition('open <=> closed', animate('0.9s')),
+    ]),
+  ]
 })
 export class ToolbarrComponent implements OnInit, OnChanges {
 
   @Input() title: string;
   @Input() sidenav: any;
+  classSidenavToggle = false;
 
   constructor() { }
 
@@ -16,6 +31,11 @@ export class ToolbarrComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+  }
+
+  sidenavToggle() {
+    this.sidenav.toggle();
+    this.classSidenavToggle = !this.classSidenavToggle;
   }
 
 }

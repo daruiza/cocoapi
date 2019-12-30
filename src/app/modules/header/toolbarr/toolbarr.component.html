@@ -1,8 +1,12 @@
-<div class="toolbar" role="banner">
+<div 
+  class="toolbar" 
+  role="banner" 
+  [ngClass]="{'sidenav-toggle': classSidenavToggle}"
+  [@animationSideToggle]="classSidenavToggle ? 'open' : 'closed'">
     <img
       alt="Cocolu Logo"
       src="assets/img/palms.png"
-      (click)="sidenav.toggle()"
+      (click)="sidenavToggle()"
     />
     <span>{{title}}</span>
     <div class="spacer"></div>
