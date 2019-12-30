@@ -5,7 +5,17 @@
 .mat-drawer.mat-drawer-side{
     box-shadow: 1px 1px 7px 1px $shadow-color;
 }
+
 .mat-drawer{
     // background-color: transparent;
     border-color: transparent;
+}
+
+// Solo para pc
+@media only screen and (min-width: 768px) {
+    .mat-sidenav-content{
+        padding-right: 30px;
+        padding-left: 30px;
+        padding-top: 15px;
+    }
 }
