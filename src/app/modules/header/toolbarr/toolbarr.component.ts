@@ -15,7 +15,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
         boxShadow: '69px 2px 6px 0px transparent',
         // height: '100px',
       })),
-      transition('open <=> closed', animate('0.9s')),
+      transition('open <=> closed', animate('0.45s')),
     ]),
   ]
 })
