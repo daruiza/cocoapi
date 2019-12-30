@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { AccesRoutingModule } from './acces-routing.module';
 import { LoginComponent } from './login/login.component';
 
-
 @NgModule({
   declarations: [LoginComponent],
   imports: [

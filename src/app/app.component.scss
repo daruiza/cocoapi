@@ -7,8 +7,11 @@
 }
 
 .mat-drawer{
-    // background-color: transparent;
     border-color: transparent;
+}
+
+.mat-drawer-container{
+    background-color: #fff;
 }
 
 // Solo para pc
@@ -16,6 +19,6 @@
     .mat-sidenav-content{
         padding-right: 30px;
         padding-left: 30px;
-        padding-top: 15px;
+        // padding-top: 15px;
     }
 }

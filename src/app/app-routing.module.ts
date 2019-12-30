@@ -9,6 +9,10 @@ const routes: Routes = [
     // component: HomeComponent,
     // canActivate: [ AuthenticationGuard ],
     loadChildren: () => import('./modules/home/home.module').then(mod => mod.HomeModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./modules/home/home.module').then(mod => mod.HomeModule)
   }
 ];
 

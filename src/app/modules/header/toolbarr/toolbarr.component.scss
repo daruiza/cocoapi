@@ -14,7 +14,7 @@
         width: 40px;
         border-radius: 50%;
         padding: 4px;
-        padding-left: 11px;
+        // padding-left: 11px;
         &:hover{
             background: $icon-colors-background;
         }
@@ -29,10 +29,10 @@
     }
 }
 
-.spacer {
-    flex: 0.97;
+.spacer-min {
+    flex: 0.01;
 }
 
-.sidenav-toggle{
-    // box-shadow: $shadow-left-toolbar 2px 6px 0px $shadow-color;
+.spacer {
+    flex: 0.97;
 }

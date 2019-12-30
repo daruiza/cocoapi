@@ -14,7 +14,6 @@
   width: 40px;
   border-radius: 50%;
   padding: 4px;
-  padding-left: 11px;
 }
 .toolbar img:hover {
   background: #eee;
@@ -25,6 +24,10 @@
   -moz-box-shadow: 2px 2px 6px 0px #575756;
   box-shadow: 2px 2px 6px 0px #575756;
   margin-right: 4px;
+}
+
+.spacer-min {
+  flex: 0.01;
 }
 
 .spacer {

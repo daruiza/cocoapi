@@ -10,11 +10,14 @@
   border-color: transparent;
 }
 
+.mat-drawer-container {
+  background-color: #fff;
+}
+
 @media only screen and (min-width: 768px) {
   .mat-sidenav-content {
     padding-right: 30px;
     padding-left: 30px;
-    padding-top: 15px;
   }
 }
 
