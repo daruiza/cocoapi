@@ -26,6 +26,10 @@
   margin-right: 4px;
 }
 
+.title-span {
+  cursor: pointer;
+}
+
 .spacer-min {
   flex: 0.01;
 }
