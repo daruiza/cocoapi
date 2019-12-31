@@ -9,11 +9,9 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
     trigger('animationSideToggle', [
       state('open', style({
         boxShadow: '69px 2px 6px 0px #575756',
-        // height: '200px',
       })),
       state('closed', style({
         boxShadow: '69px 2px 6px 0px transparent',
-        // height: '100px',
       })),
       transition('open <=> closed', animate('0.45s')),
     ]),

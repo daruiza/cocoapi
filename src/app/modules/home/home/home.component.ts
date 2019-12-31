@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly router: Router
-  ) { 
+  ) {
     this.login = false;
   }
 

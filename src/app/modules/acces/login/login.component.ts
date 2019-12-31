@@ -1,37 +1,67 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  OnChanges,
+  AfterViewInit
+} from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
 
-  closeResult: string;
+  @ViewChild('modalLogin', {static: false}) theModal: ElementRef;
+  loginForm: FormGroup;
+
   constructor(
-    private modalService: NgbModal
-  ) { }
+    private readonly fb: FormBuilder,
+    private readonly modalService: NgbModal,
+    private readonly router: Router
+  ) {}
+
+  ngOnChanges(changes: any): void {
+  }
 
   ngOnInit() {
+
+    this.loginForm.addControl('email', new FormControl('', {
+      validators: [Validators.required]
+    }));
+    this.loginForm.addControl('password', new FormControl('', {
+      validators: [Validators.required]
+    }));
+    this.loginForm.addControl('remenber_me', new FormControl('', {
+      validators: [Validators.required]
+    }));
+
   }
 
-  open(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
+  ngAfterViewInit() {
+    if (this.theModal) {
+      this.showModal();
     }
   }
 
+  showModal() {
+    this.modalService.open(this.theModal,
+      {
+        ariaLabelledBy: 'modal-basic-title',
+        size: 'sm',
+        backdrop: 'static'
+      }).result.then((result) => {
+        console.log('save');
+        // Consumo de servicio en caso de estar el form OK
+        this.router.navigate(['/']);
+      }, (reason) => {
+        console.log('close');
+        this.router.navigate(['/']);
+      });
+  }
 }
