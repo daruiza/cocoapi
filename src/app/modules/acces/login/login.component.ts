@@ -13,7 +13,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['../../../../assets/css/acces_login.css'],
 })
 export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
 
@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnInit() {
+    this.loginForm = this.fb.group({});
 
     this.loginForm.addControl('email', new FormControl('', {
       validators: [Validators.required]
@@ -63,5 +64,9 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
         console.log('close');
         this.router.navigate(['/']);
       });
+  }
+
+  onSubmit(){
+
   }
 }

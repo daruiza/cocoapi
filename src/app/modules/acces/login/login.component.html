@@ -1,16 +1,28 @@
 <ng-template #modalLogin let-modal>
     <div class="modal-header">
+        <img
+            alt="Cocolu Logo"
+            src="assets/img/palms.png"
+        />
         <h4 class="modal-title" id="modal-basic-title">Acceso</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-        Content
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label>Usuario:</label>
+                <input type="email" class="form-control" formControlName="email" autofocus>                  
+            </div>
+            <div class="form-group">
+                <label>Contraseña:</label>
+                <input type="password" class="form-control" formControlName="password">
+            </div>
+        </form>
     </div>
 
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Login click')">Aceptar</button>
     </div>
 </ng-template>
-<button class="btn btn-lg btn-outline-primary" (click)="open(modalLogin)">Launch demo modal</button>
