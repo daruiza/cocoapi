@@ -9,33 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  login: boolean;
-
-  constructor(
-    private readonly route: ActivatedRoute,
-    private readonly router: Router
-  ) {
-    this.login = false;
-  }
+  constructor() {}
 
   ngOnInit() {
-
-    // miramos si convocaron el loguin
-    this.getLogin();
   }
-
-  isLogin() {
-    return this.router.url === '/login' ? true : false;
-  }
-
-  isAuth() {
-    return true;
-  }
-
-  getLogin() {
-    if (this.isLogin() && this.isAuth()) {
-      this.login = true;
-    }
-  }
-
 }

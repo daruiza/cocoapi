@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +14,21 @@ export class AppComponent implements OnInit {
   windowHeight: number;
   windowWidth: number;
 
+  login: boolean;
+
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly router: Router
+  ) {
+    this.login = false;
+  }
+
 
   ngOnInit(): void {
     // Control de tamaño, responsive
     this.responsiveControl();
+
+    this.getLogin();
   }
 
   responsiveControl() {
@@ -27,6 +39,20 @@ export class AppComponent implements OnInit {
 
     // Height
     this.windowHeight = window.innerHeight - this.toolbarHeight;
+  }
+
+  isLogin() {
+    return this.router.url === '/login' ? true : false;
+  }
+
+  isAuth() {
+    return true;
+  }
+
+  getLogin() {
+    if (this.isLogin() && this.isAuth()) {
+      this.login = true;
+    }
   }
 
 

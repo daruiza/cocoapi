@@ -8,18 +8,24 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ToolbarrComponent } from './modules/header/toolbarr/toolbarr.component';
 import { AuthComponent } from './modules/header/auth/auth.component';
 import { SidenavComponent } from './modules/home/sidenav/sidenav.component';
+import { LoginComponent } from './modules/acces/login/login.component';
+import { HomeComponent } from './modules/home/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarrComponent,
     AuthComponent,
-    SidenavComponent
+    SidenavComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +39,8 @@ import { SidenavComponent } from './modules/home/sidenav/sidenav.component';
     }),
     BrowserAnimationsModule,
     NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatIconModule,
     MatSidenavModule,
   ],

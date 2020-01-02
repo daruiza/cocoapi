@@ -29,8 +29,7 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
     this.loginForm = this.fb.group({});
   }
 
-  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
-    throw new Error("Method not implemented.");
+  ngOnChanges(changes: import('@angular/core').SimpleChanges): void {
   }
 
   ngOnInit() {
