@@ -6,7 +6,7 @@ import {
   OnChanges,
   AfterViewInit
 } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
@@ -17,21 +17,33 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 })
 export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
 
-  @ViewChild('modalLogin', {static: false}) theModal: ElementRef;
+  @ViewChild('modalLogin', { static: false }) theModal: ElementRef;
+  modalLogin: NgbModalRef;
   loginForm: FormGroup;
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly modalService: NgbModal,
     private readonly router: Router
-  ) {}
+  ) {
+    this.loginForm = this.fb.group({});
+  }
 
-  ngOnChanges(changes: any): void {
+  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
+    throw new Error("Method not implemented.");
   }
 
   ngOnInit() {
-    this.loginForm = this.fb.group({});
+    this.formConstructor();
+  }
 
+  ngAfterViewInit() {
+    if (this.theModal) {
+      this.showModal();
+    }
+  }
+
+  formConstructor() {
     this.loginForm.addControl('email', new FormControl('', {
       validators: [Validators.required]
     }));
@@ -41,32 +53,24 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
     this.loginForm.addControl('remenber_me', new FormControl('', {
       validators: [Validators.required]
     }));
-
-  }
-
-  ngAfterViewInit() {
-    if (this.theModal) {
-      this.showModal();
-    }
   }
 
   showModal() {
-    this.modalService.open(this.theModal,
+    this.modalLogin = this.modalService.open(this.theModal,
       {
         ariaLabelledBy: 'modal-basic-title',
-        size: 'sm',
+        // size: 'sm',
         backdrop: 'static'
-      }).result.then((result) => {
-        console.log('save');
-        // Consumo de servicio en caso de estar el form OK
-        this.router.navigate(['/']);
-      }, (reason) => {
-        console.log('close');
-        this.router.navigate(['/']);
       });
+    this.modalLogin.result.then((result) => {
+      // Consumo de servicio en caso de estar el form OK
+      this.router.navigate(['/']);
+    }, (reason) => {
+      this.router.navigate(['/']);
+    });
   }
 
-  onSubmit(){
-
+  onSubmit(evt: any) {
+    this.modalLogin.close();
   }
 }
