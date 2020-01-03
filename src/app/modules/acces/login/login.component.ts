@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   onSubmit(evt: any) {
+    console.log('save');
     this.modalLogin.close();
   }
 }

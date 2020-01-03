@@ -14,21 +14,13 @@ export class AppComponent implements OnInit {
   windowHeight: number;
   windowWidth: number;
 
-  login: boolean;
-
-  constructor(
-    private readonly route: ActivatedRoute,
-    private readonly router: Router
-  ) {
-    this.login = false;
+  constructor() {
   }
 
 
   ngOnInit(): void {
     // Control de tamaño, responsive
     this.responsiveControl();
-
-    this.getLogin();
   }
 
   responsiveControl() {
@@ -37,23 +29,8 @@ export class AppComponent implements OnInit {
     this.sidenavMode = this.windowWidth < 720 ? 'over' : 'side';
 
 
-    // Height
+    // Heightz
     this.windowHeight = window.innerHeight - this.toolbarHeight;
   }
-
-  isLogin() {
-    return this.router.url === '/login' ? true : false;
-  }
-
-  isAuth() {
-    return true;
-  }
-
-  getLogin() {
-    if (this.isLogin() && this.isAuth()) {
-      this.login = true;
-    }
-  }
-
 
 }
