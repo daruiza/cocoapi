@@ -23,7 +23,8 @@ export class HomeComponent implements OnInit {
     this.modalLogin = this.modalAlert.open(ModalAlertComponent, {
       windowClass: 'modal-holder',
       centered: true,
-      backdrop: 'static'
+      backdrop: 'static',
+      // container: 'conteiner'
     });
     this.modalLogin.result.then((result) => {
       // Consumo de servicio en caso de estar el form OK
