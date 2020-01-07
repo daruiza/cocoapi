@@ -22,7 +22,22 @@ export class HomeComponent implements OnInit {
 
   openModal() {
     this.modalLogin = this.messagesService.openSucessConfirm({
-      title: 'Un Titulo'
+      title: 'Un Titulo',
+      text: 'Alerta de de Suceso OK'
+    });
+    this.modalLogin.result.then((result) => {
+      // Consumo de servicio en caso de estar el form OK
+      console.log('result');
+    }, (reason) => {
+      console.log('reason');
+    });
+  }
+
+  openModal2() {
+    this.modalLogin = this.messagesService.openSucessConfirm({
+      title: 'Un Titulo 2',
+      type: 'alert-warning',
+      text: 'Alerta de warning'
     });
     this.modalLogin.result.then((result) => {
       // Consumo de servicio en caso de estar el form OK

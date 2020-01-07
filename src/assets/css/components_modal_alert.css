@@ -1,0 +1,23 @@
+.modal-header, .container-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-header {
+  padding: 0.2rem 1rem 0.2rem 0.1rem;
+}
+
+.container-icon {
+  border-left: 6px #155724 solid;
+  padding: 7px 7px 7px 7px;
+}
+.container-icon .material-icons {
+  font-size: 36px;
+}
+
+.alert-warning .container-icon {
+  border-left: 6px #856404 solid;
+}
+
+/*# sourceMappingURL=components_modal_alert.css.map */

@@ -1,21 +1,28 @@
-/* modal animation */
-.modal-content{
-    animation-name: example;
-    animation-duration: 0.3s;
+.modal-header, .container-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-@keyframes example {
-    0%   {transform: scale(0.5)}
-    75%  {transform: scale(1.1)}
-    100% {transform: scale(1)}
+.modal-header{
+    padding: 0.2rem 1rem 0.2rem 0.1rem;
 }
 
-.modal-holder{
-    animation-name: example;
-    animation-duration: 0.3s;
+.container-icon{    
+    padding: 7px 7px 7px 7px;
+
+    .material-icons{
+        font-size: 36px;
+    }
 }
 
-@keyframes example {
-    0%   {transform: scale(0.5)}
-    100% {transform: scale(1)}
+.modal-body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+
+.alert-success{ .container-icon{ border-left: 6px#155724 solid; } }
+.alert-warning{ .container-icon{ border-left: 6px#856404 solid;} }
+

@@ -16,7 +16,7 @@ export class ModalAlertService {
     private readonly messagesService: MessagesService
   ) { }
 
-  openSucessConfirm(message: Message = null): NgbModalRef {
+  openSucessConfirm(message: Message = {}): NgbModalRef {
     this.messagesService.setMessage(message);
     return this.modalAlert.open(ModalAlertComponent, {
       windowClass: 'modal-holder',
