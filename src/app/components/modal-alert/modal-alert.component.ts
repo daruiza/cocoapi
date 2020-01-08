@@ -15,21 +15,22 @@ export class ModalAlertComponent implements OnInit {
   icon: string;
   icons: {class: string, icon: string}[];
   text: string;
+  confirmButton: string;
+  cancelButton: string;
 
   constructor(
     private modal: NgbActiveModal,
     public messagesService: MessagesService
-
   ) {
 
     this.icons = [
-      {class: 'alert-primary', icon: 'done'},
-      {class: 'alert-secondary', icon: 'done'},
-      {class: 'alert-success', icon: 'done'},
-      {class: 'alert-danger', icon: 'done'},
-      {class: 'alert-warning', icon: 'warning'},
-      {class: 'alert-light', icon: 'done'},
-      {class: 'alert-dark', icon: 'done'}
+      {class: 'primary', icon: 'info'},
+      {class: 'secondary', icon: 'done'},
+      {class: 'success', icon: 'check_circle_outline'},
+      {class: 'danger', icon: 'close'},
+      {class: 'warning', icon: 'warning'},
+      {class: 'light', icon: 'brightness_5'},
+      {class: 'dark', icon: 'brightness_1'}
     ];
 
   }
@@ -41,14 +42,20 @@ export class ModalAlertComponent implements OnInit {
 
     this.type =
     this.messagesService.getMessage().type ?
-    `modal-header ${this.messagesService.getMessage().type}` : 'modal-header alert-success';
+    `modal-header alert-${this.messagesService.getMessage().type}` : 'modal-header alert-success';
 
     this.icon =
     this.messagesService.getMessage().type ?
-    this.icons.find(el => el.class === this.messagesService.getMessage().type).icon : 'done';
+    this.icons.find(el => el.class === this.messagesService.getMessage().type).icon : 'check_circle_outline';
 
     this.text = this.messagesService.getMessage().text ?
     this.messagesService.getMessage().text : 'Texto';
+
+    this.confirmButton = this.messagesService.getMessage().confirmButton ?
+    this.messagesService.getMessage().confirmButton : 'Aceptar';
+
+    this.cancelButton = this.messagesService.getMessage().cancelButton ?
+    this.messagesService.getMessage().cancelButton : '';
 
   }
 
