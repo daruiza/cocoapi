@@ -11,5 +11,6 @@
     {{text}}
 </div>
 <div class="modal-footer">
-    <button type="button" ngbAutofocus class="btn btn-outline-dark" (click)="save('Save click')">Save</button>
+    <button  *ngIf="cancelButton !== ''" type="button" class="btn btn-outline-dark" (click)="close('Close click')">{{cancelButton}}</button>
+    <button type="button" ngbAutofocus class="btn btn-{{this.messagesService.getMessage().type}}" (click)="save('Save click')">{{confirmButton}}</button>
 </div>

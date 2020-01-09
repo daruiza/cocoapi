@@ -21,8 +21,9 @@ export class HomeComponent implements OnInit {
   }
 
   openModal() {
-    this.modalLogin = this.messagesService.openSucessConfirm({
+    this.modalLogin = this.messagesService.openAlert({
       title: 'Un Titulo',
+      type: 'success',
       text: 'Alerta de de Suceso OK'
     });
     this.modalLogin.result.then((result) => {
@@ -34,16 +35,13 @@ export class HomeComponent implements OnInit {
   }
 
   openModal2() {
-    this.modalLogin = this.messagesService.openSucessConfirm({
+    this.modalLogin = this.messagesService.openAlert({
       title: 'Un Titulo 2',
-      type: 'alert-warning',
-      text: 'Alerta de warning'
-    });
-    this.modalLogin.result.then((result) => {
-      // Consumo de servicio en caso de estar el form OK
-      console.log('result');
-    }, (reason) => {
-      console.log('reason');
+      type: 'danger',
+      text: 'Alerta de warning',
+      confirmButton: 'Save',
+      cancelButton: 'Cancel'
     });
   }
+
 }
