@@ -14,10 +14,15 @@ body {
 /* modal animation */
 .modal-holder, .modal-login{
     animation-name: example;
-    animation-duration: 0.8s;
+    animation-duration: 0.6s;
 }
 
 @keyframes example {
     0%   {transform: scale(0.5)}
     100% {transform: scale(1)}
+}
+
+@keyframes example {
+    100%   {transform: scale(1)}
+    0% {transform: scale(0.5)}
 }

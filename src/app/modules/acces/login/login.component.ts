@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
     this.loginForm.addControl('password', new FormControl('', {
       validators: [Validators.required]
     }));
-    this.loginForm.addControl('remenber_me', new FormControl('', {
+    this.loginForm.addControl('remenber_me', new FormControl('true', {
       validators: [Validators.required]
     }));
   }
@@ -71,7 +71,11 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   onSubmit(evt: any) {
+    // Consumo de servicio se Login
+    // 1. Validamos el formulario
     console.log('save');
+    console.log(this.loginForm.get('remenber_me').value);
+
     this.modalLogin.close();
   }
 }

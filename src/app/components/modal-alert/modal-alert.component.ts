@@ -37,7 +37,7 @@ export class ModalAlertComponent implements OnInit {
   ngOnInit() {
     this.title =
     this.messagesService.getMessage().title ?
-    this.messagesService.getMessage().title : 'Titulo';
+    this.messagesService.getMessage().title : '';
 
     this.type =
     this.messagesService.getMessage().type ?
@@ -48,7 +48,7 @@ export class ModalAlertComponent implements OnInit {
     this.icons.find(el => el.class === this.messagesService.getMessage().type).icon : 'check_circle_outline';
 
     this.text = this.messagesService.getMessage().text ?
-    this.messagesService.getMessage().text : 'Texto';
+    this.messagesService.getMessage().text : '';
 
     this.confirmButton = this.messagesService.getMessage().confirmButton ?
     this.messagesService.getMessage().confirmButton : 'Aceptar';

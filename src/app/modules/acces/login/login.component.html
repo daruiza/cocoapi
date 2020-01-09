@@ -1,9 +1,6 @@
 <ng-template #modalLogin let-modal>
     <div class="modal-header">
-        <img
-            alt="Cocolu Logo"
-            src="assets/img/palms.png"
-        />
+        <img alt="Cocolu Logo" src="assets/img/palms.png" />
         <h4 class="modal-title" id="modal-basic-title">Acceso</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
@@ -11,19 +8,19 @@
     </div>
     <div class="modal-body">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label>Usuario:</label>
-                <input type="email" class="form-control" formControlName="email" autofocus>                  
-            </div>
-            <div class="form-group">
-                <label>Contraseña:</label>
-                <input type="password" class="form-control" formControlName="password">
-            </div>
-        </form>
+            <mat-form-field class="example-full-width">
+                <input matInput type="email" placeholder="Usuario:" value="" formControlName="email" autofocus>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput type="password" placeholder="Contraseña:" value="" formControlName="password">
+            </mat-form-field>
+            <mat-slide-toggle color="indigo" formControlName="remenber_me">Recordar Contraseña!</mat-slide-toggle>        </form>
     </div>
 
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" ngbAutofocus (click)="modal.close('Login click')">Cancelar</button>
-        <button type="button" class="btn btn-light" (click)="onSubmit($event)">Aceptar</button>
+        <button type="button" class="btn btn-secondary" ngbAutofocus
+            (click)="modal.close('Login click')">Cancelar</button>
+        <button type="button" class="btn btn-light" [disabled]="!loginForm.valid"
+            (click)="onSubmit($event)">Aceptar</button>
     </div>
 </ng-template>
