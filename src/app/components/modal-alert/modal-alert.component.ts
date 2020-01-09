@@ -5,7 +5,6 @@ import { MessagesService } from 'src/app/services/modal-alert/messages.service';
 @Component({
   selector: 'app-modal-alert',
   templateUrl: './modal-alert.component.html',
-  // styleUrls: ['./modal-alert.component.scss']
   styleUrls: ['../../../assets/css/components_modal_alert.css'],
 })
 export class ModalAlertComponent implements OnInit {
