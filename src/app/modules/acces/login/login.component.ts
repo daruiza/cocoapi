@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild('modalLogin', { static: false }) theModal: ElementRef;
   modalLogin: NgbModalRef;
   loginForm: FormGroup;
+  hide: boolean;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
     private readonly authService: AuthService
   ) {
     this.loginForm = this.fb.group({});
+    this.hide = true;
   }
 
   ngOnChanges(changes: import('@angular/core').SimpleChanges): void {
