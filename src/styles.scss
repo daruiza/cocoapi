@@ -1,6 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+// @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import "~bootstrap/dist/css/bootstrap.css";
+
+@import "./assets/scss/functions.scss";
+@import "~@angular/material/theming";
+
+// .dark-theme {
+//     @import "./assets/scssthemes/dark-theme";
+//     @include angular-material-theme($dark-theme);
+//     @include generate-theme-vars($dark-theme);
+// }
+
+// .light-theme {
+//     @import "./assets/scssthemes/light-theme";
+//     @include angular-material-theme($light-theme);
+//     @include generate-theme-vars($light-theme);
+// }
 
 body { 
     margin: 0; 
