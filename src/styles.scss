@@ -5,17 +5,17 @@
 @import "./assets/scss/functions.scss";
 @import "~@angular/material/theming";
 
-// .dark-theme {
-//     @import "./assets/scssthemes/dark-theme";
-//     @include angular-material-theme($dark-theme);
-//     @include generate-theme-vars($dark-theme);
-// }
+.dark-theme {
+    @import "./assets/themes/unicorn-dark-theme.scss";
+    @include angular-material-theme($dark-theme);
+    @include generate-theme-vars($dark-theme);
+}
 
-// .light-theme {
-//     @import "./assets/scssthemes/light-theme";
-//     @include angular-material-theme($light-theme);
-//     @include generate-theme-vars($light-theme);
-// }
+.candy-theme {
+    @import "./assets/themes/unicorn-candy-theme.scss";
+    @include angular-material-theme($candy-theme);
+    @include generate-theme-vars($candy-theme);
+}
 
 body { 
     margin: 0; 
