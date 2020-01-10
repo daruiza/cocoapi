@@ -20,7 +20,7 @@ export class ModalAlertService {
     this.messagesService.setMessage(message);
     return this.modalAlert.open(ModalAlertComponent, {
       windowClass: 'modal-holder',
-      // centered: true,
+      centered: true,
       backdrop: 'static'
     });
   }

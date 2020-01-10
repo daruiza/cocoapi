@@ -9,6 +9,7 @@ import {
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
   constructor(
     private readonly fb: FormBuilder,
     private readonly modalService: NgbModal,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly authService: AuthService
   ) {
     this.loginForm = this.fb.group({});
   }
@@ -60,7 +62,8 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
         ariaLabelledBy: 'modal-basic-title',
         // size: 'sm',
         backdrop: 'static',
-        windowClass: 'modal-login'
+        windowClass: 'modal-login',
+        centered: true,
       });
     this.modalLogin.result.then((result) => {
       // Consumo de servicio en caso de estar el form OK
@@ -73,8 +76,10 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
   onSubmit(evt: any) {
     // Consumo de servicio se Login
     // 1. Validamos el formulario
-    console.log('save');
-    console.log(this.loginForm.get('remenber_me').value);
+    if (this.loginForm.valid) {
+      console.log('save');
+      console.log(this.loginForm.get('remenber_me').value);
+    }
 
     this.modalLogin.close();
   }
