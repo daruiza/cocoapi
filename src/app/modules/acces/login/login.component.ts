@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
         // size: 'sm',
         backdrop: 'static',
         windowClass: 'modal-login',
-        centered: true,
+        // centered: true,
       });
     this.modalLogin.result.then((result) => {
       // Consumo de servicio en caso de estar el form OK

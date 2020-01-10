@@ -17,6 +17,8 @@ import { AuthComponent } from './modules/header/auth/auth.component';
 import { SidenavComponent } from './modules/home/sidenav/sidenav.component';
 import { HomeComponent } from './modules/home/home/home.component';
 import { ModalAlertComponent } from './components/modal-alert/modal-alert.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { ModalAlertComponent } from './components/modal-alert/modal-alert.compon
     NgbModule,
     MatIconModule,
     MatSidenavModule,
+    MatToolbarModule,
+    HttpClientModule
   ],
   exports: [ModalAlertComponent],
   entryComponents: [ModalAlertComponent],
