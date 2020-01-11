@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -33,6 +33,7 @@ export class AuthService {
         password: `${password}`,
         remember_me: rememberMe ? '1' : '0'
       },
+      // observe: 'events',
       reportProgress: true
     };
     return this.http.post<any>(`${this.url}/auth/login`, {}, options)
