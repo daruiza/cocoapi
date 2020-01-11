@@ -9,7 +9,11 @@ $light-theme-warn: mat-palette($mat-red);
 $light-theme: mat-light-theme(
     $light-theme-primary,
     $light-theme-accent,
-    $light-theme-warn
+    $light-theme-warn,
 );
+
+.color-primary {
+    background-color: mat-color($light-primary);
+}
 
 @include angular-material-theme($light-theme);

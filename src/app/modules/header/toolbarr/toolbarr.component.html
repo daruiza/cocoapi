@@ -5,11 +5,7 @@
   [@animationSideToggle]="classSidenavToggle ? 'open' : 'closed'"
   color="primary">
     <div class="spacer-min"></div>
-    <img
-      alt="Cocolu Logo"
-      src="assets/img/palms.png"
-      (click)="sidenavToggle()"
-    />
+    <mat-icon aria-hidden="false" aria-label="home" (click)="sidenavToggle()" >ac_unit</mat-icon>
     <span class="title-span" routerLink="/" >{{title}}</span>
     <div class="spacer"></div>
     <app-auth></app-auth>

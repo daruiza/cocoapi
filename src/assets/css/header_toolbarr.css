@@ -1,3 +1,7 @@
+.mat-toolbar-row, .mat-toolbar-single-row {
+  padding: 0 0px;
+}
+
 .toolbar {
   position: absolute;
   width: 100%;
@@ -37,6 +41,43 @@
 
 .spacer {
   flex: 0.97;
+}
+
+.mat-icon {
+  color: #575756;
+  background: #eee;
+  margin: 2px;
+  padding: 2px;
+  border-radius: 50%;
+  font-size: 32px;
+  height: 37px;
+  width: 37px;
+  user-select: none;
+  /* supported by Chrome and Opera */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  cursor: pointer;
+}
+.mat-icon:hover {
+  background: #575756;
+  color: #eee;
+  -webkit-box-shadow: 2px 2px 6px 0px #575756;
+  -moz-box-shadow: 2px 2px 6px 0px #575756;
+  box-shadow: 2px 2px 6px 0px #575756;
+}
+.mat-icon:active {
+  font-size: 30px;
+  height: 34px;
+  width: 34px;
+  padding: 2px;
+  margin-left: 4px;
+  margin-right: 3px;
 }
 
 /*# sourceMappingURL=header_toolbarr.css.map */

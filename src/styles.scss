@@ -15,6 +15,7 @@
     @import "./assets/themes/unicorn-candy-theme.scss";
     @include angular-material-theme($candy-theme);
     @include generate-theme-vars($candy-theme);
+    
 }
 
 body { 
@@ -24,6 +25,8 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+
 
 /* modal animation */
 .modal{

@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
     private readonly fb: FormBuilder,
     private readonly modalService: NgbModal,
     private readonly router: Router,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
   ) {
     this.loginForm = this.fb.group({});
     this.hide = true;
@@ -69,6 +69,7 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
       });
     this.modalLogin.result.then((result) => {
       // Consumo de servicio en caso de estar el form OK
+
       this.router.navigate(['/']);
     }, (reason) => {
       this.router.navigate(['/']);
@@ -76,13 +77,22 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   onSubmit(evt: any) {
-    // Consumo de servicio se Login
+
     // 1. Validamos el formulario
     if (this.loginForm.valid) {
-      console.log('save');
-      console.log(this.loginForm.get('remenber_me').value);
-    }
+      // 2. Consumo de servicio se Login
+      this.authService.login(
+        this.loginForm.get('email').value,
+        this.loginForm.get('password').value,
+        this.loginForm.get('remenber_me').value
+      ).subscribe((res: any) => {
+        if (res) {
+          console.log(res);
+        }
+      });
 
+    }
+    // Independiente si hay ingreso exitoso, de cierra el modal
     this.modalLogin.close();
   }
 }

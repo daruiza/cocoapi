@@ -9,7 +9,11 @@
 // Define the default theme (same as the example above).
 $candy-primary: mat-palette($mat-pink);
 $candy-accent:  mat-palette($mat-pink, A200, A100, A400);
-$candy-theme:   mat-light-theme($candy-primary, $candy-accent);
+$candy-theme:   mat-light-theme($candy-primary, $candy-accent, $candy-primary);
+
+.color-primary {
+    background-color: mat-color($candy-primary);
+}
 
 // Include the default theme styles.
 @include angular-material-theme($candy-theme);
