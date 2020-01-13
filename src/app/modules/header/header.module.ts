@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { HeaderRoutingModule } from './header-routing.module';
 // import { ToolbarrComponent } from './toolbarr/toolbarr.component';
-import { AuthComponent } from './auth/auth.component';
+import { MenuTopComponent } from './menu-top/menu-top.component';
 
 @NgModule({
-  declarations: [AuthComponent],
+  declarations: [MenuTopComponent],
   imports: [
     CommonModule,
     HeaderRoutingModule

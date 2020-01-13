@@ -35,4 +35,18 @@
   margin-right: 9px;
 }
 
-/*# sourceMappingURL=header_auth.css.map */
+.power-on {
+  color: green;
+}
+.power-on:hover {
+  color: green;
+}
+
+.power-off {
+  color: red;
+}
+.power-off:hover {
+  color: red;
+}
+
+/*# sourceMappingURL=header_menu_top.css.map */

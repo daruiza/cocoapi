@@ -8,9 +8,10 @@ import { MatInputModule } from '@angular/material/input';
 import { AccesRoutingModule } from './acces-routing.module';
 import { LoginComponent } from './login/login.component';
 import { MatIconModule } from '@angular/material/icon';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, LogoutComponent],
   imports: [
     CommonModule,
     AccesRoutingModule,

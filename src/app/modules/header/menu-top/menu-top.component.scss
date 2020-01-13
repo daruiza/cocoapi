@@ -31,3 +31,17 @@
         margin-right: 9px;
     }
 }
+
+.power-on{
+    color: green;
+    &:hover{
+        color: green;
+    }
+}
+
+.power-off{
+    color: red;
+    &:hover{
+        color: red;
+    }
+}

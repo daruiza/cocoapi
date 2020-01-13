@@ -13,21 +13,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ToolbarrComponent } from './modules/header/toolbarr/toolbarr.component';
-import { AuthComponent } from './modules/header/auth/auth.component';
 import { SidenavComponent } from './modules/home/sidenav/sidenav.component';
 import { HomeComponent } from './modules/home/home/home.component';
+import { MenuTopComponent } from './modules/header/menu-top/menu-top.component';
 import { ModalAlertComponent } from './components/modal-alert/modal-alert.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { WelcomeComponent } from './modules/home/welcome/welcome.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarrComponent,
-    AuthComponent,
+    MenuTopComponent,
     SidenavComponent,
     HomeComponent,
     ModalAlertComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,

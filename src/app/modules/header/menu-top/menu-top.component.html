@@ -1,0 +1,10 @@
+<div>
+    <mat-icon aria-hidden="false" aria-label="notifications" [routerLink]="['/welcome']" routerLinkActive="router-link-active" >notifications</mat-icon>
+    <mat-icon aria-hidden="false" aria-label="person">person</mat-icon>
+    <ng-container *ngIf="!getAuthService().checkLogin() ; else loggedOut">
+        <mat-icon class="power-on" aria-hidden="false" aria-label="power" routerLink="/acces/login">power_settings_new</mat-icon>
+    </ng-container>
+    <ng-template #loggedOut>
+        <mat-icon class="power-off" aria-hidden="false" aria-label="power" routerLink="/acces/">power_settings_new</mat-icon>
+    </ng-template>
+</div>

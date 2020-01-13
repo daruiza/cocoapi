@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild('modalLogin', { static: false }) theModal: ElementRef;
   modalLogin: NgbModalRef;
   loginForm: FormGroup;
+  buttonAccept: boolean;
   hide: boolean;
 
   constructor(
@@ -30,7 +31,9 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
     private readonly authService: AuthService,
   ) {
     this.loginForm = this.fb.group({});
+    this.buttonAccept = false;
     this.hide = true;
+
   }
 
   ngOnChanges(changes: import('@angular/core').SimpleChanges): void {
@@ -78,6 +81,9 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
 
   onSubmit(evt: any) {
 
+    // 0. Bloqueamos el botón
+    this.buttonAccept = true;
+
     // 1. Validamos el formulario
     if (this.loginForm.valid) {
       // 2. Consumo de servicio se Login
@@ -88,6 +94,7 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
       ).subscribe((res: any) => {
         if (res) {
           console.log(res);
+          // redirigimos en caso de que halla una url en espera
         }
       });
 
