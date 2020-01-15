@@ -26,11 +26,12 @@ export class AuthService {
 
   checkLogin(): boolean {
     return localStorage.getItem(this.token) && localStorage.getItem(this.token) !== 'undefined' ? true : false;
-    // aun falta mirar si ese token esta activo ene l back
+    // aun falta mirar si ese token esta activo en el back
   }
 
   // Login
   public login(email: string, password: string, rememberMe: number = 1): Observable<any> {
+    this.httpHeaders.append('Authorization',localStorage.getItem(this.token));
     const options = {
       headers: this.httpHeaders,
       params: {
@@ -39,9 +40,9 @@ export class AuthService {
         remember_me: rememberMe ? '1' : '0'
       },
       // observe: 'events',
-      reportProgress: true
+      // reportProgress: true
     };
-    return this.http.post<any>(`${this.url}/auth/login`,
+    return this.http.post<any>(`${this.url}/auth/logout`,
       {},
       options)
     .pipe(
@@ -49,7 +50,29 @@ export class AuthService {
       tap(auth => localStorage.setItem(this.token, auth.access_token)),
       catchError(this.handleError<any>(`Ingreso Fallido`))
     );
+  }
 
+  public logout() {
+    const options = {
+      headers: this.httpHeaders,
+      params: {
+      },
+      // observe: 'events',
+      // reportProgress: true
+    };
+    return this.http.post<any>(`${this.url}/auth/login`,
+      {},
+      options)
+    .pipe(
+      tap(auth => {
+        console.log(auth);
+        localStorage.removeItem(this.token);
+      }),
+      catchError(this.handleError<any>(`Salida Fallida`))
+    );
+
+    // 
+    
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
