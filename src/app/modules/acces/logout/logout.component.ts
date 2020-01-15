@@ -32,8 +32,11 @@ export class LogoutComponent implements OnInit, AfterViewInit {
       cancelButton: 'No'
     }).result.then((result) => {
       // Consumo de servicio en caso de estar el form OK
-      this.authService.logout();
-      this.router.navigate(['/']);
+      this.authService.logout().subscribe((res) => {
+        console.log(res);
+      }, err => {
+        console.error(err);
+      });
     }, (reason) => {
       this.router.navigate(['/']);
     });

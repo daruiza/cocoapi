@@ -31,7 +31,6 @@ export class AuthService {
 
   // Login
   public login(email: string, password: string, rememberMe: number = 1): Observable<any> {
-    this.httpHeaders.append('Authorization',localStorage.getItem(this.token));
     const options = {
       headers: this.httpHeaders,
       params: {
@@ -42,17 +41,25 @@ export class AuthService {
       // observe: 'events',
       // reportProgress: true
     };
-    return this.http.post<any>(`${this.url}/auth/logout`,
+    return this.http.post<any>(`${this.url}/auth/login`,
       {},
       options)
     .pipe(
       // tap(auth => this.auth = auth),
-      tap(auth => localStorage.setItem(this.token, auth.access_token)),
+      tap(auth => {
+        localStorage.setItem(this.token, auth.access_token);
+        this.httpHeaders = new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: `Bearer  ${localStorage.getItem(this.token)}`
+        });
+
+      }),
       catchError(this.handleError<any>(`Ingreso Fallido`))
     );
   }
 
   public logout() {
+
     const options = {
       headers: this.httpHeaders,
       params: {
@@ -60,19 +67,19 @@ export class AuthService {
       // observe: 'events',
       // reportProgress: true
     };
-    return this.http.post<any>(`${this.url}/auth/login`,
-      {},
+    console.log(options);
+    return this.http.get<any>(`${this.url}/auth/logout`,
       options)
     .pipe(
       tap(auth => {
         console.log(auth);
         localStorage.removeItem(this.token);
+        this.httpHeaders = new HttpHeaders({
+          'Content-Type': 'application/json',
+        });
       }),
       catchError(this.handleError<any>(`Salida Fallida`))
     );
-
-    // 
-    
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
