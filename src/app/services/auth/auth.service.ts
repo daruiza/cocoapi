@@ -1,44 +1,34 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { MessagesService } from './messages.service';
-import { User } from '../models/User';
+import { MessagesService } from '../messages.service';
+import { AppService } from '../app.service';
+import { User } from '../../models/User';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
-  public token = 'token_cocolu';
+  public token;
   public user: User;
   public httpHeaders: HttpHeaders;
   public url = `${environment.baseAPI}`;
 
   constructor(
     protected http: HttpClient,
-    private readonly messagesService: MessagesService
-    ) {
-      this.setHttpHeaders();
-    }
-
-  setHttpHeaders() {
-    if (this.checkLogin()) {
-      this.httpHeaders = new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer  ${localStorage.getItem(this.token)}`
-      });
-    } else {
-      this.httpHeaders = new HttpHeaders({
-        'Content-Type': 'application/json',
-      });
-    }
+    private readonly messagesService: MessagesService,
+    private readonly appService: AppService
+  ) {
+    this.token = this.appService.getToken();
+    this.httpHeaders = this.appService.getHttpHeaders();
   }
 
   checkLogin(): boolean {
-    return localStorage.getItem(this.token) && localStorage.getItem(this.token) !== 'undefined' ? true : false;
+    return this.appService.checkLogin();
   }
 
   // Login
@@ -56,18 +46,20 @@ export class AuthService {
     return this.http.post<any>(`${this.url}/auth/login`,
       {},
       options)
-    .pipe(
-      tap(auth => {
-        console.log(auth);
-        localStorage.setItem(this.token, auth.access_token);
-        this.httpHeaders = new HttpHeaders({
-          'Content-Type': 'application/json',
-          Authorization: `Bearer  ${localStorage.getItem(this.token)}`
-        });
+      .pipe(
+        tap(auth => {
+          localStorage.setItem(this.token, auth.access_token);
+          this.appService.setHttpHeaders(
+            new HttpHeaders({
+              'Content-Type': 'application/json',
+              Authorization: `Bearer  ${localStorage.getItem(this.token)}`
+            })
+          );
+          this.httpHeaders = this.appService.getHttpHeaders();
 
-      }),
-      catchError(this.handleError<any>(`Ingreso Fallido`))
-    );
+        }),
+        catchError(this.handleError<any>(`Ingreso Fallido`))
+      );
   }
 
   public logout() {
@@ -78,20 +70,20 @@ export class AuthService {
       // observe: 'events',
       // reportProgress: true
     };
-    console.log(localStorage.getItem(this.token));
-    console.log(options);
     return this.http.get<any>(`${this.url}/auth/logout`,
       options)
-    .pipe(
-      tap(auth => {
-        console.log(auth);
-        localStorage.removeItem(this.token);
-        this.httpHeaders = new HttpHeaders({
-          'Content-Type': 'application/json',
-        });
-      }),
-      catchError(this.handleError<any>(`Salida Fallida`))
-    );
+      .pipe(
+        tap(auth => {
+          localStorage.removeItem(this.token);
+          this.appService.setHttpHeaders(
+            new HttpHeaders({
+              'Content-Type': 'application/json',
+            })
+          );
+          this.httpHeaders = this.appService.getHttpHeaders();
+        }),
+        catchError(this.handleError<any>(`Salida Fallida`))
+      );
   }
 
   public getUser() {
@@ -111,7 +103,7 @@ export class AuthService {
       }
 
       // envio de observable a menajes
-      this.messagesService.changeMessageControl( error, {
+      this.messagesService.changeMessageControl(error, {
         type: 'danger',
         title: operation,
         text: `${messageError}`

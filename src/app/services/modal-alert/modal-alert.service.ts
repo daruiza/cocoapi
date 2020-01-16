@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalAlertComponent } from 'src/app/components/modal-alert/modal-alert.component';
 import { MessagesService } from './messages.service';
-import { Message } from '../models/message';
+import { Message } from '../../models/Message';
 
 @Injectable({
   providedIn: 'root'
