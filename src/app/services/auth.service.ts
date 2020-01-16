@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { MessagesService } from './messages.service';
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -12,21 +13,32 @@ import { MessagesService } from './messages.service';
 
 export class AuthService {
   public token = 'token_cocolu';
-  url = `${environment.baseAPI}`;
+  public user: User;
+  public httpHeaders: HttpHeaders;
+  public url = `${environment.baseAPI}`;
 
-  httpHeaders = new HttpHeaders({
-    'Content-Type': 'application/json',
-    // 'Content-Type': 'application/x-www-form-urlencoded',
-    // 'X-Requested-With': 'XMLHttpRequest'
-  });
   constructor(
     protected http: HttpClient,
     private readonly messagesService: MessagesService
-    ) { }
+    ) {
+      this.setHttpHeaders();
+    }
+
+  setHttpHeaders() {
+    if (this.checkLogin()) {
+      this.httpHeaders = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer  ${localStorage.getItem(this.token)}`
+      });
+    } else {
+      this.httpHeaders = new HttpHeaders({
+        'Content-Type': 'application/json',
+      });
+    }
+  }
 
   checkLogin(): boolean {
     return localStorage.getItem(this.token) && localStorage.getItem(this.token) !== 'undefined' ? true : false;
-    // aun falta mirar si ese token esta activo en el back
   }
 
   // Login
@@ -45,8 +57,8 @@ export class AuthService {
       {},
       options)
     .pipe(
-      // tap(auth => this.auth = auth),
       tap(auth => {
+        console.log(auth);
         localStorage.setItem(this.token, auth.access_token);
         this.httpHeaders = new HttpHeaders({
           'Content-Type': 'application/json',
@@ -59,7 +71,6 @@ export class AuthService {
   }
 
   public logout() {
-
     const options = {
       headers: this.httpHeaders,
       params: {
@@ -67,6 +78,7 @@ export class AuthService {
       // observe: 'events',
       // reportProgress: true
     };
+    console.log(localStorage.getItem(this.token));
     console.log(options);
     return this.http.get<any>(`${this.url}/auth/logout`,
       options)
@@ -80,6 +92,10 @@ export class AuthService {
       }),
       catchError(this.handleError<any>(`Salida Fallida`))
     );
+  }
+
+  public getUser() {
+
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

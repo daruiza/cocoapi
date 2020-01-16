@@ -44,8 +44,13 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (this.theModal) {
-      this.showModal();
+
+    if (this.authService.checkLogin()) {
+      this.router.navigate(['/']);
+    } else {
+      if (this.theModal) {
+        this.showModal();
+      }
     }
   }
 
