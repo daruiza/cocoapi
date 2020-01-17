@@ -17,9 +17,10 @@ import { SidenavComponent } from './modules/home/sidenav/sidenav.component';
 import { HomeComponent } from './modules/home/home/home.component';
 import { MenuTopComponent } from './modules/header/menu-top/menu-top.component';
 import { ModalAlertComponent } from './components/modal-alert/modal-alert.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { WelcomeComponent } from './modules/home/welcome/welcome.component';
+import { AuthInterceptor } from './services/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,9 @@ import { WelcomeComponent } from './modules/home/welcome/welcome.component';
   ],
   exports: [ModalAlertComponent],
   entryComponents: [ModalAlertComponent],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

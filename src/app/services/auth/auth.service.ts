@@ -13,7 +13,7 @@ import { User } from '../../models/User';
 })
 
 export class AuthService {
-  public token;
+  public token: string;
   public user: User;
   public httpHeaders: HttpHeaders;
   public url = `${environment.baseAPI}`;
