@@ -11,16 +11,22 @@ import { AuthService } from './auth/auth.service';
 })
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private authService: AuthService ) {}
+  constructor(private readonly authService: AuthService ) {}
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
 
-    console.log('INTECEPT');
-    return next.handle(req);
-    // https://blog.angulartraining.com/http-interceptors-in-angular-61dcf80b6bdd
+    let newHeaders = req.headers;
+    if (this.authService.checkLogin()) {
+      newHeaders = newHeaders.append(
+        'Authorization', `Bearer  ${localStorage.getItem(this.authService.getNameToken())}`
+      );
+    }
+    const authReq = req.clone({headers: newHeaders});
+    return next.handle(authReq);
+
   }
 
 }

@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { MessagesService } from '../messages.service';
-import { AppService } from '../app.service';
 import { User } from '../../models/User';
 
 @Injectable({
@@ -13,7 +12,7 @@ import { User } from '../../models/User';
 })
 
 export class AuthService {
-  public token: string;
+  public nameToken: string;
   public user: User;
   public httpHeaders: HttpHeaders;
   public url = `${environment.baseAPI}`;
@@ -21,14 +20,23 @@ export class AuthService {
   constructor(
     protected http: HttpClient,
     private readonly messagesService: MessagesService,
-    private readonly appService: AppService
   ) {
-    this.token = this.appService.getToken();
-    this.httpHeaders = this.appService.getHttpHeaders();
+    this.nameToken = 'token_cocolu';
+    this.httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+  }
+
+  getNameToken(): string {
+    return this.nameToken;
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem(this.nameToken, token);
   }
 
   checkLogin(): boolean {
-    return this.appService.checkLogin();
+    return localStorage.getItem(this.nameToken) && localStorage.getItem(this.nameToken) !== 'undefined' ? true : false;
   }
 
   // Login
@@ -48,14 +56,15 @@ export class AuthService {
       options)
       .pipe(
         tap(auth => {
-          localStorage.setItem(this.token, auth.access_token);
-          this.appService.setHttpHeaders(
-            new HttpHeaders({
-              'Content-Type': 'application/json',
-              Authorization: `Bearer  ${localStorage.getItem(this.token)}`
-            })
-          );
-          this.httpHeaders = this.appService.getHttpHeaders();
+          this.setToken(auth.access_token);
+
+          // this.appService.setHttpHeaders(
+          //   new HttpHeaders({
+          //     'Content-Type': 'application/json',
+          //     Authorization: `Bearer  ${localStorage.getItem(this.nameToken)}`
+          //   })
+          // );
+          // this.httpHeaders = this.appService.getHttpHeaders();
 
         }),
         catchError(this.handleError<any>(`Ingreso Fallido`))
@@ -74,13 +83,13 @@ export class AuthService {
       options)
       .pipe(
         tap(auth => {
-          localStorage.removeItem(this.token);
-          this.appService.setHttpHeaders(
-            new HttpHeaders({
-              'Content-Type': 'application/json',
-            })
-          );
-          this.httpHeaders = this.appService.getHttpHeaders();
+          localStorage.removeItem(this.nameToken);
+          // this.appService.setHttpHeaders(
+          //   new HttpHeaders({
+          //     'Content-Type': 'application/json',
+          //   })
+          // );
+          // this.httpHeaders = this.appService.getHttpHeaders();
         }),
         catchError(this.handleError<any>(`Salida Fallida`))
       );
