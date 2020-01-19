@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MessagesService } from './services/messages.service';
 import { Subscription } from 'rxjs';
 import { ModalAlertService } from './services/modal-alert/modal-alert.service';
+import { AuthService } from './services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -20,12 +21,16 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly messagesService: MessagesService,
-    private readonly messagesAlertService: ModalAlertService
+    private readonly messagesAlertService: ModalAlertService,
+    private readonly authService: AuthService
   ) {
   }
 
 
   ngOnInit(): void {
+    // obtención de usuario en caso de estar logueado
+    this.authService.userGet();
+
     // Control de tamaño, responsive
     this.responsiveControl();
     // Consumo de servicios

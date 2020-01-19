@@ -33,9 +33,19 @@ export class LogoutComponent implements OnInit, AfterViewInit {
     }).result.then((result) => {
       // Consumo de servicio en caso de estar el form OK
       this.authService.logout().subscribe((res) => {
-        console.log(res);
+        this.messagesAlertService.openAlert({
+          type: 'success',
+          title: `Salida Exitosa`,
+          text: `Te esperamos pronto.`
+        });
+        this.router.navigate(['/']);
       }, err => {
-        console.error(err);
+        // El error ya se halla controlado desde el servico
+        this.messagesAlertService.openAlert({
+          type: 'danger',
+          title: `Salida Fallida`,
+          text: `${err.error.message}`
+        });
       });
     }, (reason) => {
       this.router.navigate(['/']);

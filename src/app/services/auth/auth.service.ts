@@ -25,20 +25,49 @@ export class AuthService {
     this.httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
     });
+    // // Control de usuario
+    // this.userGet();
   }
 
-  getNameToken(): string {
+  public getNameToken(): string {
     return this.nameToken;
   }
 
-  setToken(token: string): void {
+  public getUser(): User {
+    return this.user;
+  }
+
+  public setAccesToken(token: string): void {
     localStorage.setItem(this.nameToken, token);
   }
 
-  checkLogin(): boolean {
-    return localStorage.getItem(this.nameToken) && localStorage.getItem(this.nameToken) !== 'undefined' ? true : false;
+  public getAccesToken(): string {
+    return localStorage.getItem(this.nameToken);
   }
 
+  public setUser(user: User): void {
+    this.user = user;
+  }
+
+
+  public userGet(): boolean {
+  // si hay token sin usuario
+  if (this.checkLogin() && !this.getUser()) {
+    this.getUserBK().subscribe(
+      (usr: User) => {
+        this.setUser(usr);
+      },
+      (err) => console.log(err)
+    );
+
+    return true;
+  }
+  return false;
+}
+
+  public checkLogin(): boolean {
+    return localStorage.getItem(this.nameToken) && localStorage.getItem(this.nameToken) !== 'undefined' ? true : false;
+  }
   // Login
   public login(email: string, password: string, rememberMe: number = 1): Observable<any> {
     const options = {
@@ -56,16 +85,8 @@ export class AuthService {
       options)
       .pipe(
         tap(auth => {
-          this.setToken(auth.access_token);
-
-          // this.appService.setHttpHeaders(
-          //   new HttpHeaders({
-          //     'Content-Type': 'application/json',
-          //     Authorization: `Bearer  ${localStorage.getItem(this.nameToken)}`
-          //   })
-          // );
-          // this.httpHeaders = this.appService.getHttpHeaders();
-
+          this.setAccesToken(auth.access_token);
+          this.setUser(auth.user);
         }),
         catchError(this.handleError<any>(`Ingreso Fallido`))
       );
@@ -84,19 +105,28 @@ export class AuthService {
       .pipe(
         tap(auth => {
           localStorage.removeItem(this.nameToken);
-          // this.appService.setHttpHeaders(
-          //   new HttpHeaders({
-          //     'Content-Type': 'application/json',
-          //   })
-          // );
-          // this.httpHeaders = this.appService.getHttpHeaders();
+          this.setUser(undefined);
         }),
         catchError(this.handleError<any>(`Salida Fallida`))
       );
   }
 
-  public getUser() {
-
+  public getUserBK(): Observable<User> {
+    const options = {
+      headers: this.httpHeaders,
+      params: {
+      },
+      // observe: 'events',
+      // reportProgress: true
+    };
+    return this.http.get<User>(`${this.url}/auth/user`,
+      options)
+      .pipe(
+        tap(user => {
+          this.setUser(user);
+        }),
+        catchError(this.handleError<any>(`Consulta Fallida`))
+      );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

@@ -10,6 +10,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ModalAlertService } from 'src/app/services/modal-alert/modal-alert.service';
 
 @Component({
   selector: 'app-login',
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
     private readonly modalService: NgbModal,
     private readonly router: Router,
     private readonly authService: AuthService,
+    private readonly messagesAlertService: ModalAlertService,
   ) {
     this.loginForm = this.fb.group({});
     this.buttonAccept = false;
@@ -77,7 +79,6 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
       });
     this.modalLogin.result.then((result) => {
       // Consumo de servicio en caso de estar el form OK
-
       this.router.navigate(['/']);
     }, (reason) => {
       this.router.navigate(['/']);
@@ -98,8 +99,12 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
         this.loginForm.get('remenber_me').value
       ).subscribe((res: any) => {
         if (res) {
-          console.log(res);
-          // redirigimos en caso de que halla una url en espera
+          // La redireccion se da al dar click en ingresar
+          this.messagesAlertService.openAlert({
+            type: 'success',
+            title: `Ingreso Exitoso`,
+            text: `Super de nuevo por aqui!!. Nuevamente bienvend@.`
+          });
         }
       });
 

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-toolbarr',
@@ -23,7 +24,9 @@ export class ToolbarrComponent implements OnInit, OnChanges {
   @Input() sidenav: any;
   classSidenavToggle = false;
 
-  constructor() { }
+  constructor(
+    private readonly authservice: AuthService
+  ) { }
 
   ngOnChanges(): void {
   }
@@ -32,8 +35,10 @@ export class ToolbarrComponent implements OnInit, OnChanges {
   }
 
   sidenavToggle() {
-    this.sidenav.toggle();
-    this.classSidenavToggle = !this.classSidenavToggle;
+    if (this.sidenav) {
+      this.sidenav.toggle();
+      this.classSidenavToggle = !this.classSidenavToggle;
+    }
   }
 
 }

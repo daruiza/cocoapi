@@ -1,6 +1,6 @@
 .mat-icon{
-    color: $icon-colors;
-    background: $icon-colors-background;
+    color: $primary-color;
+    background: $accent-color;
     margin: 7px;
     padding: 2px;
     border-radius: 50%;
@@ -40,8 +40,8 @@
 }
 
 .power-off{
-    color: red;
+    color: $warn-color;
     &:hover{
-        color: red;
+        color: $warn-color;
     }
 }

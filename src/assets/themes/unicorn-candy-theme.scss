@@ -7,9 +7,10 @@
 @include mat-core();
 
 // Define the default theme (same as the example above).
-$candy-primary: mat-palette($mat-pink);
-$candy-accent:  mat-palette($mat-pink, A200, A100, A400);
-$candy-theme:   mat-light-theme($candy-primary, $candy-accent, $candy-primary);
+$candy-primary: mat-palette($mat-pink, 400);
+$candy-accent:  mat-palette($mat-pink, 100);
+$candy-warn: mat-palette($mat-pink, 900);
+$candy-theme:   mat-light-theme($candy-primary, $candy-accent, $candy-warn);
 
 .color-primary {
     background-color: mat-color($candy-primary);

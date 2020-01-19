@@ -4,7 +4,7 @@
 
 .mat-drawer.mat-drawer-side{
     box-shadow: 1px 1px 7px 1px $shadow-color;
-    background-color: var(--primary-color);
+    background-color: $primary-color
 }
 
 .mat-drawer{

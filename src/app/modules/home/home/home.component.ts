@@ -11,7 +11,8 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
 
   modalLogin: NgbModalRef;
   constructor(
-    private readonly messagesAlertService: ModalAlertService,
+    private readonly messagesAlertService: ModalAlertService
+   
   ) { }
 
   ngOnChanges(changes: import('@angular/core').SimpleChanges): void {

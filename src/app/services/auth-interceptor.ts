@@ -11,6 +11,7 @@ import { AuthService } from './auth/auth.service';
 })
 export class AuthInterceptor implements HttpInterceptor {
 
+  nameToken = 'token_cocolu';
   constructor(private readonly authService: AuthService ) {}
 
   intercept(
@@ -20,6 +21,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
     let newHeaders = req.headers;
     if (this.authService.checkLogin()) {
+      // tamien verificacmos el user
+      // this.authService.userGet();
       newHeaders = newHeaders.append(
         'Authorization', `Bearer  ${localStorage.getItem(this.authService.getNameToken())}`
       );
@@ -27,6 +30,10 @@ export class AuthInterceptor implements HttpInterceptor {
     const authReq = req.clone({headers: newHeaders});
     return next.handle(authReq);
 
+  }
+
+  public checkLogin(): boolean {
+    return localStorage.getItem(this.nameToken) && localStorage.getItem(this.nameToken) !== 'undefined' ? true : false;
   }
 
 }

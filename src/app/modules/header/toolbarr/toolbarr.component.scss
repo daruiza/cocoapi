@@ -46,10 +46,11 @@
 }
 
 .mat-icon{
-    color: $icon-colors;
-    background: $icon-colors-background;
+    color: $primary-color;
+    background: $accent-color;
     margin: 2px;
-    padding: 2px;
+    margin-right: 10px;
+    padding: 3px;
     border-radius: 50%;
     font-size: 32px;
     height: 37px;
@@ -75,6 +76,6 @@
         width: 34px;
         padding: 2px;
         margin-left: 4px;
-        margin-right: 3px;
+        margin-right: 11px;
     }
 }

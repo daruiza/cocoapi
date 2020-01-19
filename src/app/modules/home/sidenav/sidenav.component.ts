@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor() { }
+  constructor( private readonly authService: AuthService) { }
 
   ngOnInit() {
+    // consumo de servicios
+    // 1. vamos por las opciones
+    // 0. Pero primero habra que ir por el usuario
+
+    // setTimeout(()=>{
+    //   console.log(this.authService.getUser());
+    // },2000)
+
   }
 
 }
