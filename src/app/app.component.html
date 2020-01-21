@@ -1,14 +1,16 @@
-<app-toolbarr [sidenav]="sidenav" [title]="title"></app-toolbarr>
-<!-- 60 es una bariable de configuracion de sass: $toolbar-height -->
-<section class="section" [style.height.px]="windowHeight ? windowHeight : 0">
-  <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #sidenav [style.display]="authService.checkLogin() ? 'block' : 'none'" [mode]="sidenavMode">
-      <app-sidenav></app-sidenav>
-    </mat-sidenav>
+<section [class]="appService.theme">
+  <app-toolbarr [sidenav]="sidenav" [title]="title"></app-toolbarr>
+  <!-- 60 es una bariable de configuracion de sass: $toolbar-height -->
+  <section class="section" [style.height.px]="windowHeight ? windowHeight : 0">
+    <mat-sidenav-container class="sidenav-container">
+      <mat-sidenav #sidenav [style.display]="authService.checkLogin() ? 'block' : 'none'" [mode]="sidenavMode">
+        <app-sidenav></app-sidenav>
+      </mat-sidenav>
 
-    <mat-sidenav-content [style.height.px]="windowHeight ? windowHeight : 0">
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
+      <mat-sidenav-content [style.height.px]="windowHeight ? windowHeight : 0">
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
 
-  </mat-sidenav-container>
+    </mat-sidenav-container>
+  </section>
 </section>

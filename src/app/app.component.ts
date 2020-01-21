@@ -3,6 +3,7 @@ import { MessagesService } from './services/messages.service';
 import { Subscription } from 'rxjs';
 import { ModalAlertService } from './services/modal-alert/modal-alert.service';
 import { AuthService } from './services/auth/auth.service';
+import { AppService } from './services/app.service';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,8 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private readonly messagesService: MessagesService,
     private readonly messagesAlertService: ModalAlertService,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly appService: AppService
   ) {
   }
 
@@ -30,7 +32,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // obtención de usuario en caso de estar logueado
     this.authService.userGet();
-
     // Control de tamaño, responsive
     this.responsiveControl();
     // Consumo de servicios
@@ -57,7 +58,6 @@ export class AppComponent implements OnInit, OnDestroy {
     // Width
     this.windowWidth = window.innerWidth;
     this.sidenavMode = this.windowWidth < 720 ? 'over' : 'side';
-
 
     // Heightz
     this.windowHeight = window.innerHeight - this.toolbarHeight;

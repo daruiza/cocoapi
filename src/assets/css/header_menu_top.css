@@ -2,9 +2,9 @@
   color: var(--primary-color);
   background: var(--accent-color);
   margin: 7px;
-  padding: 3px;
+  padding: 2px;
   border-radius: 50%;
-  font-size: 32px;
+  font-size: 33px;
   height: 37px;
   width: 37px;
   user-select: none;
@@ -33,6 +33,13 @@
   padding: 2px;
   margin-left: 8px;
   margin-right: 9px;
+}
+
+.mat-menu-content {
+  display: flex;
+}
+.mat-menu-content .mat-menu-item {
+  width: 50%;
 }
 
 .power-on {

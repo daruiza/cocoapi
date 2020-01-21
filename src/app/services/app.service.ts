@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AppService {
 
-  private theme: string;
+  public theme: string;
   constructor() {
     this.theme = 'candy-theme';
   }

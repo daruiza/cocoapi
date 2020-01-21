@@ -6,7 +6,7 @@ import { WelcomeComponent } from './modules/home/welcome/welcome.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomeComponent,
     // canActivate: [ AuthGuard ],
     // loadChildren: () => import('./modules/home/home.module').then(mod => mod.HomeModule)
@@ -22,7 +22,10 @@ const routes: Routes = [
     // component: LoginComponent,
     // canActivate: [ AuthGuard ],
     loadChildren: () => import('./modules/acces/acces.module').then(mod => mod.AccesModule)
-  }
+  },
+  { path: '', redirectTo: '/home',  pathMatch: 'full'},
+  { path: '**', component: HomeComponent }
+
 ];
 
 @NgModule({

@@ -5,16 +5,23 @@
 @import "./assets/scss/functions.scss";
 @import "~@angular/material/theming";
 
+
+.candy-theme {
+    @import "./assets/themes/unicorn-candy-theme.scss";
+    @include angular-material-theme($candy-theme);
+    @include generate-theme-vars($candy-theme);
+}
+
 .dark-theme {
     @import "./assets/themes/unicorn-dark-theme.scss";
     @include angular-material-theme($dark-theme);
     @include generate-theme-vars($dark-theme);
 }
 
-.candy-theme {
-    @import "./assets/themes/unicorn-candy-theme.scss";
-    @include angular-material-theme($candy-theme);
-    @include generate-theme-vars($candy-theme);
+.light-theme {
+    @import "./assets/themes/unicorn-light-theme.scss";
+    @include angular-material-theme($light-theme);
+    @include generate-theme-vars($light-theme);
 }
 
 body { 

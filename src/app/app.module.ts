@@ -21,7 +21,8 @@ import { WelcomeComponent } from './modules/home/welcome/welcome.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
-// import { MatMenuModule } from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button'; 
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatIconModule,
     MatSidenavModule,
     MatToolbarModule,
-    // MatMenuModule
+    MatMenuModule,
+    MatButtonModule
 
   ],
   exports: [ModalAlertComponent],
