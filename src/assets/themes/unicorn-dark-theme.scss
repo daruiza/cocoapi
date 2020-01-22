@@ -12,8 +12,9 @@ $dark-accent:  mat-palette($mat-amber, A200, A100, A400);
 $dark-warn:    mat-palette($mat-deep-orange);
 $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn) ;
 
-.color-primary {
+.dark-primary {
     background-color: mat-color($dark-primary);
+    color: mat-color($dark-primary);
 }
 
 // Include the alternative theme styles inside of a block with a CSS class. You can make this
