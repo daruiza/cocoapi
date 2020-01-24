@@ -3,11 +3,9 @@
 }
 
 .toolbar {
-  position: absolute;
   width: 100%;
   top: 0px;
   z-index: 2;
-  height: 60px;
   display: flex;
   align-items: center;
   color: #575756;

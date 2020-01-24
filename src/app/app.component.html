@@ -1,6 +1,7 @@
 <section [class]="appService.theme">
-  <app-toolbarr [sidenav]="sidenav" [title]="title"></app-toolbarr>
-  <!-- 60 es una bariable de configuracion de sass: $toolbar-height -->
+  <div class="hello" #toolbarr >
+    <app-toolbarr [sidenav]="sidenav" [title]="title"></app-toolbarr>
+  </div>
   <section class="section" [style.height.px]="windowHeight ? windowHeight : 0">
     <mat-sidenav-container class="sidenav-container">
       <mat-sidenav #sidenav [style.display]="authService.checkLogin() ? 'block' : 'none'" [mode]="sidenavMode">

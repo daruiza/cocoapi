@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { MessagesService } from './services/messages.service';
 import { Subscription } from 'rxjs';
 import { ModalAlertService } from './services/modal-alert/modal-alert.service';
@@ -10,10 +10,11 @@ import { AppService } from './services/app.service';
   templateUrl: './app.component.html',
   styleUrls: ['../assets/css/app.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   title = 'InterGrupo';
   sidenavMode: string;
-  toolbarHeight = 60; // 60 es una bariable de configuracion de sass: $toolbar-height
+  toolbarHeight = 64; // 60 es una bariable de configuracion de sass: $toolbar-height
+  @ViewChild('toolbarr', {static: false}) toolbarr: ElementRef;
   iconSindenavWidth = 32; // tamaño de iconos de menu lateral
   windowHeight: number;
   windowWidth: number;
@@ -53,14 +54,18 @@ export class AppComponent implements OnInit, OnDestroy {
     this.suscriptionMessage.unsubscribe();
   }
 
-
   responsiveControl() {
     // Width
     this.windowWidth = window.innerWidth;
     this.sidenavMode = this.windowWidth < 720 ? 'over' : 'side';
 
     // Heightz
-    this.windowHeight = window.innerHeight - this.toolbarHeight;
+    this.windowHeight = window.innerHeight - (this.toolbarHeight);
+  }
+
+  ngAfterViewInit() {
+    // Intento de obtener el height del menu
+    // console.log(this.toolbarr.nativeElement.style.height);
   }
 
 }

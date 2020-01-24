@@ -7,9 +7,9 @@
 @include mat-core();
 
 // Define an alternate dark theme.
-$dark-primary: mat-palette($mat-blue-grey);
-$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
-$dark-warn:    mat-palette($mat-deep-orange);
+$dark-primary: mat-palette($mat-blue-grey, 400);
+$dark-accent:  mat-palette($mat-blue-grey, 100);
+$dark-warn:    mat-palette($mat-blue-grey, 900);
 $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn) ;
 
 .dark-primary {
