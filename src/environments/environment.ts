@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseAPI: 'http://localhost/software/cocolu/public/api'
+  baseAPI: 'http://localhost/web/cocolu/public/api'
 };
 
 /*
