@@ -15,9 +15,7 @@ export class SidenavComponent implements OnInit {
     // 1. vamos por las opciones
     // 0. Pero primero habra que ir por el usuario
 
-    // setTimeout(()=>{
-    //   console.log(this.authService.getUser());
-    // },2000)
+    console.log(this.authService.getUser());
 
   }
 
