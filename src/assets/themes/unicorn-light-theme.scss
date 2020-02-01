@@ -1,0 +1,24 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// **Be sure that you only ever include this mixin once!**
+@include mat-core();
+
+// Set variables to whatever colors you want for your app
+$light-primary: mat-palette($mat-blue-grey, 400);
+$light-accent: mat-palette($mat-blue-grey, 100);
+$light-warn: mat-palette($mat-blue-grey, 900);
+
+$light-theme: mat-light-theme(
+    $light-primary,
+    $light-accent,
+    $light-warn,
+);
+
+.color-primary {
+    background-color: mat-color($light-primary);
+}
+
+@include angular-material-theme($light-theme);

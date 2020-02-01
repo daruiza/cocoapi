@@ -1,0 +1,56 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~bootstrap/dist/css/bootstrap.css";
+
+@import "./assets/scss/functions.scss";
+@import "~@angular/material/theming";
+
+
+.candy-theme {
+    @import "./assets/themes/unicorn-candy-theme.scss";
+    @include angular-material-theme($candy-theme);
+    @include generate-theme-vars($candy-theme);
+}
+
+.dark-theme {
+    @import "./assets/themes/unicorn-dark-theme.scss";
+    @include angular-material-theme($dark-theme);
+    @include generate-theme-vars($dark-theme);
+}
+
+.light-theme {
+    @import "./assets/themes/unicorn-light-theme.scss";
+    @include angular-material-theme($light-theme);
+    @include generate-theme-vars($light-theme);
+}
+
+body { 
+    margin: 0; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+/* modal animation */
+.modal{
+    animation-name: open;
+    animation-duration: 0.6s;
+}
+
+@keyframes open {
+    0%   {transform: scale(0.5)}
+    100% {transform: scale(1)}
+}
+
+.modal.fade{
+    animation-name: close;
+    animation-duration: 0.6s;
+}
+
+@keyframes close {
+    100% {transform: scale(1)}
+    0%   {transform: scale(0.5)}
+}

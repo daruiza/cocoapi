@@ -1,0 +1,24 @@
+.section{
+    // margin-top: $toolbar-height;
+}
+
+.mat-drawer.mat-drawer-side{
+    box-shadow: 1px 1px 7px 1px $shadow-color;
+    background-color: $primary-color
+}
+
+.mat-drawer{
+    border-color: transparent;
+}
+
+.mat-drawer-container{
+    background-color: #fff;
+}
+
+// Solo para pc
+@media only screen and (min-width: 768px) {
+    .mat-sidenav-content{
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+}

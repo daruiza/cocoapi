@@ -1,0 +1,46 @@
+.mat-icon {
+  color: #575756;
+  background: #eee;
+  margin: 7px;
+  padding: 2px;
+  border-radius: 50%;
+  font-size: 32px;
+  height: 37px;
+  width: 37px;
+  user-select: none;
+  /* supported by Chrome and Opera */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  cursor: pointer;
+}
+.mat-icon:hover {
+  background: #575756;
+  color: #eee;
+  -webkit-box-shadow: 2px 2px 6px 0px #575756;
+  -moz-box-shadow: 2px 2px 6px 0px #575756;
+  box-shadow: 2px 2px 6px 0px #575756;
+}
+.mat-icon:active {
+  font-size: 30px;
+  height: 34px;
+  width: 34px;
+  padding: 2px;
+  margin-top: 9px;
+  margin-bottom: 8px;
+}
+
+.content-sidenav {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+/*# sourceMappingURL=home_sidenav.css.map */

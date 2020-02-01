@@ -1,0 +1,65 @@
+.mat-icon{
+    color: $primary-color;
+    background: $accent-color;
+    margin: 7px;
+    padding: 2px;
+    border-radius: 50%;
+    font-size: 33px;
+    height: 37px;
+    width: 37px;
+    user-select: none; /* supported by Chrome and Opera */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    cursor: pointer;
+    
+    &:hover {
+        background: $icon-colors;
+        color: $icon-colors-background;
+        -webkit-box-shadow: 2px 2px 6px 0px $icon-colors;
+        -moz-box-shadow: 2px 2px 6px 0px $icon-colors;
+        box-shadow: 2px 2px 6px 0px $icon-colors;
+    }
+
+    &:active{
+        font-size: 30px;
+        height: 34px;
+        width: 34px;
+        padding: 2px;
+        margin-left: 8px;
+        margin-right: 9px;
+    }
+}
+
+.mat-menu-content{
+    display: flex;
+
+    .mat-menu-item{
+        width: 50%;
+    }
+}
+
+.candy-theme{
+    color: #ec407a;
+    background: #f8bbd0;
+}
+
+.dark-theme{
+    color: #ec407a;
+    background: #f8bbd0;
+}
+
+.power-on{
+    color: green;
+    &:hover{
+        color: green;
+    }
+}
+
+.power-off{
+    color: $warn-color;
+    &:hover{
+        color: $warn-color;
+    }
+}
