@@ -42,7 +42,7 @@ export class UserService {
     // observe: 'events',
     // reportProgress: true
     };
-   return this.http.get<User>(`${this.url}/auth/user`, options)
+   return this.http.get<User>(`${this.url}/user`, options)
     .pipe(
     tap(user => {
         this.setUser(user);
@@ -53,6 +53,7 @@ export class UserService {
 
     private handleError<T>(operation = 'operation', result?: T) {
       return (error: any): Observable<T> => {
+        console.log(error);
         let messageError = error.error.message;
         if ('errors' in error.error) {
           for (const key in error.error.errors) {

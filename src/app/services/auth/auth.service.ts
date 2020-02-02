@@ -46,13 +46,13 @@ export class AuthService {
     return localStorage.getItem(this.nameToken);
   }
 
-  private userGet(): boolean {
-  // si hay token sin usuario
-  if (this.checkLogin() && !this.userService.getUser()) {
-    this.userService.getUserBK();
-    return true;
+  public userGet(): Observable<any> {
+    // si hay token sin usuario
+    if (this.checkLogin() && !this.userService.getUser()) {
+      return this.userService.getUserBK();
+    } else {
+      return of();
     }
-  return false;
   }
 
   public checkLogin(): boolean {
