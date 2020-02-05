@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { MessagesService } from '../messages.service';
-import { User } from '../../models/User';
+import { User, IUser } from '../../models/User';
 import { UserService } from '../entities/user.service';
 
 @Injectable({
@@ -30,7 +30,7 @@ export class AuthService {
     // this.userGet();
   }
 
-  public getUser(): User {
+  public getUser(): IUser {
     return this.userService.getUser();
   }
 
@@ -51,7 +51,7 @@ export class AuthService {
     if (this.checkLogin() && !this.userService.getUser()) {
       return this.userService.getUserBK();
     } else {
-      return of();
+      return of(this.userService.getUser());
     }
   }
 
@@ -103,7 +103,7 @@ export class AuthService {
   
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
+      console.log(error);
       let messageError = error.error.message;
       if ('errors' in error.error) {
         for (const key in error.error.errors) {

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { User } from 'src/app/models/User';
+import { User, IUser } from 'src/app/models/User';
 import { environment } from 'src/environments/environment';
 import { MessagesService } from '../messages.service';
 import { tap, catchError } from 'rxjs/operators';
@@ -14,7 +14,7 @@ export class UserService {
 
   public url = `${environment.baseAPI}`;
   public httpHeaders: HttpHeaders;
-  public user: User;
+  public user: IUser;
 
 
   constructor(
@@ -26,11 +26,11 @@ export class UserService {
     });
   }
 
-  public getUser(): User {
+  public getUser(): IUser {
     return this.user;
   }
 
-  public setUser(user: User): void {
+  public setUser(user: IUser): void {
     this.user = user;
   }
 
