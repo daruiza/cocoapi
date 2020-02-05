@@ -23,7 +23,12 @@ export class SidenavComponent implements OnInit, AfterViewInit {
     // obtención de usuario en caso de estar logueado
     this.authService.userGet().subscribe(usr => {
       this.user = usr;
-      console.log(this.user);
+      console.log(this.user.permits);
+      
+      const result = Object.keys(this.user.permits).map(function(key) {
+        return [(key), this.user.permits[key]];
+      });
+      console.log(result);
     });
   }
 
