@@ -1,5 +1,9 @@
 <div *ngIf="authService.checkLogin()" class="content-sidenav">
-    <mat-icon aria-hidden="false" aria-label="Example home icon">
-        notifications
+    <mat-icon 
+        *ngFor="let permit of user.permits; let i = index" 
+        aria-hidden="false" 
+        aria-label="Example home icon"
+        title = "{{permit.name}}">
+        {{permit.label.maticon}}
     </mat-icon>
 </div>
