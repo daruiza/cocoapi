@@ -1,9 +1,21 @@
 <div *ngIf="authService.checkLogin()" class="content-sidenav">
+    
     <mat-icon 
-        *ngFor="let permit of user.permits; let i = index" 
+        aria-hidden="false" 
+        aria-label="notifications"
+        title = "Bar"
+        [routerLink]="['home/pub']"
+        routerLinkActive="router-link-active">
+        web
+    </mat-icon>
+
+    <mat-icon 
+        *ngFor="let permit of user.permits; let i = index"
+        id = "{{permit.id}}"
         aria-hidden="false" 
         aria-label="Example home icon"
-        title = "{{permit.name}}">
+        title = "{{permit.name}}"
+        (click) = "toModule($event)">
         {{permit.label.maticon}}
     </mat-icon>
 </div>

@@ -12,7 +12,7 @@ export class SidenavComponent implements OnInit, AfterViewInit {
 
   user: User;
 
-  constructor( private readonly authService: AuthService) { 
+  constructor( private readonly authService: AuthService) {
     this.user = new User();
   }
 
@@ -30,13 +30,16 @@ export class SidenavComponent implements OnInit, AfterViewInit {
           return this.user.permits[key];
          });
         this.user.permits = result;
-        console.log(this.user);
-        
       }
     });
   }
 
   ngAfterViewInit(): void {
+  }
+
+  toModule(evt: any) {
+    const moduleOne = this.user.permits.find( (el: any) => el.id === +evt.target.id);
+    console.log(moduleOne.label.action);
   }
 
 }

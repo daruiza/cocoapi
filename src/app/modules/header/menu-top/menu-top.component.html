@@ -7,9 +7,10 @@
 
     <mat-icon 
         aria-hidden="false" 
-        aria-label="notifications" [routerLink]="['/welcome']" routerLinkActive="router-link-active">
+        aria-label="notifications" [routerLink]="['home/welcome']">
         notifications
     </mat-icon>
+    
     <ng-container 
         *ngIf="!getAuthService().checkLogin() ; else loggedOut">
         <mat-icon class="power-on" 

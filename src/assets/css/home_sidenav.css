@@ -1,10 +1,10 @@
 .mat-icon {
-  color: #575756;
-  background: #eee;
+  color: var(--primary-color);
+  background: var(--accent-color);
   margin: 7px;
-  padding: 2px;
+  padding: 3px;
   border-radius: 50%;
-  font-size: 32px;
+  font-size: 30px;
   height: 37px;
   width: 37px;
   user-select: none;

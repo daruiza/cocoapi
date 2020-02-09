@@ -30,9 +30,9 @@ import { MatButtonModule } from '@angular/material/button';
     ToolbarrComponent,
     MenuTopComponent,
     SidenavComponent,
-    HomeComponent,
+    // HomeComponent,
+    // WelcomeComponent
     ModalAlertComponent,
-    WelcomeComponent
   ],
   imports: [
     BrowserModule,

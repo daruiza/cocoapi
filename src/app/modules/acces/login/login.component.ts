@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
       });
     this.modalLogin.result.then((result) => {
       // Consumo de servicio en caso de estar el form OK
-      this.router.navigate(['/']);
+      this.router.navigate(['/home/welcome']);
     }, (reason) => {
       this.router.navigate(['/']);
     });
