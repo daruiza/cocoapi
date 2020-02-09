@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WelcomeService } from 'src/app/services/welcome.service';
 
 @Component({
   selector: 'app-pub',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PubComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private readonly welcomeService: WelcomeService,
+  ) { }
 
   ngOnInit() {
+    // Consumo de servico de tablas
+    this.welcomeService.pub().subscribe(
+      (pub) => console.log(pub)
+    );
   }
 
 }

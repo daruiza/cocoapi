@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { MessagesService } from '../messages.service';
-import { User, IUser } from '../../models/User';
+import { IUser } from '../../models/User';
 import { UserService } from '../entities/user.service';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
