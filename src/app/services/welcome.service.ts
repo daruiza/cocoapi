@@ -31,7 +31,7 @@ export class WelcomeService {
     return this.http.get<any>(`${this.url}/pub`, options)
       .pipe(
       tap(pub => {
-          console.log(`Tab ${pub}`);
+          // console.log(`Tab ${pub}`);
       }),
       catchError(this.handleError<any>(`Consulta Fallida`))
       );

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PubComponent } from './pub.component';
+import { PubTableComponent } from './pub-table.component';
 
-describe('PubComponent', () => {
-  let component: PubComponent;
-  let fixture: ComponentFixture<PubComponent>;
+describe('PubTableComponent', () => {
+  let component: PubTableComponent;
+  let fixture: ComponentFixture<PubTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PubComponent ]
+      declarations: [ PubTableComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PubComponent);
+    fixture = TestBed.createComponent(PubTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

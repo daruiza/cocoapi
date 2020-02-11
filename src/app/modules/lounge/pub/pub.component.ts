@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { WelcomeService } from 'src/app/services/welcome.service';
+import { Table } from 'src/app/models/Table';
 
 @Component({
   selector: 'app-pub',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PubComponent implements OnInit {
 
-  constructor() { }
+  pubTables: Table[];
+
+  constructor(
+    private readonly welcomeService: WelcomeService,
+  ) { }
 
   ngOnInit() {
+    // Consumo de servico de tablas
+    this.welcomeService.pub().subscribe(
+      (pub) => this.pubTables = pub
+    );
   }
 
 }
