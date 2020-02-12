@@ -4,9 +4,13 @@
     <!-- Componete presentacional -->
     <div class="col-md-12">
         <div class="row">
-            <div class="col-md-2" *ngFor="let item of pubTables">
-                <app-pub-table></app-pub-table>
-            </div>
+            
+            <app-pub-table
+                *ngFor="let item of pubTables"
+                [table]="item"
+                class="col-md-2"
+            ></app-pub-table>
+            
         </div>
     </div>
 </div>
