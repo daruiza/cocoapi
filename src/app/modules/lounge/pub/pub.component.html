@@ -1,16 +1,15 @@
 <!-- Encabezado -->
-<div class="row">
+<div class="row pub-conteiner">
     <div class="col-md-12"><p>menu</p></div>
     <!-- Componete presentacional -->
     <div class="col-md-12">
         <div class="row">
-            
             <app-pub-table
                 *ngFor="let item of pubTables"
                 [table]="item"
                 class="col-md-2"
             ></app-pub-table>
-            
+
         </div>
     </div>
 </div>

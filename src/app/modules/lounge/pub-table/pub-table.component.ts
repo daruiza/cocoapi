@@ -4,7 +4,7 @@ import { Table, ITable } from 'src/app/models/Table';
 @Component({
   selector: 'app-pub-table',
   templateUrl: './pub-table.component.html',
-  styleUrls: ['./pub-table.component.scss']
+  styleUrls: ['../../../../assets/css/lounge_pub_table.css']
 })
 export class PubTableComponent implements OnInit {
 
@@ -13,6 +13,7 @@ export class PubTableComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.table);
   }
 
 }
