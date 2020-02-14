@@ -9,9 +9,9 @@ export interface IUser {
     active?: string;
     rol_id?: number;
     rel_store_id?: number;
-    permits?: any;
+    permits?: any[];
 }
 
 export class User implements IUser{
-    permits: any;
+    permits: any[];
 }

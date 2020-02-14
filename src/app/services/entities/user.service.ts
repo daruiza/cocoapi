@@ -7,7 +7,7 @@ import { MessagesService } from '../messages.service';
 import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
-providedIn: 'root'
+  providedIn: 'root'
 })
 
 export class UserService {
@@ -35,40 +35,40 @@ export class UserService {
   }
 
   public getUserBK(): Observable<User> {
-   const options = {
-    headers: this.httpHeaders,
-    params: {
-    },
-    // observe: 'events',
-    // reportProgress: true
+    const options = {
+      headers: this.httpHeaders,
+      params: {
+      },
+      // observe: 'events',
+      // reportProgress: true
     };
-   return this.http.get<User>(`${this.url}/user`, options)
-    .pipe(
-    tap(user => {
-        this.setUser(user);
-    }),
-    catchError(this.handleError<any>(`Consulta Fallida`))
-    );
-   }
+    return this.http.get<User>(`${this.url}/user`, options)
+      .pipe(
+        tap(user => {
+          this.setUser(user);
+        }),
+        catchError(this.handleError<any>(`Consulta Fallida`))
+      );
+  }
 
-    private handleError<T>(operation = 'operation', result?: T) {
-      return (error: any): Observable<T> => {
-        console.log(error);
-        let messageError = error.error.message;
-        if ('errors' in error.error) {
-          for (const key in error.error.errors) {
-            if (error.error.errors.hasOwnProperty(key)) {
-              messageError = `${messageError} ${error.error.errors[key]}`;
-            }
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.log(error);
+      let messageError = error.error.message;
+      if ('errors' in error.error) {
+        for (const key in error.error.errors) {
+          if (error.error.errors.hasOwnProperty(key)) {
+            messageError = `${messageError} ${error.error.errors[key]}`;
           }
         }
-        // envio de observable a menajes
-        this.messagesService.changeMessageControl(error, {
-          type: 'danger',
-          title: operation,
-          text: `${messageError}`
-        });
-        return of(result as T);
-      };
-    }
+      }
+      // envio de observable a menajes
+      this.messagesService.changeMessageControl(error, {
+        type: 'danger',
+        title: operation,
+        text: `${messageError}`
+      });
+      return of(result as T);
+    };
+  }
 }
