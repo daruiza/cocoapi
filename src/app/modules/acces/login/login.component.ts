@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ModalAlertService } from 'src/app/services/modal-alert/modal-alert.service';
+import { Message } from 'src/app/models/Message';
+
 
 @Component({
   selector: 'app-login',
@@ -101,11 +103,12 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
         if (res) {
           this.router.navigate(['welcome']);
           // La redireccion se da al dar click en ingresar
-          this.messagesAlertService.openAlert({
+          const messge = new Message({
             type: 'success',
             title: `Ingreso Exitoso`,
             text: `Super de nuevo por aqui!!. Nuevamente bienvend@.`
           });
+          this.messagesAlertService.openAlert(messge);
         }
       });
 

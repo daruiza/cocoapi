@@ -36,18 +36,20 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     // Control de tamaño, responsive
     this.responsiveControl();
     // Consumo de servicios
-    this.suscriptionMessage = this.messagesService.observableMessage
-    .subscribe((item: any ) => {
-      if (item) {
-        // pintamos el mensaje
-        // console.log(item);
-        this.messagesAlertService.openAlert({
-          title: item.title,
-          type: item.type,
-          text: item.text
-        });
-      }
-    });
+
+    
+    // this.suscriptionMessage = this.messagesService.observableMessage
+    // .subscribe((item: any ) => {
+    //   if (item) {
+    //     // pintamos el mensaje
+    //     // console.log(item);
+    //     this.messagesAlertService.openAlert({
+    //       title: item.title,
+    //       type: item.type,
+    //       text: item.text
+    //     });
+    //   }
+    // });
   }
 
   ngOnDestroy(): void {

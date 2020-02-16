@@ -63,11 +63,11 @@ export class UserService {
         }
       }
       // envio de observable a menajes
-      this.messagesService.changeMessageControl(error, {
-        type: 'danger',
-        title: operation,
-        text: `${messageError}`
-      });
+      // this.messagesService.changeMessageControl(error, {
+      //   type: 'danger',
+      //   title: operation,
+      //   text: `${messageError}`
+      // });
       return of(result as T);
     };
   }

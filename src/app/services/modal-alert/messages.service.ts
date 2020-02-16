@@ -7,7 +7,9 @@ import { Message } from '../../models/Message';
 export class MessagesService {
 
   private message: Message;
-  constructor() { }
+  constructor() { 
+    this.message = new Message({});
+  }
 
   setMessage(message: Message = null): void {
     this.message = message ? message : null;

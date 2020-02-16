@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ModalAlertService } from 'src/app/services/modal-alert/modal-alert.service';
+import { Message } from 'src/app/models/Message';
 
 @Component({
   selector: 'app-home',
@@ -24,11 +25,8 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   openModal() {
-    this.modalLogin = this.messagesAlertService.openAlert({
-      title: 'Un Titulo',
-      type: 'success',
-      text: 'Alerta de de Suceso OK'
-    });
+    const message = new Message({});
+    this.modalLogin = this.messagesAlertService.openAlert(message);
     this.modalLogin.result.then((result) => {
       // Consumo de servicio en caso de estar el form OK
       console.log('result');
@@ -38,13 +36,13 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   openModal2() {
-    this.modalLogin = this.messagesAlertService.openAlert({
-      title: 'Un Titulo 2',
-      type: 'danger',
-      text: 'Alerta de warning',
-      confirmButton: 'Save',
-      cancelButton: 'Cancel'
-    });
+    // this.modalLogin = this.messagesAlertService.openAlert({
+    //   title: 'Un Titulo 2',
+    //   type: 'danger',
+    //   text: 'Alerta de warning',
+    //   confirmButton: 'Save',
+    //   cancelButton: 'Cancel'
+    // });
   }
 
 }
