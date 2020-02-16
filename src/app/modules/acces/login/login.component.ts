@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
       });
     this.modalLogin.result.then((result) => {
       // Consumo de servicio en caso de estar el form OK
-      this.router.navigate(['/']);
+      this.router.navigate(['/home/welcome']);
     }, (reason) => {
       this.router.navigate(['/']);
     });
@@ -99,6 +99,7 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
         this.loginForm.get('remenber_me').value
       ).subscribe((res: any) => {
         if (res) {
+          this.router.navigate(['welcome']);
           // La redireccion se da al dar click en ingresar
           this.messagesAlertService.openAlert({
             type: 'success',

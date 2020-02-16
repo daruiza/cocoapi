@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { MessagesService } from '../messages.service';
-import { User } from '../../models/User';
+import { IUser } from '../../models/User';
+import { UserService } from '../entities/user.service';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +14,13 @@ import { User } from '../../models/User';
 
 export class AuthService {
   public nameToken: string;
-  public user: User;
   public httpHeaders: HttpHeaders;
   public url = `${environment.baseAPI}`;
 
   constructor(
     protected http: HttpClient,
     private readonly messagesService: MessagesService,
+    private readonly userService: UserService
   ) {
     this.nameToken = 'token_cocolu';
     this.httpHeaders = new HttpHeaders({
@@ -29,12 +30,12 @@ export class AuthService {
     // this.userGet();
   }
 
-  public getNameToken(): string {
-    return this.nameToken;
+  public getUser(): IUser {
+    return this.userService.getUser();
   }
 
-  public getUser(): User {
-    return this.user;
+  public getNameToken(): string {
+    return this.nameToken;
   }
 
   public setAccesToken(token: string): void {
@@ -45,25 +46,14 @@ export class AuthService {
     return localStorage.getItem(this.nameToken);
   }
 
-  public setUser(user: User): void {
-    this.user = user;
+  public userGet(): Observable<any> {
+    // si hay token sin usuario
+    if (this.checkLogin() && !this.userService.getUser()) {
+      return this.userService.getUserBK();
+    } else {
+      return of(this.userService.getUser());
+    }
   }
-
-
-  public userGet(): boolean {
-  // si hay token sin usuario
-  if (this.checkLogin() && !this.getUser()) {
-    this.getUserBK().subscribe(
-      (usr: User) => {
-        this.setUser(usr);
-      },
-      (err) => console.log(err)
-    );
-
-    return true;
-  }
-  return false;
-}
 
   public checkLogin(): boolean {
     return localStorage.getItem(this.nameToken) && localStorage.getItem(this.nameToken) !== 'undefined' ? true : false;
@@ -86,7 +76,7 @@ export class AuthService {
       .pipe(
         tap(auth => {
           this.setAccesToken(auth.access_token);
-          this.setUser(auth.user);
+          this.userService.setUser(auth.user);
         }),
         catchError(this.handleError<any>(`Ingreso Fallido`))
       );
@@ -105,33 +95,15 @@ export class AuthService {
       .pipe(
         tap(auth => {
           localStorage.removeItem(this.nameToken);
-          this.setUser(undefined);
+          this.userService.setUser(undefined);
         }),
         catchError(this.handleError<any>(`Salida Fallida`))
       );
   }
-
-  public getUserBK(): Observable<User> {
-    const options = {
-      headers: this.httpHeaders,
-      params: {
-      },
-      // observe: 'events',
-      // reportProgress: true
-    };
-    return this.http.get<User>(`${this.url}/auth/user`,
-      options)
-      .pipe(
-        tap(user => {
-          this.setUser(user);
-        }),
-        catchError(this.handleError<any>(`Consulta Fallida`))
-      );
-  }
-
+  
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
+      console.log(error);
       let messageError = error.error.message;
       if ('errors' in error.error) {
         for (const key in error.error.errors) {

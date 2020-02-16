@@ -1,5 +1,5 @@
 
-export interface User {
+export interface IUser {
     name?: string;
     surname?: string;
     email?: string;
@@ -9,4 +9,9 @@ export interface User {
     active?: string;
     rol_id?: number;
     rel_store_id?: number;
+    permits?: any[];
+}
+
+export class User implements IUser{
+    permits: any[];
 }

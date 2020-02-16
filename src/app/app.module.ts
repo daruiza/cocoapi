@@ -10,14 +10,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AuthInterceptor } from './services/auth-interceptor';
+import { AuthInterceptor } from './services/interceptors/auth-interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToolbarrComponent } from './modules/header/toolbarr/toolbarr.component';
 import { SidenavComponent } from './modules/home/sidenav/sidenav.component';
 import { HomeComponent } from './modules/home/home/home.component';
+import { WelcomeComponent } from './modules/home/welcome/welcome.component';
 import { MenuTopComponent } from './modules/header/menu-top/menu-top.component';
 import { ModalAlertComponent } from './components/modal-alert/modal-alert.component';
-import { WelcomeComponent } from './modules/home/welcome/welcome.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -30,9 +30,9 @@ import { MatButtonModule } from '@angular/material/button';
     ToolbarrComponent,
     MenuTopComponent,
     SidenavComponent,
-    HomeComponent,
+    // HomeComponent,
+    // WelcomeComponent
     ModalAlertComponent,
-    WelcomeComponent
   ],
   imports: [
     BrowserModule,

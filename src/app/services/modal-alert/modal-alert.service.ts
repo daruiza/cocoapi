@@ -17,11 +17,14 @@ export class ModalAlertService {
   ) { }
 
   openAlert(message: Message = {}): NgbModalRef {
-    this.messagesService.setMessage(message);
-    return this.modalAlert.open(ModalAlertComponent, {
+    // this.messagesService.setMessage(message);
+    const modalRef = this.modalAlert.open(ModalAlertComponent, {
       windowClass: 'modal-holder',
       // centered: true,
       backdrop: 'static'
     });
+    modalRef.componentInstance.message = message;
+
+    return modalRef;
   }
 }

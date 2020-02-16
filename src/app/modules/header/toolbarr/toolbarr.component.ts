@@ -26,7 +26,7 @@ export class ToolbarrComponent implements OnInit, OnChanges {
 
   constructor(
     private readonly authservice: AuthService
-  ) { }
+  ) {}
 
   ngOnChanges(): void {
   }

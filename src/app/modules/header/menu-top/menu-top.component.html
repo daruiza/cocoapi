@@ -2,15 +2,15 @@
     <mat-icon [matMenuTriggerFor]="menu">fiber_manual_record</mat-icon>
     <mat-menu #menu="matMenu">
         <mat-icon id="candy-theme" class="candy-theme" (click)="themeTogle($event)">fiber_manual_record</mat-icon>
-        <mat-icon id="dark-theme"  (click)="themeTogle($event)">fiber_manual_record</mat-icon>
-        <mat-icon id="light-theme" (click)="themeTogle($event)">fiber_manual_record</mat-icon>
+        <mat-icon id="light-theme" class="light-theme" (click)="themeTogle($event)">fiber_manual_record</mat-icon>
     </mat-menu>
 
     <mat-icon 
         aria-hidden="false" 
-        aria-label="notifications" [routerLink]="['/welcome']" routerLinkActive="router-link-active">
+        aria-label="notifications" [routerLink]="['home/welcome']">
         notifications
     </mat-icon>
+    
     <ng-container 
         *ngIf="!getAuthService().checkLogin() ; else loggedOut">
         <mat-icon class="power-on" 

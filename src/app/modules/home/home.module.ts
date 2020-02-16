@@ -16,7 +16,7 @@ import { HomeComponent } from './home/home.component';
   ],
   exports: [
     HomeComponent,
-    WelcomeComponent
+    WelcomeComponent,
   ]
 })
 export class HomeModule { }

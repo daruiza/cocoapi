@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { ModalAlertService } from './services/modal-alert/modal-alert.service';
 import { AuthService } from './services/auth/auth.service';
 import { AppService } from './services/app.service';
+import { log } from 'util';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import { AppService } from './services/app.service';
   styleUrls: ['../assets/css/app.css']
 })
 export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
+
   title = 'InterGrupo';
   sidenavMode: string;
   toolbarHeight = 64; // 60 es una bariable de configuracion de sass: $toolbar-height
@@ -30,9 +32,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
 
-  ngOnInit(): void {
-    // obtención de usuario en caso de estar logueado
-    this.authService.userGet();
+  ngOnInit(): void {    
     // Control de tamaño, responsive
     this.responsiveControl();
     // Consumo de servicios
