@@ -7,18 +7,18 @@
 @include mat-core();
 
 // Set variables to whatever colors you want for your app
-$light-primary: mat-palette($mat-blue-grey, 400);
-$light-accent: mat-palette($mat-blue-grey, 100);
-$light-warn: mat-palette($mat-blue-grey, 900);
+$blue-gray-primary: mat-palette($mat-blue-grey, 400);
+$blue-gray-accent: mat-palette($mat-blue-grey, 100);
+$blue-gray-warn: mat-palette($mat-blue-grey, 900);
 
-$light-theme: mat-light-theme(
-    $light-primary,
-    $light-accent,
-    $light-warn,
+$blue-gray-theme: mat-light-theme(
+    $blue-gray-primary,
+    $blue-gray-accent,
+    $blue-gray-warn,
 );
 
 .color-primary {
-    background-color: mat-color($light-primary);
+    background-color: mat-color($blue-gray-primary);
 }
 
-@include angular-material-theme($light-theme);
+@include angular-material-theme($blue-gray-theme);

@@ -7,14 +7,14 @@
 @include mat-core();
 
 // Define the default theme (same as the example above).
-$candy-primary: mat-palette($mat-pink, 400);
-$candy-accent:  mat-palette($mat-pink, 100);
-$candy-warn: mat-palette($mat-pink, 900);
-$candy-theme:   mat-light-theme($candy-primary, $candy-accent, $candy-warn);
+$pink-primary: mat-palette($mat-pink, 400);
+$pink-accent:  mat-palette($mat-pink, 100);
+$pink-warn: mat-palette($mat-pink, 900);
+$pink-theme:   mat-light-theme($pink-primary, $pink-accent, $pink-warn);
 
 .color-primary {
-    background-color: mat-color($candy-primary);
+    background-color: mat-color($pink-primary);
 }
 
 // Include the default theme styles.
-@include angular-material-theme($candy-theme);
+@include angular-material-theme($pink-theme);

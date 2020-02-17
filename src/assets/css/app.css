@@ -1,3 +1,7 @@
+.mat-drawer-container {
+  color: var(--warn-color);
+}
+
 .mat-drawer.mat-drawer-side {
   box-shadow: 1px 1px 7px 1px #575756;
   background-color: var(--primary-color);
@@ -5,10 +9,6 @@
 
 .mat-drawer {
   border-color: transparent;
-}
-
-.mat-drawer-container {
-  background-color: #fff;
 }
 
 @media only screen and (min-width: 768px) {

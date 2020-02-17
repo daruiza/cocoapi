@@ -2,34 +2,55 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import "~bootstrap/dist/css/bootstrap.css";
 
+// @import './assets/scss/config.scss';
+
 @import "./assets/scss/functions.scss";
 @import "~@angular/material/theming";
 
 
-.candy-theme {
-    @import "./assets/themes/unicorn-candy-theme.scss";
-    @include angular-material-theme($candy-theme);
-    @include generate-theme-vars($candy-theme);
+.pink-theme {
+    @import "./assets/themes/pink-theme.scss";
+    @include angular-material-theme($pink-theme);
+    @include generate-theme-vars($pink-theme);
+}
+
+.indigo-theme {
+    @import "./assets/themes/indigo-theme.scss";
+    @include angular-material-theme($indigo-theme);
+    @include generate-theme-vars($indigo-theme);
+}
+
+.blue-gray-theme {
+    @import "./assets/themes/blue-gray-theme.scss";
+    @include angular-material-theme($blue-gray-theme);
+    @include generate-theme-vars($blue-gray-theme);
+}
+
+.deep-orange-theme {
+  @import "./assets/themes/deep-orange-theme.scss";
+  @include angular-material-theme($deep-orange-theme);
+  @include generate-theme-vars($deep-orange-theme);
+}
+
+.teal-green-theme {
+  @import "./assets/themes/teal-green-theme.scss";
+  @include angular-material-theme($teal-green-theme);
+  @include generate-theme-vars($teal-green-theme);
 }
 
 .dark-theme {
-    @import "./assets/themes/unicorn-dark-theme.scss";
-    @include angular-material-theme($dark-theme);
-    @include generate-theme-vars($dark-theme);
+  @import "./assets/themes/dark-theme.scss";
+  @include angular-material-theme($dark-theme);
+  @include generate-theme-vars($dark-theme);
 }
 
-.light-theme {
-    @import "./assets/themes/unicorn-light-theme.scss";
-    @include angular-material-theme($light-theme);
-    @include generate-theme-vars($light-theme);
-}
-
-body { 
-    margin: 0; 
+body {
+    margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    // color: $accent-color
 }
 
 

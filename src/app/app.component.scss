@@ -1,18 +1,14 @@
-.section{
-    // margin-top: $toolbar-height;
+.mat-drawer-container{
+  color: $warn-color ;
 }
 
 .mat-drawer.mat-drawer-side{
     box-shadow: 1px 1px 7px 1px $shadow-color;
-    background-color: $primary-color
+    background-color: $primary-color;
 }
 
 .mat-drawer{
-    border-color: transparent;
-}
-
-.mat-drawer-container{
-    background-color: #fff;
+  border-color: transparent;
 }
 
 // Solo para pc

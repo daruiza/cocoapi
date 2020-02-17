@@ -7,7 +7,7 @@ export class AppService {
 
   public theme: string;
   constructor() {
-    this.theme = 'candy-theme';
+    this.theme = 'blue-gray-theme';
   }
 
   public getTheme(): string { return this.theme; }
