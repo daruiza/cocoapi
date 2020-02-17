@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   openModal() {
-    const message = new Message({});
+    const message = new Message({type: 'warning', title: 'Home 1'});
     this.modalLogin = this.messagesAlertService.openAlert(message);
     this.modalLogin.result.then((result) => {
       // Consumo de servicio en caso de estar el form OK

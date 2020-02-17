@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { User, IUser } from 'src/app/models/User';
 import { environment } from 'src/environments/environment';
-import { MessagesService } from '../messages.service';
 import { tap, catchError } from 'rxjs/operators';
+import { Message } from 'src/app/models/Message';
+import { ModalAlertService } from '../modal-alert/modal-alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class UserService {
 
   constructor(
     protected http: HttpClient,
-    private readonly messagesService: MessagesService,
+    private readonly messagesAlertService: ModalAlertService,
   ) {
     this.httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -62,12 +63,12 @@ export class UserService {
           }
         }
       }
-      // envio de observable a menajes
-      // this.messagesService.changeMessageControl(error, {
-      //   type: 'danger',
-      //   title: operation,
-      //   text: `${messageError}`
-      // });
+      // envio de mensajes
+      this.messagesAlertService.openAlert(new Message({
+        type: 'danger',
+        title: operation,
+        text: `${messageError}`
+      }));
       return of(result as T);
     };
   }

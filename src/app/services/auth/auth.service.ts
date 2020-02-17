@@ -3,10 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { MessagesService } from '../messages.service';
 import { IUser } from '../../models/User';
 import { UserService } from '../entities/user.service';
 import { environment } from '../../../environments/environment';
+import { Message } from 'src/app/models/Message';
+import { ModalAlertService } from '../modal-alert/modal-alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class AuthService {
 
   constructor(
     protected http: HttpClient,
-    private readonly messagesService: MessagesService,
+    private readonly messagesAlertService: ModalAlertService,
     private readonly userService: UserService
   ) {
     this.nameToken = 'token_cocolu';
@@ -100,7 +101,7 @@ export class AuthService {
         catchError(this.handleError<any>(`Salida Fallida`))
       );
   }
-  
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.log(error);
@@ -113,12 +114,12 @@ export class AuthService {
         }
       }
 
-      // envio de observable a menajes
-      // this.messagesService.changeMessageControl(error, {
-      //   type: 'danger',
-      //   title: operation,
-      //   text: `${messageError}`
-      // });
+      // envio de mensajes
+      this.messagesAlertService.openAlert(new Message({
+        type: 'danger',
+        title: operation,
+        text: `${messageError}`
+      }));
       return of(result as T);
     };
   }
