@@ -7,7 +7,7 @@ import { IUser } from '../../models/User';
 import { UserService } from '../entities/user.service';
 import { environment } from '../../../environments/environment';
 import { Message } from 'src/app/models/Message';
-import { ModalAlertService } from '../modal-alert/modal-alert.service';
+import { ModalAlertService } from '../components/modal-alert/modal-alert.service';
 
 @Injectable({
   providedIn: 'root'

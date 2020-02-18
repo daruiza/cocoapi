@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-import { ModalAlertService } from './modal-alert/modal-alert.service';
+import { ModalAlertService } from './components/modal-alert/modal-alert.service';
 import { Message } from '../models/Message';
 
 @Injectable({

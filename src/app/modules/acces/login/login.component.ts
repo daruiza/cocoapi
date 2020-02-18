@@ -10,7 +10,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { ModalAlertService } from 'src/app/services/modal-alert/modal-alert.service';
+import { ModalAlertService } from 'src/app/services/components/modal-alert/modal-alert.service';
 import { Message } from 'src/app/models/Message';
 
 

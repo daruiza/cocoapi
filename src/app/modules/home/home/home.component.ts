@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { ModalAlertService } from 'src/app/services/modal-alert/modal-alert.service';
+import { ModalAlertService } from 'src/app/services/components/modal-alert/modal-alert.service';
 import { Message } from 'src/app/models/Message';
 
 @Component({

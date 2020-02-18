@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { User } from 'src/app/models/User';
+import { UserService } from 'src/app/services/entities/user.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -11,20 +12,19 @@ export class SidenavComponent implements OnInit, AfterViewInit {
 
   user: User;
 
-  constructor(private readonly authService: AuthService) {
+  constructor(
+    private readonly authService: AuthService,
+    private readonly userService: UserService
+    ) {
     this.user = new User();
   }
 
   ngOnInit() {
-    console.log('sideonINitf');
-    
     // consumo de servicios
     // 1. vamos por las opciones
     // 0. Pero primero habra que ir por el usuario
     // obtención de usuario en caso de estar logueado
     this.authService.userGet().subscribe(usr => {
-      console.log(usr);
-      
       if (usr) {
         this.user = usr;
         if (this.user) {
@@ -37,6 +37,23 @@ export class SidenavComponent implements OnInit, AfterViewInit {
         }
       }
     });
+
+    this.userService.observableUser
+    .subscribe((item: any ) => {
+      if (item) {
+        this.user = item;
+        if (this.user) {
+          const result = Object.keys(this.user.permits).map((key) => {
+            const rObj = {};
+            rObj[key] = this.user.permits[key];
+            return this.user.permits[key];
+          });
+          this.user.permits = result;
+        }
+      }
+    });
+
+    // Falta un if para cuando user.permits este vacio
   }
 
   ngAfterViewInit(): void {

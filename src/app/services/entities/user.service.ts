@@ -1,11 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { User, IUser } from 'src/app/models/User';
 import { environment } from 'src/environments/environment';
 import { tap, catchError } from 'rxjs/operators';
 import { Message } from 'src/app/models/Message';
-import { ModalAlertService } from '../modal-alert/modal-alert.service';
+import { ModalAlertService } from '../components/modal-alert/modal-alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +15,11 @@ export class UserService {
 
   public url = `${environment.baseAPI}`;
   public httpHeaders: HttpHeaders;
-  public user: IUser;
+  public user: User;
 
+  // Control ante un usuario
+  userControl: User;
+  observableUser: BehaviorSubject<User>;
 
   constructor(
     protected http: HttpClient,
@@ -25,14 +28,16 @@ export class UserService {
     this.httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
     });
+    this.observableUser = new BehaviorSubject(this.userControl);
   }
 
-  public getUser(): IUser {
+  public getUser(): User {
     return this.user;
   }
 
-  public setUser(user: IUser): void {
+  public setUser(user: User): void {
     this.user = user;
+    this.userPush(user);
   }
 
   public getUserBK(): Observable<User> {
@@ -50,6 +55,11 @@ export class UserService {
         }),
         catchError(this.handleError<any>(`Consulta Fallida`))
       );
+  }
+
+  // Observers
+  userPush(usr: User) {
+    this.observableUser.next(usr);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
