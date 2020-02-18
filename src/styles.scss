@@ -38,10 +38,28 @@
   @include generate-theme-vars($teal-green-theme);
 }
 
-.dark-theme {
-  @import "./assets/themes/dark-theme.scss";
-  @include angular-material-theme($dark-theme);
-  @include generate-theme-vars($dark-theme);
+.purple-theme {
+  @import "./assets/themes/purple-theme.scss";
+  @include angular-material-theme($purple-theme);
+  @include generate-theme-vars($purple-theme);
+}
+
+.yellow-theme {
+  @import "./assets/themes/yellow-theme.scss";
+  @include angular-material-theme($yellow-theme);
+  @include generate-theme-vars($yellow-theme);
+}
+
+.purple-dark-theme {
+  @import "./assets/themes/purple-dark-theme.scss";
+  @include angular-material-theme($purple-dark-theme);
+  @include generate-theme-vars($purple-dark-theme);
+}
+
+.deep-orange-dark-theme {
+  @import "./assets/themes/deep-orange-dark-theme.scss";
+  @include angular-material-theme($deep-orange-dark-theme);
+  @include generate-theme-vars($deep-orange-dark-theme);
 }
 
 body {

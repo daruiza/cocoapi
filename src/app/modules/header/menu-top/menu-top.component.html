@@ -1,36 +1,48 @@
 <div>
-    <mat-icon [matMenuTriggerFor]="menu">fiber_manual_record</mat-icon>
-    <mat-menu #menu="matMenu">
+  <mat-icon [matMenuTriggerFor]="menu">fiber_manual_record</mat-icon>
+  <mat-menu #menu="matMenu">
+    <div class="container">
+      <div class="row">
         <mat-icon id="pink-theme" class="pink-theme" (click)="themeTogle($event)">fiber_manual_record</mat-icon>
-        <mat-icon id="blue-gray-theme" class="blue-gray-theme" (click)="themeTogle($event)">fiber_manual_record</mat-icon>
+        <mat-icon id="blue-gray-theme" class="blue-gray-theme" (click)="themeTogle($event)">fiber_manual_record
+        </mat-icon>
         <mat-icon id="indigo-theme" class="indigo-theme" (click)="themeTogle($event)">fiber_manual_record</mat-icon>
-        <mat-icon id="deep-orange-theme" class="deep-orange-theme" (click)="themeTogle($event)">fiber_manual_record</mat-icon>
-        <mat-icon id="teal-green-theme" class="teal-green-theme" (click)="themeTogle($event)">fiber_manual_record</mat-icon>
-        <mat-icon id="dark-theme" class="dark-theme" (click)="themeTogle($event)">fiber_manual_record</mat-icon>
-    </mat-menu>
+      </div>
+      <div class="row">
+        <mat-icon id="deep-orange-theme" class="deep-orange-theme" (click)="themeTogle($event)">fiber_manual_record
+        </mat-icon>
+        <mat-icon id="purple-theme" class="purple-theme" (click)="themeTogle($event)">fiber_manual_record</mat-icon>
+        <mat-icon id="teal-green-theme" class="teal-green-theme" (click)="themeTogle($event)">fiber_manual_record
+        </mat-icon>
+      </div>
+      <hr />
+      <div class="row">
+        <mat-icon id="deep-orange-dark-theme" class="deep-orange-dark-theme" (click)="themeTogle($event)">
+          fiber_manual_record
+        </mat-icon>
+        <mat-icon id="purple-dark-theme" class="purple-dark-theme" (click)="themeTogle($event)">fiber_manual_record
+        </mat-icon>
+        <mat-icon id="yellow-theme" class="yellow-theme" (click)="themeTogle($event)">fiber_manual_record</mat-icon>
+      </div>
 
-    <mat-icon
-        aria-hidden="false"
-        aria-label="notifications" [routerLink]="['home/welcome']">
-        notifications
+    </div>
+  </mat-menu>
+
+  <mat-icon aria-hidden="false" aria-label="notifications" [routerLink]="['home/welcome']">
+    notifications
+  </mat-icon>
+
+  <ng-container *ngIf="!getAuthService().checkLogin() ; else loggedOut">
+    <mat-icon class="power-on" aria-hidden="false" aria-label="power" routerLink="/acces/login">
+      power_settings_new
     </mat-icon>
-
-    <ng-container
-        *ngIf="!getAuthService().checkLogin() ; else loggedOut">
-        <mat-icon class="power-on"
-        aria-hidden="false" aria-label="power" routerLink="/acces/login">
-        power_settings_new
-        </mat-icon>
-    </ng-container>
-    <ng-template #loggedOut>
-        <mat-icon
-            aria-hidden="false" aria-label="person">
-            person
-        </mat-icon>
-        <mat-icon
-            class="power-off"
-            aria-hidden="false" aria-label="power" routerLink="/acces/logout">
-            power_settings_new
-        </mat-icon>
-    </ng-template>
+  </ng-container>
+  <ng-template #loggedOut>
+    <mat-icon aria-hidden="false" aria-label="person">
+      person
+    </mat-icon>
+    <mat-icon class="power-off" aria-hidden="false" aria-label="power" routerLink="/acces/logout">
+      power_settings_new
+    </mat-icon>
+  </ng-template>
 </div>
