@@ -74,9 +74,9 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
     this.modalLogin = this.modalService.open(this.theModal,
       {
         ariaLabelledBy: 'modal-basic-title',
-        // size: 'sm',
         backdrop: 'static',
         windowClass: 'modal-login',
+        // size: 'sm',
         // centered: true,
       });
     this.modalLogin.result.then((result) => {

@@ -27,6 +27,9 @@
   box-shadow: 2px 2px 6px 0px #575756;
   margin-right: 4px;
 }
+.toolbar .title-span {
+  color: var(--accent-color);
+}
 
 .title-span {
   cursor: pointer;

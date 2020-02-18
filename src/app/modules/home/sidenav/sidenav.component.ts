@@ -16,11 +16,15 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    console.log('sideonINitf');
+    
     // consumo de servicios
     // 1. vamos por las opciones
     // 0. Pero primero habra que ir por el usuario
     // obtención de usuario en caso de estar logueado
     this.authService.userGet().subscribe(usr => {
+      console.log(usr);
+      
       if (usr) {
         this.user = usr;
         if (this.user) {
