@@ -37,7 +37,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     const authReq = req.clone({ headers: newHeaders });
     return next.handle(authReq).pipe(
-      catchError(this.handleError<any>(`Ingreso Fallido`)),
+      catchError(this.handleError<any>(`Interceptor Fallido`)),
       finalize(() => {
         setTimeout(() => {
           this.loadingService.hideLoading();

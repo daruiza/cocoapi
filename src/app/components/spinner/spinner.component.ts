@@ -17,8 +17,6 @@ export class SpinnerComponent implements OnInit {
 
   ngOnInit() {
     this.loadingService.showLoading();
-    console.log(this.loading$);
-
   }
 
 }
