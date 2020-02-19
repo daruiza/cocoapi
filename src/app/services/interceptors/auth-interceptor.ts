@@ -44,42 +44,10 @@ export class AuthInterceptor implements HttpInterceptor {
         });
       })
     );
-
-    // return combineLatest(
-    //   timer(1000),
-    //   next.handle(this.addToken(req))
-    // ).pipe(
-    //   map(x => x[1]),
-    //   catchError((error: HttpErrorResponse) => {
-    //     if (error.status === 401 || error.status === 403) {
-    //       this.authService.logout();
-    //       return throwError(error);
-    //     }
-
-    //     return throwError(error);
-    //   }),
-    //   finalize(() => {
-    //     setTimeout(() => {
-    //       this.loadingService.hideLoading();
-    //     });
-    //   })
-    // );
-
   }
 
   public checkLogin(): boolean {
     return localStorage.getItem(this.nameToken) && localStorage.getItem(this.nameToken) !== 'undefined' ? true : false;
-  }
-
-  public addToken(request: HttpRequest<any>): HttpRequest<any> {
-    if (this.authService.checkLogin()) {
-      return request.clone({
-        setHeaders: {
-          Authorization: `Bearer  ${localStorage.getItem(this.authService.getNameToken())}`
-        }
-      });
-    }
-    return request;
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
