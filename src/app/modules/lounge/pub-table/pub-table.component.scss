@@ -9,10 +9,13 @@
 }
 
 .pub-table-conteiner {
-  .col{
-    text-align: center;
-    padding-right: 5px;
-    padding-left: 5px;
+
+  .row{
+    >div{
+      text-align: left;
+      padding-right: 5px;
+      padding-left: 5px;
+    }
   }
 
 }

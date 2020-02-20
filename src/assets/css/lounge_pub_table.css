@@ -8,8 +8,8 @@
   border: 1px solid var(--primary-color);
 }
 
-.pub-table-conteiner .col {
-  text-align: center;
+.pub-table-conteiner .row > div {
+  text-align: left;
   padding-right: 5px;
   padding-left: 5px;
 }

@@ -13,7 +13,8 @@ export class PubTableComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.table);
+    // Consultamos si la tabla tiene servicio
+
   }
 
 }
