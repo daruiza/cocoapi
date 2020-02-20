@@ -4,6 +4,9 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { ModalAlertService } from '../components/modal-alert/modal-alert.service';
 
 import { Table } from 'src/app/models/Table';
+import { Observable, of } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
+import { Message } from 'src/app/models/Message';
 
 @Injectable({
   providedIn: 'root'
@@ -22,4 +25,43 @@ export class TableService {
       'Content-Type': 'application/json',
     });
   }
+
+  public tableServiceOpen(): Observable<any> {
+    const options = {
+      headers: this.httpHeaders,
+      params: {
+      },
+      // observe: 'events',
+      // reportProgress: true
+    };
+    return this.http.get<any>(`${this.url}/user`, options)
+      .pipe(
+        tap(user => {
+          // this.setUser(user);
+        }),
+        catchError(this.handleError<any>(`Consulta Fallida`))
+      );
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.log(error);
+      let messageError = error.error.message;
+      if ('errors' in error.error) {
+        for (const key in error.error.errors) {
+          if (error.error.errors.hasOwnProperty(key)) {
+            messageError = `${messageError} ${error.error.errors[key]}`;
+          }
+        }
+      }
+      // envio de mensajes
+      this.messagesAlertService.openAlert(new Message({
+        type: 'danger',
+        title: operation,
+        text: `${messageError}`
+      }));
+      return of(result as T);
+    };
+  }
+
 }
