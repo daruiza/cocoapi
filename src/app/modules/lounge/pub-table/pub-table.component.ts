@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Table, ITable } from 'src/app/models/Table';
+import { Table } from 'src/app/models/Table';
+import { TableService } from 'src/app/services/entities/table.service';
+import { Service } from 'src/app/models/Service';
 
 @Component({
   selector: 'app-pub-table',
@@ -9,12 +11,36 @@ import { Table, ITable } from 'src/app/models/Table';
 export class PubTableComponent implements OnInit {
 
   @Input() table: Table;
-
-  constructor() { }
+  service: Service;
+  constructor(
+    private readonly tableService: TableService
+  ) { }
 
   ngOnInit() {
     // Consultamos si la tabla tiene servicio
+    this.tableService.tableServiceOpen(this.table.id).subscribe((serv) => {
+      this.service = serv[0];
+    });
+  }
 
+  public openService() {
+    alert('service');
+  }
+
+  public openOrder() {
+    alert('order');
+  }
+
+  public showService(evt: Event) {
+    alert('showService');
+  }
+
+  public closeService(evt: Event) {
+    alert('closeService');
+  }
+
+  public addMusicTrack(evt: Event) {
+    alert('addMusicTrack');
   }
 
 }

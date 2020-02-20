@@ -7,6 +7,7 @@ import { Table } from 'src/app/models/Table';
 import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { Message } from 'src/app/models/Message';
+import { Service } from 'src/app/models/Service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class TableService {
     });
   }
 
-  public tableServiceOpen(): Observable<any> {
+  public tableServiceOpen(id: number): Observable<any> {
     const options = {
       headers: this.httpHeaders,
       params: {
@@ -34,10 +35,10 @@ export class TableService {
       // observe: 'events',
       // reportProgress: true
     };
-    return this.http.get<any>(`${this.url}/user`, options)
+    return this.http.get<Service>(`${this.url}/table/${id}/serviceopen`, options)
       .pipe(
-        tap(user => {
-          // this.setUser(user);
+        tap(serv => {
+          // console.log(serv);
         }),
         catchError(this.handleError<any>(`Consulta Fallida`))
       );

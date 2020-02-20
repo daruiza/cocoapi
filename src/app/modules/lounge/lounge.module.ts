@@ -6,6 +6,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { LoungeRoutingModule } from './lounge-routing.module';
 import { PubComponent } from './pub/pub.component';
 import { PubTableComponent } from './pub-table/pub-table.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { PubTableComponent } from './pub-table/pub-table.component';
   imports: [
     CommonModule,
     LoungeRoutingModule,
-    DragDropModule
+    DragDropModule,
+    MatIconModule,
   ]
 })
 export class LoungeModule { }

@@ -1,4 +1,9 @@
-<div class="container pub-table-conteiner">
+<div
+[ngClass]="{'service-open': service}"
+class="container pub-table-conteiner noselect"
+(dblclick)="service ? openOrder($event) : openService($event)"
+>
+
   <div class="row">
     <div class="col-md-2 table-name">
       <i class="{{table.icon}}"></i>
@@ -6,5 +11,20 @@
     <div class="col table-name">
       {{table.name}}
     </div>
+  </div>
+
+  <div class="row" *ngIf="service">
+    <div class="col table-name align-table-center">
+      {{service.name}}
+    </div>
+  </div>
+
+  <!-- Opciones de servicio -->
+  <p></p>
+  <div *ngIf="service" class="row">
+    <mat-icon class="col-md-3" (click)="showService($event)">date_range</mat-icon>
+    <mat-icon class="col-md-3" (click)="addMusicTrack($event)">headset</mat-icon>
+    <mat-icon class="col-md-3" (click)="openOrder($event)">note_add</mat-icon>
+    <mat-icon class="col-md-3" (click)="closeService($event)">cancel</mat-icon>
   </div>
 </div>

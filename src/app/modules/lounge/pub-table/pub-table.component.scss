@@ -5,7 +5,7 @@
 }
 
 .container{
-  border: 1px solid $primary-color;;
+  border: 1px solid $primary-color;
 }
 
 .pub-table-conteiner {
@@ -16,6 +16,24 @@
       padding-right: 5px;
       padding-left: 5px;
     }
+    .align-table-center{
+      text-align: center;
+    }
   }
 
+}
+
+
+.service-open{
+  background-color: $accent-color;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
 }
