@@ -8,6 +8,7 @@ import { UserService } from '../entities/user.service';
 import { environment } from '../../../environments/environment';
 import { Message } from 'src/app/models/Message';
 import { ModalAlertService } from '../components/modal-alert/modal-alert.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,8 @@ export class AuthService {
   constructor(
     protected http: HttpClient,
     private readonly messagesAlertService: ModalAlertService,
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    private readonly router: Router,
   ) {
     this.nameToken = 'token_cocolu';
     this.httpHeaders = new HttpHeaders({
@@ -100,6 +102,12 @@ export class AuthService {
         }),
         catchError(this.handleError<any>(`Salida Fallida`))
       );
+  }
+
+  public logoutForce(){
+    localStorage.removeItem(this.nameToken);
+    this.userService.setUser(undefined);
+    this.router.navigate(['/acces/login']);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

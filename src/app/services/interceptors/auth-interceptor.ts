@@ -62,6 +62,13 @@ export class AuthInterceptor implements HttpInterceptor {
         }
       }
 
+      // Si el error es de autenticación
+      if (error.status === 401 || error.status === 403) {
+        // logout Manual
+        this.authService.logoutForce();
+        return of(result as T);
+      }
+
       // envio de mensajes
       this.messagesAlertService.openAlert(new Message({
         type: 'danger',
