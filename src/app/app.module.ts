@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
@@ -17,11 +19,14 @@ import { ModalAlertComponent } from './components/modal-alert/modal-alert.compon
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { PubModalServiceComponent } from './modules/lounge/pub-modal-service/pub-modal-service.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +35,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     MenuTopComponent,
     SidenavComponent,
     ModalAlertComponent,
+    PubModalServiceComponent,
     SpinnerComponent,
   ],
   imports: [
@@ -42,6 +48,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
         strictActionImmutability: true
       }
     }),
+    FormsModule, ReactiveFormsModule,
     BrowserAnimationsModule,
     NgbModule,
     HttpClientModule,
@@ -50,9 +57,10 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     MatToolbarModule,
     MatMenuModule,
     MatButtonModule,
+    MatInputModule
   ],
-  exports: [ModalAlertComponent],
-  entryComponents: [ModalAlertComponent],
+  exports: [ModalAlertComponent, PubModalServiceComponent],
+  entryComponents: [ModalAlertComponent, PubModalServiceComponent],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],

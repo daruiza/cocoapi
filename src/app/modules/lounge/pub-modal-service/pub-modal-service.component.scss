@@ -1,0 +1,25 @@
+.modal-header{
+    color:  $accent-color;
+    background: $primary-color;
+    padding: 5px 15px 0px 15px;
+
+    .modal-title {
+        
+    }
+
+    h5{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    i{
+        margin-right: 10px;
+    }
+    .table-name{
+        font-weight: 300;
+        
+    }
+    
+}
+
