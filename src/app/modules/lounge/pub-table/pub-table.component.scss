@@ -28,6 +28,12 @@
   background-color: $accent-color;
 }
 
+// Se asigna con la directiva highlight
+.select-table{
+  background-color: $primary-color;
+  color: $accent-color;
+}
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */

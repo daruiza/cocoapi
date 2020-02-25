@@ -23,6 +23,10 @@ export class PubTableComponent implements OnInit {
     });
   }
 
+  public selectTable(evt: Event) {
+    this.tableService.setTable(this.table);
+  }
+
   public openService() {
     alert('service');
   }

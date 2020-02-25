@@ -16,17 +16,23 @@ export class TableService {
 
   public url = `${environment.baseAPI}`;
   public httpHeaders: HttpHeaders;
-  public user: Table;
+  public table: Table;
 
   constructor(
     protected http: HttpClient,
     private readonly messagesAlertService: ModalAlertService,
   ) {
+    this.table = new Table();
     this.httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
     });
   }
 
+  public setTable(table: Table) {
+    this.table = this.table !== table ? table : new Table();
+  }
+
+  // Crea un servicio y lo abre
   public tableServiceOpen(id: number): Observable<any> {
     const options = {
       headers: this.httpHeaders,

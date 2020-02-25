@@ -8,9 +8,14 @@ import { PubComponent } from './pub/pub.component';
 import { PubTableComponent } from './pub-table/pub-table.component';
 import { MatIconModule } from '@angular/material/icon';
 
+import { HighlightDirective } from 'src/app/directives/highlight.directive';
 
 @NgModule({
-  declarations: [PubComponent, PubTableComponent],
+  declarations: [
+    PubComponent,
+    PubTableComponent,
+    HighlightDirective
+  ],
   imports: [
     CommonModule,
     LoungeRoutingModule,

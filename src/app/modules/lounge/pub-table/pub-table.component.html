@@ -1,9 +1,10 @@
 <div
+[appHighlight]="tableService.table.id === table.id"
 [ngClass]="{'service-open': service}"
 class="container pub-table-conteiner noselect"
+(click)="selectTable($event)"
 (dblclick)="service ? openOrder($event) : openService($event)"
 >
-
   <div class="row">
     <div class="col-md-2 table-name">
       <i class="{{table.icon}}"></i>
