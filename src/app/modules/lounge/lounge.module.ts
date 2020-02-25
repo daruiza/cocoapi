@@ -8,6 +8,8 @@ import { PubComponent } from './pub/pub.component';
 import { PubTableComponent } from './pub-table/pub-table.component';
 
 import { HighlightDirective } from 'src/app/directives/highlight.directive';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { HighlightDirective } from 'src/app/directives/highlight.directive';
     CommonModule,
     LoungeRoutingModule,
     DragDropModule,
+    MatIconModule,
+    MatInputModule
   ],
   exports: [],
   entryComponents: []
