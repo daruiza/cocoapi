@@ -37,7 +37,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     const authReq = req.clone({ headers: newHeaders });
     return next.handle(authReq).pipe(
-      catchError(this.handleError<any>(`Interceptor Fallido`)),
+      catchError(this.handleError<any>(`Operación Fallida [I]`)),
       finalize(() => {
         setTimeout(() => {
           this.loadingService.hideLoading();
@@ -60,6 +60,13 @@ export class AuthInterceptor implements HttpInterceptor {
             messageError = `${messageError} ${error.error.errors[key]}`;
           }
         }
+      }
+
+      // Si el error es de autenticación
+      if (error.status === 401 || error.status === 403) {
+        // logout Manual
+        this.authService.logoutForce();
+        return of(result as T);
       }
 
       // envio de mensajes

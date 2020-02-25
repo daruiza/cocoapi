@@ -6,7 +6,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { LoungeRoutingModule } from './lounge-routing.module';
 import { PubComponent } from './pub/pub.component';
 import { PubTableComponent } from './pub-table/pub-table.component';
-import { MatIconModule } from '@angular/material/icon';
 
 import { HighlightDirective } from 'src/app/directives/highlight.directive';
 
@@ -20,7 +19,8 @@ import { HighlightDirective } from 'src/app/directives/highlight.directive';
     CommonModule,
     LoungeRoutingModule,
     DragDropModule,
-    MatIconModule,
-  ]
+  ],
+  exports: [],
+  entryComponents: []
 })
 export class LoungeModule { }

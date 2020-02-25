@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Table } from 'src/app/models/Table';
 import { TableService } from 'src/app/services/entities/table.service';
 import { Service } from 'src/app/models/Service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PubModalServiceComponent } from '../pub-modal-service/pub-modal-service.component';
 
 @Component({
   selector: 'app-pub-table',
@@ -13,7 +15,8 @@ export class PubTableComponent implements OnInit {
   @Input() table: Table;
   service: Service;
   constructor(
-    private readonly tableService: TableService
+    private readonly tableService: TableService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {

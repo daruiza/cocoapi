@@ -50,6 +50,25 @@ export class TableService {
       );
   }
 
+  public tableServiceSave(idTable: number, idUser: number): Observable<any> {
+    const options = {
+      headers: this.httpHeaders,
+      params: {
+        id_table: `${idTable}`,
+        id_user: `${idUser}`
+      },
+      // observe: 'events',
+      // reportProgress: true
+    };
+    return this.http.post<Service>(`${this.url}/table/servicesave`, options)
+      .pipe(
+        tap(serv => {
+          // console.log(serv);
+        }),
+        catchError(this.handleError<any>(`Consulta Fallida`))
+      );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.log(error);
