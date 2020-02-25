@@ -42,4 +42,13 @@
      supported by Chrome, Opera and Firefox */
 }
 
+.buttons-table {
+  justify-content: space-evenly;
+  align-items: center;
+}
+.buttons-table button {
+  z-index: 1;
+  color: var(--primary-color);
+}
+
 /*# sourceMappingURL=lounge_pub_table.css.map */

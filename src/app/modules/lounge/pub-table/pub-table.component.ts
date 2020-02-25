@@ -16,7 +16,7 @@ export class PubTableComponent implements OnInit {
   service: Service;
   constructor(
     private readonly tableService: TableService,
-    private modalService: NgbModal
+    private readonly modalService: NgbModal
   ) { }
 
   ngOnInit() {
@@ -30,11 +30,14 @@ export class PubTableComponent implements OnInit {
     this.tableService.setTable(this.table);
   }
 
-  public openService() {
+  public openService(evt: Event) {
     alert('service');
   }
 
-  public openOrder() {
+  public openOrder(evt: Event) {
+    // Siempre seleccionado ante una orden
+    // console.log(evt.type);
+    // if (!this.tableService.table.id && `${evt.type}` === 'dblclick') { this.selectTable(evt); }
     alert('order');
   }
 
