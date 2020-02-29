@@ -28,7 +28,7 @@ export class PubTableComponent implements OnInit {
 
   public openService(evt: Event) {
     // Open Service
-    const modalRef = this.modalService.open(PubModalServiceComponent,{
+    const modalRef = this.modalService.open(PubModalServiceComponent, {
       windowClass: 'modal-holder',
       backdrop: 'static'
       // centered: true,
