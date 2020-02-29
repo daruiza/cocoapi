@@ -49,11 +49,11 @@ export class ModalAlertComponent implements OnInit {
     this.cancelButton = this.message.cancelButton ? this.message.cancelButton : '';
   }
 
-  close() {
+  close(evt: Event) {
     this.modal.dismiss();
   }
 
-  save() {
+  save(evt: Event) {
     this.modal.close();
   }
 

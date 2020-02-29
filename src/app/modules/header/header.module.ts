@@ -6,14 +6,14 @@ import { MenuTopComponent } from './menu-top/menu-top.component';
 
 @NgModule({
   declarations: [
-    MenuTopComponent
+    // MenuTopComponent
   ],
   imports: [
     CommonModule,
     HeaderRoutingModule,
   ],
   exports: [
-
+    // MenuTopComponent
   ]
 })
 export class HeaderModule { }

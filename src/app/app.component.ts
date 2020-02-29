@@ -21,8 +21,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   suscriptionMessage: Subscription;
 
   constructor(
-    private readonly authService: AuthService,
-    private readonly appService: AppService
+    public readonly authService: AuthService,
+    public readonly appService: AppService
   ) {
   }
 

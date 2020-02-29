@@ -13,7 +13,7 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   user: User;
 
   constructor(
-    private readonly authService: AuthService,
+    public readonly authService: AuthService,
     private readonly userService: UserService
     ) {
     this.user = new User();

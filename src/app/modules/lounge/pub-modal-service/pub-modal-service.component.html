@@ -14,7 +14,7 @@
     </button>
 </div>
 <div class="modal-body">
-    <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="serviceForm" (ngSubmit)="onSubmit($event)">
         <mat-form-field class="example-full-width">
             <input matInput type="text" placeholder="Nombre:" value="" formControlName="name" autofocus>
         </mat-form-field>

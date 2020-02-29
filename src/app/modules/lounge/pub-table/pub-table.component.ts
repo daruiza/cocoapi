@@ -15,7 +15,7 @@ export class PubTableComponent implements OnInit {
   @Input() table: Table;
   service: Service;
   constructor(
-    private readonly tableService: TableService,
+    public readonly tableService: TableService,
     private readonly modalService: NgbModal
   ) { }
 

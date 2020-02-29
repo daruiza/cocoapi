@@ -59,8 +59,14 @@ import { PubModalServiceComponent } from './modules/lounge/pub-modal-service/pub
     MatButtonModule,
     MatInputModule
   ],
-  exports: [ModalAlertComponent, PubModalServiceComponent],
-  entryComponents: [ModalAlertComponent, PubModalServiceComponent],
+  exports: [
+    ModalAlertComponent,
+    PubModalServiceComponent
+  ],
+  entryComponents: [
+    ModalAlertComponent, 
+    PubModalServiceComponent
+  ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],

@@ -5,7 +5,7 @@
     </div>
   </div>
   <h5 class="modal-title" id="modal-basic-title">{{title}}</h5>
-  <button type="button" class="close" aria-label="Close" (click)="close('Cross click')">
+  <button type="button" class="close" aria-label="Close" (click)="close($event)">
     <span aria-hidden="true">&times;</span>
   </button>
 
@@ -17,5 +17,5 @@
   <button ngbAutofocus *ngIf="cancelButton !== ''" type="button" class="btn btn-outline-dark"
     (click)="close('Close click')">{{cancelButton}}</button>
   <button type="button" ngbAutofocus class="btn btn-{{this.type}}"
-    (click)="save('Save click')">{{confirmButton}}</button>
+    (click)="save($event)">{{confirmButton}}</button>
 </div>

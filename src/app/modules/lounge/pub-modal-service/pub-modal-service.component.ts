@@ -19,7 +19,7 @@ export class PubModalServiceComponent implements OnInit {
   constructor(
     private readonly fb: FormBuilder,
     public readonly modal: NgbActiveModal,
-    private readonly appService: AppService) {
+    public readonly appService: AppService) {
     this.serviceForm = this.fb.group({});
     this.buttonAccept = false;
   }

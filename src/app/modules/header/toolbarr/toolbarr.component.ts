@@ -25,7 +25,7 @@ export class ToolbarrComponent implements OnInit, OnChanges {
   classSidenavToggle = false;
 
   constructor(
-    private readonly authservice: AuthService
+    public readonly authservice: AuthService
   ) {}
 
   ngOnChanges(): void {
