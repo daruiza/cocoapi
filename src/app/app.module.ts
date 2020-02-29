@@ -17,13 +17,7 @@ import { SidenavComponent } from './modules/home/sidenav/sidenav.component';
 import { MenuTopComponent } from './modules/header/menu-top/menu-top.component';
 import { ModalAlertComponent } from './components/modal-alert/modal-alert.component';
 
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
+import { SharedModule } from './shared/shared.module';
 
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { PubModalServiceComponent } from './modules/lounge/pub-modal-service/pub-modal-service.component';
@@ -52,12 +46,7 @@ import { PubModalServiceComponent } from './modules/lounge/pub-modal-service/pub
     BrowserAnimationsModule,
     NgbModule,
     HttpClientModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatInputModule
+    SharedModule
   ],
   exports: [
     ModalAlertComponent,

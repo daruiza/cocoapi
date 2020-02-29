@@ -8,9 +8,8 @@ import { PubComponent } from './pub/pub.component';
 import { PubTableComponent } from './pub-table/pub-table.component';
 
 import { HighlightDirective } from 'src/app/directives/highlight.directive';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
+
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -22,9 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     LoungeRoutingModule,
     DragDropModule,
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule
+    SharedModule
   ],
   exports: [],
   entryComponents: []
