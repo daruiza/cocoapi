@@ -21,6 +21,11 @@
   background-color: var(--accent-color);
 }
 
+.select-table {
+  background-color: var(--primary-color);
+  color: var(--accent-color);
+}
+
 .noselect {
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -35,6 +40,15 @@
   user-select: none;
   /* Non-prefixed version, currently
      supported by Chrome, Opera and Firefox */
+}
+
+.buttons-table {
+  justify-content: space-evenly;
+  align-items: center;
+}
+.buttons-table button {
+  z-index: 1;
+  color: var(--primary-color);
 }
 
 /*# sourceMappingURL=lounge_pub_table.css.map */

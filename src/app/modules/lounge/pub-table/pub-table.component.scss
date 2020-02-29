@@ -28,6 +28,12 @@
   background-color: $accent-color;
 }
 
+// Se asigna con la directiva highlight
+.select-table{
+  background-color: $primary-color;
+  color: $accent-color;
+}
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -36,4 +42,13 @@
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Opera and Firefox */
+}
+
+.buttons-table{
+  justify-content: space-evenly;
+  align-items: center;
+  button{
+    z-index: 1;
+    color: $primary-color;
+  }
 }
