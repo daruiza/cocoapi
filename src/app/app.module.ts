@@ -20,7 +20,6 @@ import { ModalAlertComponent } from './components/modal-alert/modal-alert.compon
 import { SharedModule } from './shared/shared.module';
 
 import { SpinnerComponent } from './components/spinner/spinner.component';
-import { PubModalServiceComponent } from './modules/lounge/pub-modal-service/pub-modal-service.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,6 @@ import { PubModalServiceComponent } from './modules/lounge/pub-modal-service/pub
     MenuTopComponent,
     SidenavComponent,
     ModalAlertComponent,
-    PubModalServiceComponent,
     SpinnerComponent,
   ],
   imports: [
@@ -50,11 +48,9 @@ import { PubModalServiceComponent } from './modules/lounge/pub-modal-service/pub
   ],
   exports: [
     ModalAlertComponent,
-    PubModalServiceComponent
   ],
   entryComponents: [
-    ModalAlertComponent, 
-    PubModalServiceComponent
+    ModalAlertComponent,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
