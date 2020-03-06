@@ -21,9 +21,7 @@ export class PubTableComponent implements OnInit {
 
   ngOnInit() {
     // Consultamos si la tabla tiene servicio
-    this.tableService.tableServiceOpen(this.table.id).subscribe((serv) => {
-      this.service = serv[0];
-    });
+    this.tableService.tableServiceOpen(this.table.id).subscribe((serv) => this.service = serv);
   }
 
   public selectTable(evt: Event) {

@@ -5,7 +5,7 @@ import { ModalAlertService } from '../components/modal-alert/modal-alert.service
 
 import { Table } from 'src/app/models/Table';
 import { Observable, of } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { tap, catchError, map } from 'rxjs/operators';
 import { Message } from 'src/app/models/Message';
 import { Service } from 'src/app/models/Service';
 
@@ -32,7 +32,7 @@ export class TableService {
     this.table = this.table !== table ? table : new Table();
   }
 
-  // Crea un servicio y lo abre
+  // Consulta la existencia de un servicio
   public tableServiceOpen(id: number): Observable<any> {
     const options = {
       headers: this.httpHeaders,
@@ -46,16 +46,18 @@ export class TableService {
         tap(serv => {
           // console.log(serv);
         }),
+        map((res) => res[0]),
         catchError(this.handleError<any>(`Consulta Fallida`))
       );
   }
 
-  public tableServiceSave(idTable: number, idUser: number): Observable<any> {
+  public tableServiceSave(idTable: number, name: string, description: string = null): Observable<any> {
     const options = {
       headers: this.httpHeaders,
       params: {
         id_table: `${idTable}`,
-        id_user: `${idUser}`
+        name: `${name}`,
+        description: `${description}`
       },
       // observe: 'events',
       // reportProgress: true
