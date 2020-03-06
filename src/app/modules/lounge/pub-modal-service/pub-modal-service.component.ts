@@ -43,7 +43,10 @@ export class PubModalServiceComponent implements OnInit {
     this.tableService.tableServiceSave(
       this.table.id,
       this.serviceForm.get('name').value,
-      this.serviceForm.get('description').value).subscribe();
+      this.serviceForm.get('description').value).subscribe(res => {
+        console.log(res);
+        this.modal.close(res);
+      });
 
   }
 

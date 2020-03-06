@@ -15,4 +15,8 @@
   font-weight: 300;
 }
 
+mat-form-field {
+  width: 100%;
+}
+
 /*# sourceMappingURL=lounge_pub_modal_service.css.map */

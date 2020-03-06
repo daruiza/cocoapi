@@ -55,14 +55,14 @@ export class TableService {
     const options = {
       headers: this.httpHeaders,
       params: {
-        id_table: `${idTable}`,
+        table_id: `${idTable}`,
         name: `${name}`,
         description: `${description}`
       },
       // observe: 'events',
       // reportProgress: true
     };
-    return this.http.post<Service>(`${this.url}/table/servicesave`, options)
+    return this.http.post<any>(`${this.url}/table/servicesave`, options)
       .pipe(
         tap(serv => {
           // console.log(serv);
