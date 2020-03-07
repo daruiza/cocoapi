@@ -38,6 +38,20 @@ export class WelcomeService {
       );
   }
 
+  public products(): Observable<any> {
+    const options = {
+      headers: this.httpHeaders,
+      params: {},
+      };
+    return this.http.get<any>(`${this.url}/products`, options)
+      .pipe(
+      tap(prods => {
+          // console.log(`Tab ${prods}`);
+      }),
+      catchError(this.handleError<any>(`Consulta Fallida`))
+      );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.log(error);

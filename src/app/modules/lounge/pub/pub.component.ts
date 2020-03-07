@@ -20,6 +20,8 @@ export class PubComponent implements OnInit {
     this.welcomeService.pub().subscribe(
       (pub) => this.pubTables = pub
     );
+
+    //consumo de servicio de los productos 
   }
 
 }

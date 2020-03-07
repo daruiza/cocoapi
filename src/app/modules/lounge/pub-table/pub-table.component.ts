@@ -36,12 +36,19 @@ export class PubTableComponent implements OnInit {
       // centered: true,
     });
     modalRef.componentInstance.table = this.table;
+    modalRef.result.then(
+      result=> {
+        if(typeof(result) === 'object'){
+          // abemus calback service
+          this.service = result
+        }
+      },
+      reason=> console.log(reason)     
+    )
   }
 
   public openOrder(evt: Event) {
-    // Siempre seleccionado ante una orden
-    // console.log(evt.type);
-    // if (!this.tableService.table.id && `${evt.type}` === 'dblclick') { this.selectTable(evt); }
+    // Siempre seleccionado ante una orden    
     alert('order');
   }
 
@@ -51,6 +58,7 @@ export class PubTableComponent implements OnInit {
 
   public closeService(evt: Event) {
     alert('closeService');
+    // 1 consumo de servicio que trae ordenes con cuentas por pagar
   }
 
   public addMusicTrack(evt: Event) {

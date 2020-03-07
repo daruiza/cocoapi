@@ -44,7 +44,6 @@ export class PubModalServiceComponent implements OnInit {
       this.table.id,
       this.serviceForm.get('name').value,
       this.serviceForm.get('description').value).subscribe(res => {
-        console.log(res);
         this.modal.close(res);
       });
 
