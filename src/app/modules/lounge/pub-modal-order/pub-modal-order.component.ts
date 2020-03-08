@@ -13,6 +13,8 @@ import { TableService } from 'src/app/services/entities/table.service';
 export class PubModalOrderComponent implements OnInit {
 
   @Input() table: Table;
+  @Input() products: any[];
+  @Input() categories: any;
 
   orderForm: FormGroup;
   buttonAccept: boolean;
