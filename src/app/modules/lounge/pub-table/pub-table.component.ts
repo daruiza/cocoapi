@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Table } from 'src/app/models/Table';
 import { TableService } from 'src/app/services/entities/table.service';
 import { Service } from 'src/app/models/Service';
@@ -13,7 +13,9 @@ import { PubModalServiceComponent } from '../pub-modal-service/pub-modal-service
 export class PubTableComponent implements OnInit {
 
   @Input() table: Table;
+  @Output() order = new EventEmitter<Table>();
   service: Service;
+
   constructor(
     public readonly tableService: TableService,
     private readonly modalService: NgbModal
@@ -49,7 +51,7 @@ export class PubTableComponent implements OnInit {
 
   public openOrder(evt: Event) {
     // Siempre seleccionado ante una orden    
-    alert('order');
+    this.order.emit(this.table);
   }
 
   public showService(evt: Event) {

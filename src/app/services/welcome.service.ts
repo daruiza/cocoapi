@@ -43,7 +43,7 @@ export class WelcomeService {
       headers: this.httpHeaders,
       params: {},
       };
-    return this.http.get<any>(`${this.url}/products`, options)
+    return this.http.get<any>(`${this.url}/order/products`, options)
       .pipe(
       tap(prods => {
           // console.log(`Tab ${prods}`);

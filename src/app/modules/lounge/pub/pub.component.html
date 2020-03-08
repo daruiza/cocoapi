@@ -10,6 +10,7 @@
                 *ngFor="let item of pubTables"
                 [table]="item"
                 class="col-md-2"
+                (order)="openOrder($event)"
             ></app-pub-table>
         </div>
     </div>

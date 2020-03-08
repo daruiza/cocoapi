@@ -13,13 +13,15 @@ import { HighlightDirective } from 'src/app/directives/highlight.directive';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PubModalServiceComponent } from './pub-modal-service/pub-modal-service.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PubModalOrderComponent } from './pub-modal-order/pub-modal-order.component';
 
 @NgModule({
   declarations: [
     PubComponent,
     PubTableComponent,
     HighlightDirective,
-    PubModalServiceComponent
+    PubModalServiceComponent,
+    PubModalOrderComponent
   ],
   imports: [
     NgbModule,
@@ -29,7 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule, ReactiveFormsModule,
     SharedModule
   ],
-  exports: [PubModalServiceComponent],
-  entryComponents: [PubModalServiceComponent]
+  exports: [PubModalServiceComponent, PubModalOrderComponent],
+  entryComponents: [PubModalServiceComponent, PubModalOrderComponent]
 })
 export class LoungeModule { }
