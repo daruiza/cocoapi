@@ -39,18 +39,18 @@ export class PubTableComponent implements OnInit {
     });
     modalRef.componentInstance.table = this.table;
     modalRef.result.then(
-      result=> {
-        if(typeof(result) === 'object'){
+      result => {
+        if (typeof (result) === 'object') {
           // abemus calback service
-          this.service = result
+          this.service = result;
         }
       },
-      reason=> console.log(reason)     
+      reason => console.log(reason)
     )
   }
 
   public openOrder(evt: Event) {
-    // Siempre seleccionado ante una orden    
+    // Siempre seleccionado ante una orden
     this.order.emit(this.table);
   }
 

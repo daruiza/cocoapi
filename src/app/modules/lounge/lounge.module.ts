@@ -14,6 +14,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { PubModalServiceComponent } from './pub-modal-service/pub-modal-service.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PubModalOrderComponent } from './pub-modal-order/pub-modal-order.component';
+import { PubProductComponent } from './pub-product/pub-product.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PubModalOrderComponent } from './pub-modal-order/pub-modal-order.compon
     PubTableComponent,
     HighlightDirective,
     PubModalServiceComponent,
-    PubModalOrderComponent
+    PubModalOrderComponent,
+    PubProductComponent
   ],
   imports: [
     NgbModule,
@@ -29,7 +31,7 @@ import { PubModalOrderComponent } from './pub-modal-order/pub-modal-order.compon
     LoungeRoutingModule,
     DragDropModule,
     FormsModule, ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ],
   exports: [PubModalServiceComponent, PubModalOrderComponent],
   entryComponents: [PubModalServiceComponent, PubModalOrderComponent]

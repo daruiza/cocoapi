@@ -29,6 +29,9 @@ export class PubModalOrderComponent implements OnInit {
     }
 
   ngOnInit() {
+
+    console.log(this.categories);
+
   }
 
   onSubmit(evt: any) {}
