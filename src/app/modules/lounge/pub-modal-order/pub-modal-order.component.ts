@@ -42,6 +42,12 @@ export class PubModalOrderComponent implements OnInit {
     this.resume();
   }
 
+  removeProduct(evt: Event) {
+    const index = this.orderproducts.indexOf(evt);
+    this.orderproducts.splice(index, 1);
+    this.resume();
+  }
+
   resume() {
     this.resumeproducts = [];
     this.orderproducts.forEach(prod => {
@@ -51,8 +57,6 @@ export class PubModalOrderComponent implements OnInit {
         this.resumeproducts.push({product: prod, count: 1});
       }
     });
-    console.log(this.resumeproducts);
   }
-
   onSubmit(evt: any) {}
 }

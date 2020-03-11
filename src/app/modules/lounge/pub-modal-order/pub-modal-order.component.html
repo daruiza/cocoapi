@@ -29,10 +29,14 @@
                             </mat-card-header>
                             <mat-card-content class="mat-body">
                                 <div class="container">
-                                    <div class="row">
+                                    <div class="row noselect">
                                         <div class="col-md-2">{{item.count}}</div>
                                         <div class="col-md-3">{{item.product.price |  currency:'USD':'symbol':'1.0-0'}}</div>
-                                        <div class="col-md-3">{{item.product.price * item.count |  currency:'USD':'symbol':'1.0-0'}}</div>
+                                        <div class="col-md-4">{{item.product.price * item.count |  currency:'USD':'symbol':'1.0-0'}}</div>
+                                        <div class="col-md-3 button-container">                                            
+                                            <mat-icon matRipple [matRippleCentered]="'true'" [matRippleUnbounded]="'true'" (click)="removeProduct(item.product)">remove_circle_outline</mat-icon>
+                                            <mat-icon matRipple [matRippleCentered]="'true'" [matRippleUnbounded]="'true'" (click)="addProduct(item.product)">add_circle</mat-icon>
+                                        </div>
                                     </div>
                                 </div>
                             </mat-card-content>

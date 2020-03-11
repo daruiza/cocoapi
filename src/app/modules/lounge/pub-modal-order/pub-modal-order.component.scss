@@ -3,7 +3,7 @@
     margin: 0px;
 }
 
-.col-md-2, .col-md-3{
+.col-md-2, .col-md-3, .col-md-4{
     padding-right: 5px;
     padding-left: 5px;
 }
@@ -30,7 +30,6 @@
     }
     .table-name{
         font-weight: 300;
-        
     }
     
 }
@@ -52,4 +51,8 @@ mat-form-field {
 .mat-card-product{
     padding: 6px;
     margin-bottom: 6px;
+}
+
+.button-container{
+    display: flex;
 }
