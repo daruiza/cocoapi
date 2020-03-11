@@ -1,7 +1,22 @@
+.mat-card-content {
+  padding: 0px;
+  margin: 0px;
+}
+
+.col-md-2, .col-md-3 {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
 .modal-header {
   color: var(--accent-color);
   background: var(--primary-color);
   padding: 5px 15px 0px 15px;
+}
+.modal-header .modal-title, .modal-header .mat-card-title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .modal-header h5 {
   text-overflow: ellipsis;
@@ -25,6 +40,11 @@
 
 mat-form-field {
   width: 100%;
+}
+
+.mat-card-product {
+  padding: 6px;
+  margin-bottom: 6px;
 }
 
 /*# sourceMappingURL=lounge_pub_modal_order.css.map */

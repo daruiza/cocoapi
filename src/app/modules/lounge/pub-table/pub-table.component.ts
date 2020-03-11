@@ -17,8 +17,8 @@ export class PubTableComponent implements OnInit {
   service: Service;
 
   constructor(
-    public readonly tableService: TableService,
-    private readonly modalService: NgbModal
+    private readonly modalService: NgbModal,
+    public readonly tableService: TableService
   ) { }
 
   ngOnInit() {
@@ -46,7 +46,7 @@ export class PubTableComponent implements OnInit {
         }
       },
       reason => console.log(reason)
-    )
+    );
   }
 
   public openOrder(evt: Event) {

@@ -8,7 +8,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
+import { MatCardModule } from '@angular/material/card';
+import { MatRippleModule } from '@angular/material/core';
 
 
 
@@ -23,6 +24,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatButtonModule,
     MatInputModule,
     MatSlideToggleModule,
+    MatCardModule,
+    MatRippleModule,
   ],
   exports: [
     CommonModule,
@@ -32,7 +35,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatMenuModule,
     MatButtonModule,
     MatInputModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatCardModule,
+    MatRippleModule,
   ]
 })
 export class SharedModule { }

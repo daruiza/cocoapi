@@ -16,6 +16,9 @@ export class PubModalOrderComponent implements OnInit {
   @Input() products: any[];
   @Input() categories: any;
 
+  orderproducts: any[];
+  resumeproducts: {product: any, count: number}[];
+
   orderForm: FormGroup;
   buttonAccept: boolean;
 
@@ -26,14 +29,30 @@ export class PubModalOrderComponent implements OnInit {
     public readonly tableService: TableService) {
       this.orderForm = this.fb.group({});
       this.buttonAccept = false;
+      this.orderproducts = [];
+      this.resumeproducts = [];
     }
 
   ngOnInit() {
+  }
 
-    console.log(this.categories);
+  addProduct(evt: Event) {
+    this.orderproducts.push(evt);
+    // Organiza los productos
+    this.resume();
+  }
 
+  resume() {
+    this.resumeproducts = [];
+    this.orderproducts.forEach(prod => {
+      if (this.resumeproducts.find(resprod => resprod.product === prod)) {
+        this.resumeproducts.find(resprod => resprod.product === prod).count += 1;
+      } else {
+        this.resumeproducts.push({product: prod, count: 1});
+      }
+    });
+    console.log(this.resumeproducts);
   }
 
   onSubmit(evt: any) {}
-
 }

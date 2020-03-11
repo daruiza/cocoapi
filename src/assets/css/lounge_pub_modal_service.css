@@ -1,3 +1,7 @@
+.mat-card-content {
+  padding: 0px;
+}
+
 .modal-header {
   color: var(--accent-color);
   background: var(--primary-color);

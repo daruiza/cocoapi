@@ -48,7 +48,7 @@ export class UserService {
       // observe: 'events',
       // reportProgress: true
     };
-    return this.http.get<User>(`${this.url}/user`, options)
+    return this.http.get<User>(`${this.url}/api/user`, options)
       .pipe(
         tap(user => {
           this.setUser(user);

@@ -1,4 +1,5 @@
 <div [class]="appService.theme">
+<mat-card class="mat-card-content">
     <div class="modal-header">
         <div class="modal-title">
         <h5>
@@ -17,20 +18,46 @@
         <div class="container">
           <div class="row">
               <div class="col-md-3">
-                  <div class="card">
-                      <div class="card-header">Menu de Ordenes</div>
-                      <div class="card-body"></div>
-                  </div>
+                <mat-card>
+                    <mat-card-header class="mat-header">
+                       <h6>Resumen</h6> 
+                    </mat-card-header>
+                    <mat-card-content class="mat-body">
+                        <mat-card class="mat-card-product" *ngFor="let item of resumeproducts">
+                            <mat-card-header class="mat-header">
+                                <h6>{{item.product.name}}</h6> 
+                            </mat-card-header>
+                            <mat-card-content class="mat-body">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-2">{{item.count}}</div>
+                                        <div class="col-md-3">{{item.product.price |  currency:'USD':'symbol':'1.0-0'}}</div>
+                                        <div class="col-md-3">{{item.product.price * item.count |  currency:'USD':'symbol':'1.0-0'}}</div>
+                                    </div>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </mat-card-content>
+                </mat-card>
               </div>
+              
               <div class="col-md-9">
-                  <div class="card">
-                      <div class="card-header">Productos Disponibles</div>
-                      <div class="card-body">
+                <mat-card>
+                    <mat-card-header class="mat-header">
+                        <h6>Productos</h6> 
+                    </mat-card-header>
+                    <mat-card-content class="mat-body">
                         <mat-tab-group>
-                          <mat-tab *ngFor="let item of categories" label="{{item}}">{{item}} </mat-tab>
+                            <mat-tab *ngFor="let item of categories" label="{{item}}">
+                                <mat-card class="mat-card-container">
+                                    <div class="row">
+                                        <app-pub-product class="col-md-2" *ngFor="let product of products[item]" [product]="product" (addproduct)="addProduct($event)"></app-pub-product>
+                                    </div>
+                                </mat-card>
+                            </mat-tab>
                         </mat-tab-group>
-                      </div>
-                  </div>
+                    </mat-card-content>
+                </mat-card>
               </div>
           </div>
         </div>
@@ -40,8 +67,5 @@
         <button type="button" ngbAutofocus class="btn btn-light" [disabled]="!orderForm.valid || buttonAccept"
         (click)="onSubmit($event)" > Crear </button>
     </div>
+</mat-card>
 </div>
-
-
-
-

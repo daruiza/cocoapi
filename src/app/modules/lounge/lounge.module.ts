@@ -12,6 +12,7 @@ import { HighlightDirective } from 'src/app/directives/highlight.directive';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatTabsModule } from '@angular/material/tabs';
+
 import { PubModalServiceComponent } from './pub-modal-service/pub-modal-service.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PubModalOrderComponent } from './pub-modal-order/pub-modal-order.component';

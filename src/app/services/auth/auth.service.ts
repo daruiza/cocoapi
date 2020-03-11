@@ -73,7 +73,7 @@ export class AuthService {
       // observe: 'events',
       // reportProgress: true
     };
-    return this.http.post<any>(`${this.url}/auth/login`,
+    return this.http.post<any>(`${this.url}/api/auth/login`,
       {},
       options)
       .pipe(
@@ -93,7 +93,7 @@ export class AuthService {
       // observe: 'events',
       // reportProgress: true
     };
-    return this.http.get<any>(`${this.url}/auth/logout`,
+    return this.http.get<any>(`${this.url}/api/auth/logout`,
       options)
       .pipe(
         tap(auth => {

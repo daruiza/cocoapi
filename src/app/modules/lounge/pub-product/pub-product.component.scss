@@ -1,0 +1,40 @@
+.mat-card{
+    -moz-user-select: none; 
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+    cursor: pointer;
+    padding: 0px;
+    padding-top: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    &:hover{
+        color: $primary-color;
+        background: $accent-color;
+    }
+
+    .mat-card-header{
+        .mat-card-header-text{
+            
+        }
+    }
+
+    .mat-card-subtitle {
+        margin-bottom: 8px;
+    }
+
+    .mat-card-image {
+        width: calc(100%);
+        margin: 0;
+    }
+}
+
+.mat-card-title {
+    font-size: 16px !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

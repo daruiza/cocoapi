@@ -41,7 +41,7 @@ export class TableService {
       // observe: 'events',
       // reportProgress: true
     };
-    return this.http.get<Service>(`${this.url}/table/${id}/serviceopen`, options)
+    return this.http.get<Service>(`${this.url}/api/table/${id}/serviceopen`, options)
       .pipe(
         tap(serv => {
           // console.log(serv);
@@ -62,7 +62,7 @@ export class TableService {
       // observe: 'events',
       // reportProgress: true
     };
-    return this.http.post<any>(`${this.url}/table/servicesave`, options)
+    return this.http.post<any>(`${this.url}/api/table/servicesave`, options)
       .pipe(
         tap(serv => {
           // console.log(serv);
