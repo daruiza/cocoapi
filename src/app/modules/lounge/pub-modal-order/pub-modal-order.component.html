@@ -2,13 +2,8 @@
 <mat-card class="mat-card-content">
     <div class="modal-header">
         <div class="modal-title">
-        <h5>
-            <!-- <mat-icon>assignment</mat-icon>-->
-            Nueva Orden
-        </h5>
-        <h5 class="table-name">
-            <i class="{{table.icon}}"></i>{{table.name}}
-        </h5>
+            <h5> Nueva Orden </h5>
+            <h5 class="table-name"> <i class="{{table.icon}}"></i>{{table.name}}</h5>
         </div>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
@@ -23,11 +18,20 @@
                        <h6>Resumen</h6> 
                     </mat-card-header>
                     <mat-card-content class="mat-body">
+                        <!-- form -->
+                        <form [formGroup]="orderForm" (ngSubmit)="onSubmit($event)">
+                            <mat-form-field class="example-full-width">
+                                <input matInput type="text" placeholder="Cliente:" value="" formControlName="user" autofocus>
+                            </mat-form-field>
+                        </form>
                         <mat-card class="mat-card-product" *ngIf="sumPrice">
                             <div class="container">
-                                <div class="col-md-8 offset-md-4">Total {{sumPrice |  currency:'USD':'symbol':'1.0-0'}}</div>
+                                <div class="col-md-8 offset-md-4">
+                                    <h6>
+                                        Total {{sumPrice |  currency:'USD':'symbol':'1.0-0'}}
+                                    </h6>
+                                </div>
                             </div>
-                            
                         </mat-card>
                         <mat-card class="mat-card-product" *ngFor="let item of resumeproducts">
                             <mat-card-header class="mat-header">

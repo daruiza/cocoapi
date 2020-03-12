@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Table } from 'src/app/models/Table';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppService } from 'src/app/services/app.service';
 import { TableService } from 'src/app/services/entities/table.service';
@@ -18,6 +18,7 @@ export class PubModalOrderComponent implements OnInit {
 
   sumPrice: number;
   orderproducts: any[];
+  waiters: any[];
   resumeproducts: {product: any, count: number}[];
 
   orderForm: FormGroup;
@@ -32,10 +33,23 @@ export class PubModalOrderComponent implements OnInit {
       this.buttonAccept = false;
       this.sumPrice = 0;
       this.orderproducts = [];
+      this.waiters = [];
       this.resumeproducts = [];
     }
 
   ngOnInit() {
+    this.services();
+    this.formConstructor();
+  }
+
+  services() {
+    // Los meseros de la tienda
+  }
+
+  formConstructor() {
+    this.orderForm.addControl('user', new FormControl('', {
+      validators: [Validators.required]
+    }));
   }
 
   addProduct(evt: Event) {
