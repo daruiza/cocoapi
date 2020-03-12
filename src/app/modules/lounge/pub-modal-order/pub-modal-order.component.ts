@@ -16,6 +16,7 @@ export class PubModalOrderComponent implements OnInit {
   @Input() products: any[];
   @Input() categories: any;
 
+  sumPrice: number;
   orderproducts: any[];
   resumeproducts: {product: any, count: number}[];
 
@@ -29,6 +30,7 @@ export class PubModalOrderComponent implements OnInit {
     public readonly tableService: TableService) {
       this.orderForm = this.fb.group({});
       this.buttonAccept = false;
+      this.sumPrice = 0;
       this.orderproducts = [];
       this.resumeproducts = [];
     }
@@ -49,8 +51,10 @@ export class PubModalOrderComponent implements OnInit {
   }
 
   resume() {
+    this.sumPrice = 0;
     this.resumeproducts = [];
     this.orderproducts.forEach(prod => {
+      this.sumPrice = this.sumPrice + prod.price;
       if (this.resumeproducts.find(resprod => resprod.product === prod)) {
         this.resumeproducts.find(resprod => resprod.product === prod).count += 1;
       } else {
