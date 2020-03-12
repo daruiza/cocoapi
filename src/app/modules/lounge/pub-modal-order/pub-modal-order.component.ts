@@ -13,12 +13,13 @@ import { TableService } from 'src/app/services/entities/table.service';
 export class PubModalOrderComponent implements OnInit {
 
   @Input() table: Table;
+  @Input() service: any;
   @Input() products: any[];
-  @Input() categories: any;
+  @Input() categories: any[];
+  @Input() waiters: any[];
 
   sumPrice: number;
   orderproducts: any[];
-  waiters: any[];
   resumeproducts: {product: any, count: number}[];
 
   orderForm: FormGroup;
@@ -33,7 +34,6 @@ export class PubModalOrderComponent implements OnInit {
       this.buttonAccept = false;
       this.sumPrice = 0;
       this.orderproducts = [];
-      this.waiters = [];
       this.resumeproducts = [];
     }
 
@@ -47,9 +47,16 @@ export class PubModalOrderComponent implements OnInit {
   }
 
   formConstructor() {
-    this.orderForm.addControl('user', new FormControl('', {
-      validators: [Validators.required]
-    }));
+
+    this.orderForm.addControl('basicInformation',
+      new FormGroup({
+        user: new FormControl(this.service.name, { validators: [Validators.required] }),
+        waiter: new FormControl(null, { validators: [Validators.required] }),
+      }));
+
+    if (this.waiters.length) {
+      this.orderForm.get('basicInformation').patchValue({waiter: this.waiters[0]});
+    }
   }
 
   addProduct(evt: Event) {
@@ -76,5 +83,18 @@ export class PubModalOrderComponent implements OnInit {
       }
     });
   }
-  onSubmit(evt: any) {}
+
+  onSubmit(evt: any) {
+    this.validControl();
+    console.log(this.orderForm.value);
+  }
+
+  validControl() {
+    // tslint:disable-next-line: forin
+    for (const inner in this.orderForm.controls) {
+      this.orderForm.get(inner).markAllAsTouched();
+      this.orderForm.get(inner).updateValueAndValidity();
+    }
+    return;
+  }
 }

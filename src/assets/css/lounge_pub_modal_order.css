@@ -1,3 +1,7 @@
+.mat-card-init .modal-title {
+  display: flex;
+}
+
 .mat-card-content {
   padding: 0px;
   margin: 0px;

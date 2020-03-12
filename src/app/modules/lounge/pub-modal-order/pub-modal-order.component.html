@@ -1,9 +1,9 @@
 <div [class]="appService.theme">
-<mat-card class="mat-card-content">
+<mat-card class="mat-card-content mat-card-init">
     <div class="modal-header">
         <div class="modal-title">
-            <h5> Nueva Orden </h5>
             <h5 class="table-name"> <i class="{{table.icon}}"></i>{{table.name}}</h5>
+            <h5> Nueva Orden </h5>
         </div>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
@@ -15,15 +15,25 @@
               <div class="col-md-3">
                 <mat-card>
                     <mat-card-header class="mat-header">
-                       <h6>Resumen</h6> 
+                       <!-- form -->
+                       <form [formGroup]="orderForm" (ngSubmit)="onSubmit($event)">
+                        <div formGroupName="basicInformation">
+                            
+                            <mat-form-field class="example-full-width">
+                                <input matInput type="text" placeholder="Cliente:" formControlName="user" autofocus>
+                            </mat-form-field>                            
+
+                            <ng-select 
+                                [items]="waiters"
+                                bindLabel="name"
+                                placeholder="Mesero"
+                                formControlName="waiter">
+                            </ng-select>
+                        </div>
+                        </form>
                     </mat-card-header>
                     <mat-card-content class="mat-body">
-                        <!-- form -->
-                        <form [formGroup]="orderForm" (ngSubmit)="onSubmit($event)">
-                            <mat-form-field class="example-full-width">
-                                <input matInput type="text" placeholder="Cliente:" value="" formControlName="user" autofocus>
-                            </mat-form-field>
-                        </form>
+                        
                         <mat-card class="mat-card-product" *ngIf="sumPrice">
                             <div class="container">
                                 <div class="col-md-8 offset-md-4">

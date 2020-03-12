@@ -23,6 +23,7 @@
     "@angular/router": "~8.2.3",
     "@fortawesome/fontawesome-free": "^5.12.1",
     "@ng-bootstrap/ng-bootstrap": "^5.1.4",
+    "@ng-select/ng-select": "^3.7.3",
     "@ngrx/store": "^8.5.2",
     "animate.css": "^3.7.2",
     "bootstrap": "^4.4.1",

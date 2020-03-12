@@ -14,6 +14,7 @@ export class PubComponent implements OnInit {
   pubTables: Table[];
   products: any = {};
   categories: any = {};
+  waiters: any = {};
 
   constructor(
     private readonly welcomeService: WelcomeService,
@@ -26,6 +27,8 @@ export class PubComponent implements OnInit {
     // consumo de servicio de los productos
     this.welcomeService.products().subscribe(prods => {
       this.categories = prods.categories;
+      this.waiters = prods.waiters;
+
       // Asignación de productos
       prods.products.forEach(element => {
         if (element.category in this.products) {
@@ -38,7 +41,7 @@ export class PubComponent implements OnInit {
 
   }
 
-  openOrder(table: Table) {
+  openOrder(evt: any) {
     // Open Orden
     const modalRef = this.modalService.open(PubModalOrderComponent, {
       windowClass: 'modal-holder',
@@ -46,9 +49,11 @@ export class PubComponent implements OnInit {
       size: 'xl'
       // centered: true,
     });
-    modalRef.componentInstance.table = table;
+    modalRef.componentInstance.table = evt.table;
+    modalRef.componentInstance.service = evt.service;
     modalRef.componentInstance.products = this.products;
     modalRef.componentInstance.categories = this.categories;
+    modalRef.componentInstance.waiters = this.waiters;
   }
 
 }

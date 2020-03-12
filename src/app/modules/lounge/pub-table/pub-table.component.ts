@@ -13,7 +13,7 @@ import { PubModalServiceComponent } from '../pub-modal-service/pub-modal-service
 export class PubTableComponent implements OnInit {
 
   @Input() table: Table;
-  @Output() order = new EventEmitter<Table>();
+  @Output() order = new EventEmitter<any>();
   service: Service;
 
   constructor(
@@ -23,7 +23,8 @@ export class PubTableComponent implements OnInit {
 
   ngOnInit() {
     // Consultamos si la tabla tiene servicio
-    this.tableService.tableServiceOpen(this.table.id).subscribe((serv) => this.service = serv);
+    this.tableService.tableServiceOpen(this.table.id).subscribe(
+      (serv) => this.service = serv);
   }
 
   public selectTable(evt: Event) {
@@ -51,7 +52,7 @@ export class PubTableComponent implements OnInit {
 
   public openOrder(evt: Event) {
     // Siempre seleccionado ante una orden
-    this.order.emit(this.table);
+    this.order.emit({table: this.table, service: this.service});
   }
 
   public showService(evt: Event) {
