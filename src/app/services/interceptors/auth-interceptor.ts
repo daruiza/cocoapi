@@ -72,7 +72,7 @@ export class AuthInterceptor implements HttpInterceptor {
       // envio de mensajes
       this.messagesAlertService.openAlert(new Message({
         type: 'danger',
-        title: operation,
+        title: `${operation} ${error.statusText}`,
         text: `${messageError}`
       }));
       return of(result as T);

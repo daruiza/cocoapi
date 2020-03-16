@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppService } from 'src/app/services/app.service';
 import { TableService } from 'src/app/services/entities/table.service';
+import { OrderService } from 'src/app/services/entities/order.service';
 
 @Component({
   selector: 'app-pub-modal-order',
@@ -29,7 +30,8 @@ export class PubModalOrderComponent implements OnInit {
     private readonly fb: FormBuilder,
     public readonly modal: NgbActiveModal,
     public readonly appService: AppService,
-    public readonly tableService: TableService) {
+    public readonly tableService: TableService,
+    public readonly orderService: OrderService) {
       this.orderForm = this.fb.group({});
       this.buttonAccept = false;
       this.sumPrice = 0;
@@ -86,7 +88,23 @@ export class PubModalOrderComponent implements OnInit {
 
   onSubmit(evt: any) {
     this.validControl();
-    console.log(this.orderForm.value);
+    if (this.orderForm.valid) {
+      this.orderService.orderSave(
+        {
+          table: this.table,
+          service: this.service,
+          order: {
+            user: this.orderForm.value.basicInformation.user,
+            waiter: this.orderForm.value.basicInformation.waiter.id,
+            products: this.orderproducts
+          }
+        }).subscribe(
+        res => {
+          this.modal.close(res);
+        },
+        err => console.log(err)
+      );
+    }
   }
 
   validControl() {

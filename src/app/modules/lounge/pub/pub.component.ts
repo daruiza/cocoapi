@@ -3,6 +3,8 @@ import { WelcomeService } from 'src/app/services/welcome.service';
 import { Table } from 'src/app/models/Table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PubModalOrderComponent } from '../pub-modal-order/pub-modal-order.component';
+import { ModalAlertService } from 'src/app/services/components/modal-alert/modal-alert.service';
+import { Message } from 'src/app/models/Message';
 
 @Component({
   selector: 'app-pub',
@@ -17,6 +19,7 @@ export class PubComponent implements OnInit {
   waiters: any = {};
 
   constructor(
+    private readonly messagesAlertService: ModalAlertService,
     private readonly welcomeService: WelcomeService,
     private readonly modalService: NgbModal
   ) { }
@@ -54,6 +57,20 @@ export class PubComponent implements OnInit {
     modalRef.componentInstance.products = this.products;
     modalRef.componentInstance.categories = this.categories;
     modalRef.componentInstance.waiters = this.waiters;
+
+    modalRef.result.then( result =>
+      {
+        // console.log(result);
+        this.messagesAlertService.openAlert(new Message(
+          {
+            type: 'success',
+            title: `Nueva Orden Para: ${result.table.name}`,
+            text: `La orden se creo correctamente, usuario: ${result.order_form.user}. 
+            Serial: ${result.order.serial}. TOTAL: ${result.total}`
+          }
+        ));
+      }
+    );
   }
 
 }
