@@ -21,6 +21,25 @@ import { SharedModule } from './shared/shared.module';
 
 import { SpinnerComponent } from './components/spinner/spinner.component';
 
+
+import { ActionReducer } from '@ngrx/store';
+import LogRocket from 'logrocket';
+
+const reduxMiddleware = LogRocket.reduxMiddleware();
+export function logrocketMiddleware(reducer: any): ActionReducer<any, any> {
+  let currentState;
+  const fakeDispatch = reduxMiddleware({
+    getState: () => currentState,
+  })(() => {});
+
+  return (state, action): any => {
+    const newState = reducer(state, action);
+    currentState = state;
+    fakeDispatch(action);
+    return newState;
+  };
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +53,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot(reducers, {
-      metaReducers,
+      metaReducers: [ logrocketMiddleware ],
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true

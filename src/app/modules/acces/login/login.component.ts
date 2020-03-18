@@ -21,7 +21,7 @@ import { Message } from 'src/app/models/Message';
 })
 export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
 
-  @ViewChild('modalLogin', { static: false }) theModal: ElementRef;
+  @ViewChild('modalLogin') theModal: ElementRef;
   modalLogin: NgbModalRef;
   loginForm: FormGroup;
   buttonAccept: boolean;
