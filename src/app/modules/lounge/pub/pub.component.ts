@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WelcomeService } from 'src/app/services/welcome.service';
-import { Table } from 'src/app/models/Table';
+import { Table, ITable } from 'src/app/models/Table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PubModalOrderComponent } from '../pub-modal-order/pub-modal-order.component';
 import { ModalAlertService } from 'src/app/services/components/modal-alert/modal-alert.service';
@@ -18,11 +18,15 @@ export class PubComponent implements OnInit {
   categories: any = {};
   waiters: any = {};
 
+  control: {control: number, table: ITable};
+
   constructor(
     private readonly messagesAlertService: ModalAlertService,
     private readonly welcomeService: WelcomeService,
     private readonly modalService: NgbModal
-  ) { }
+  ) {
+    this.control = {control: 0, table: {}};
+  }
 
   ngOnInit() {
     // Consumo de servico de tablas
@@ -60,13 +64,17 @@ export class PubComponent implements OnInit {
 
     modalRef.result.then( result =>
       {
-        // console.log(result);
+        this.control = {
+          control: this.control.control += 1 ,
+          table: this.pubTables.find(e => e.id === result.table.id)
+        };
+
         this.messagesAlertService.openAlert(new Message(
           {
             type: 'success',
             title: `Nueva Orden Para: ${result.table.name}`,
-            text: `La orden se creo correctamente, usuario: ${result.order_form.user}. 
-            Serial: ${result.order.serial}. TOTAL: ${result.total}`
+            text: `La orden se creo correctamente, usuario: ${result.resp.order_form.user}. 
+            Serial: ${result.resp.order.serial}. TOTAL: ${result.resp.total}`
           }
         ));
       }

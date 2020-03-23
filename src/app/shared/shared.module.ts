@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -33,6 +34,7 @@ import { MatRippleModule } from '@angular/material/core';
     MatSlideToggleModule,
     MatCardModule,
     MatRippleModule,
+    MatTooltipModule,
   ],
   exports: [
     CommonModule,
@@ -48,6 +50,7 @@ import { MatRippleModule } from '@angular/material/core';
     MatSlideToggleModule,
     MatCardModule,
     MatRippleModule,
+    MatTooltipModule,
   ]
 })
 export class SharedModule { }

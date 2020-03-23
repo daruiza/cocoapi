@@ -71,6 +71,25 @@ export class TableService {
       );
   }
 
+  public tableServiceClose(idTable: number, idService: number): Observable<any> {
+    const options = {
+      headers: this.httpHeaders,
+      params: {
+        table_id: `${idTable}`,
+        service_id: `${idService}`,
+      }
+      // observe: 'events',
+      // reportProgress: true
+    };
+    return this.http.post<Service>(`${this.url}/api/table/serviceclose`, options)
+      .pipe(
+        tap(serv => {
+          // console.log(serv);
+        }),
+        catchError(this.handleError<any>(`Consulta Fallida`))
+      );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.log(error);

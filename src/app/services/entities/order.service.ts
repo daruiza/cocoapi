@@ -26,6 +26,20 @@ export class OrderService {
         });
     }
 
+    public orderByService(obj: any): Observable<any> {
+      const options = {
+        headers: this.httpHeaders,
+        params: {},
+      };
+
+      return this.http.post<any>(`${this.url}/api/order/index`, obj , options).pipe(
+          tap(orders => {
+          // console.log(`Tab ${prods}`);
+          }),
+          catchError(this.handleError<any>(`Consulta Fallida`))
+      );
+    }
+
     public orderSave(obj: any): Observable<any> {
         const options = {
             headers: this.httpHeaders,

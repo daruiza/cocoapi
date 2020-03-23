@@ -100,7 +100,7 @@ export class PubModalOrderComponent implements OnInit {
           }
         }).subscribe(
         res => {
-          this.modal.close(res);
+          this.modal.close({resp: res, table: this.table});
         },
         err => console.log(err)
       );

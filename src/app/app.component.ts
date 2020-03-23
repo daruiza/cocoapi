@@ -25,13 +25,12 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     public readonly authService: AuthService,
     public readonly appService: AppService
   ) {
-    LogRocket.init('3ui3ts/cocoapi');
-    LogRocket.identify('3ui3ts', {
-      name: 'Admin',
-      email: 'admin@yopmail.com',
-      // Add your own custom user variables here, ie:
-      subscriptionType: 'pro'
-    });
+    // LogRocket.init('3ui3ts/cocoapi');
+    // LogRocket.identify('3ui3ts', {
+    //   name: 'Admin',
+    //   email: 'admin@yopmail.com',
+    //   subscriptionType: 'pro'
+    // });
   }
 
 
