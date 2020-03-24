@@ -8,6 +8,7 @@ import { PubModalServiceComponent } from '../pub-modal-service/pub-modal-service
 import { ModalAlertService } from 'src/app/services/components/modal-alert/modal-alert.service';
 import { Message } from 'src/app/models/Message';
 import { CurrencyPipe } from '@angular/common';
+import { PubModalAccountComponent } from '../pub-modal-account/pub-modal-account.component';
 
 @Component({
   selector: 'app-pub-table',
@@ -21,7 +22,7 @@ export class PubTableComponent implements OnInit, OnChanges {
   @Input() control: number;
   @Output() order = new EventEmitter<any>();
   service: Service;
-  orders: {id: number, orders: any[]}[];
+  orders: {id: number, description: string, date: string,  orders: any[]}[];
 
   sumPrice: number;
 
@@ -59,15 +60,21 @@ export class PubTableComponent implements OnInit, OnChanges {
              table: this.table
            }).subscribe( ordersresp => {
               ordersresp.forEach((ord: any) => {
-                if (ord.status_id === 1) {
+                if (ord.status_paid === 0) {
                   this.sumPrice = this.sumPrice + ord.price;
                 }
                 const elementOrder = this.orders.find(e => e.id === ord.id);
                 if (elementOrder) {
+                  elementOrder.description = ord.description;
+                  elementOrder.date = ord.date;
                   elementOrder.orders.push(ord);
                 } else {
                   // primer orden
-                  this.orders.push({id: ord.id, orders: [ord]});
+                  this.orders.push({
+                    id: ord.id,
+                    description: ord.description,
+                    date: ord.date,
+                    orders: [ord]});
                 }
               });
            });
@@ -92,6 +99,7 @@ export class PubTableComponent implements OnInit, OnChanges {
         if (typeof (result) === 'object') {
           // abemus calback service
           this.service = result;
+          this.order.emit({table: this.table, service: this.service});
         }
       },
       reason => console.log(reason)
@@ -104,7 +112,15 @@ export class PubTableComponent implements OnInit, OnChanges {
   }
 
   public showService(evt: Event) {
-    alert('showService');
+    const modalRef = this.modalService.open(PubModalAccountComponent, {
+      windowClass: 'modal-holder',
+      backdrop: 'static',
+      size: 'xl'
+      // centered: true,
+    });
+    modalRef.componentInstance.table = this.table;
+    modalRef.componentInstance.service = this.service;
+    modalRef.componentInstance.orders = this.orders;
   }
 
   public closeService(evt: Event) {
@@ -112,7 +128,6 @@ export class PubTableComponent implements OnInit, OnChanges {
       //  Cerramos el servicio
       this.tableService.tableServiceClose(this.table.id, this.service.id).subscribe(
         resp => {
-          console.log(resp);
           // Reniniciamos los servicios
           this.service = undefined;
           const messge = new Message({
@@ -125,6 +140,7 @@ export class PubTableComponent implements OnInit, OnChanges {
         }
       );
     } else {
+      // cerramos condicional
       let ordersPendig = [];
       this.orders.forEach(order => {
         ordersPendig = ordersPendig.concat(order.orders.filter(el => el.status_paid === 0));
@@ -142,19 +158,40 @@ export class PubTableComponent implements OnInit, OnChanges {
         this.messagesAlertService.openAlert(messge)
         .result.then(
           result => {
-            this.tableService.tableServiceClose(this.table.id, this.service.id).subscribe(
+            this.tableService.tableServiceClose(this.table.id, this.service.id, true).subscribe(
               resp => {
-                console.log(resp);
+                // Reniniciamos los servicios
+                this.service = undefined;
+                const messgeOk = new Message({
+                  type: 'success',
+                  title: `Operación Exitosa`,
+                  text: `Listo el pollo, en la mesa ${this.table.name} el servicio de ${resp.name} ha sido cerrado correctamente`,
+                  confirmButton: 'Aceptar',
+                });
+                this.messagesAlertService.openAlert(messgeOk);
               }
             );
           },
-          err => {console.log('err'); }
+          err => {}
         );
-
+      } else {
+        // hay un error se debe cerrar el servicio
+        this.tableService.tableServiceClose(this.table.id, this.service.id).subscribe(
+          resp => {
+            // Reniniciamos los servicios
+            this.service = undefined;
+            const messge = new Message({
+              type: 'success',
+              title: `Operación Exitosa`,
+              text: `Listo el pollo, en la mesa ${this.table.name} el servicio de ${resp.name} ha sido cerrado correctamente`,
+              confirmButton: 'Aceptar',
+            });
+            this.messagesAlertService.openAlert(messge);
+          }
+        );
       }
 
     }
-    // 1 consumo de servicio que trae ordenes con cuentas por pagar
   }
 
   public addMusicTrack(evt: Event) {

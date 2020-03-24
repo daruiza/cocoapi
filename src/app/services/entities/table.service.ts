@@ -71,12 +71,13 @@ export class TableService {
       );
   }
 
-  public tableServiceClose(idTable: number, idService: number): Observable<any> {
+  public tableServiceClose(idTable: number, idService: number, close = false): Observable<any> {
     const options = {
       headers: this.httpHeaders,
       params: {
         table_id: `${idTable}`,
         service_id: `${idService}`,
+        service_close: `${close}`,
       }
       // observe: 'events',
       // reportProgress: true

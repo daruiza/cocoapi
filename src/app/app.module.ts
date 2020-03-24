@@ -54,10 +54,10 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     AppRoutingModule,
     StoreModule.forRoot(reducers, {
       // metaReducers: [ logrocketMiddleware ],
-      // runtimeChecks: {
-      //   strictStateImmutability: true,
-      //   strictActionImmutability: true
-      // }
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
     }),
     FormsModule, ReactiveFormsModule,
     BrowserAnimationsModule,

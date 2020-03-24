@@ -1,0 +1,84 @@
+.mat-card-init{
+    .modal-title{
+        display: flex;
+    }
+}
+
+.mat-card{
+    margin-bottom: 10px;
+}
+
+.col-options{
+    text-align: right;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-card-content{
+    padding: 0px;
+    margin: 0px;
+    .mat-header{
+        margin-bottom: 15px;
+    }
+    .col-account-2{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}
+
+.col-md-2, .col-md-3, .col-md-4{
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.modal-header{
+    color:  $accent-color;
+    background: $primary-color;
+    padding: 5px 15px 0px 15px;
+
+    .modal-title, .mat-card-title {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    h5{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    i{
+        margin-right: 10px;
+    }
+    .table-name{
+        font-weight: 300;
+    }
+    
+}
+
+.modal-body{
+    padding: 1rem 0 1em 0;
+
+    .card-header{
+        color:  $accent-color;
+        background: $primary-color;
+    }
+    
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.mat-card-product{
+    padding: 6px;
+    margin-bottom: 6px;
+}
+
+.button-container{
+    display: flex;
+}

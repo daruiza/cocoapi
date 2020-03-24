@@ -1,15 +1,13 @@
 .mat-card-content{
     padding: 0px;
+    margin: 0px;
 }
 
 .modal-header{
     color:  $accent-color;
     background: $primary-color;
     padding: 5px 15px 0px 15px;
-
-    .modal-title {
-        
-    }
+    
 
     h5{
         text-overflow: ellipsis;

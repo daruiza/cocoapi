@@ -64,19 +64,21 @@ export class PubComponent implements OnInit {
 
     modalRef.result.then( result =>
       {
-        this.control = {
-          control: this.control.control += 1 ,
-          table: this.pubTables.find(e => e.id === result.table.id)
-        };
+        if ('table' in result) {
+          this.control = {
+            control: this.control.control += 1 ,
+            table: this.pubTables.find(e => e.id === result.table.id)
+          };
 
-        this.messagesAlertService.openAlert(new Message(
-          {
-            type: 'success',
-            title: `Nueva Orden Para: ${result.table.name}`,
-            text: `La orden se creo correctamente, usuario: ${result.resp.order_form.user}. 
-            Serial: ${result.resp.order.serial}. TOTAL: ${result.resp.total}`
-          }
-        ));
+          this.messagesAlertService.openAlert(new Message(
+            {
+              type: 'success',
+              title: `Nueva Orden Para: ${result.table.name}`,
+              text: `La orden se creo correctamente, usuario: ${result.resp.order_form.user}. 
+              Serial: ${result.resp.order.serial}. TOTAL: ${result.resp.total}`
+            }
+          ));
+        }
       }
     );
   }
