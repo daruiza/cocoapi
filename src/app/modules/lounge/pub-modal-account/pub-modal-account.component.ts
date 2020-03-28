@@ -6,6 +6,7 @@ import { TableService } from 'src/app/services/entities/table.service';
 import { OrderService } from 'src/app/services/entities/order.service';
 import { Table } from 'src/app/models/Table';
 
+export interface IOrderList {name: string; price: number; options: string; }
 @Component({
   selector: 'app-pub-modal-account',
   templateUrl: './pub-modal-account.component.html',
@@ -34,14 +35,15 @@ export class PubModalAccountComponent implements OnInit {
     this.buttonAccept = false;
 
     this.sumPrice = 0;
-    this.displayedColumns = ['name', 'price', 'options', 'date'];
+    this.displayedColumns = ['name', 'price', 'options'];
 
    }
 
   ngOnInit(): void {
-    this.orders.forEach(el => {
+    this.orders.forEach((el: any) => {
       let sumOrder = 0;
-      el.orders.forEach(ord => {
+
+      el.orders.forEach((ord: any) => {
         if (ord.status_paid === 0) {
           this.sumPrice = this.sumPrice + ord.price;
           sumOrder = sumOrder + ord.price;
@@ -49,8 +51,8 @@ export class PubModalAccountComponent implements OnInit {
       });
       el.sumOrder = sumOrder;
 
-      el.orders = el.orders.map(ord => {
-        return {name: ord.name, price: ord.price, sumOrder: ord.sumOrder }
+      el.orders = el.orders.map((ord: IOrderList) => {
+        return {name: ord.name, price: ord.price, options: ''};
 
       });
     });
