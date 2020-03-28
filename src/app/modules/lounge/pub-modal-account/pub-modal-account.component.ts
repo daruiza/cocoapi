@@ -22,7 +22,7 @@ export class PubModalAccountComponent implements OnInit {
   buttonAccept: boolean;
 
   sumPrice: number;
-  displayedColumns: string[];
+  displayedColumns = ['name', 'price', 'options'];
 
   constructor(
     private readonly fb: FormBuilder,
@@ -35,7 +35,7 @@ export class PubModalAccountComponent implements OnInit {
     this.buttonAccept = false;
 
     this.sumPrice = 0;
-    this.displayedColumns = ['name', 'price', 'options'];
+    
 
    }
 
