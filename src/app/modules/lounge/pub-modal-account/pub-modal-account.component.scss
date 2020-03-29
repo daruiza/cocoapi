@@ -12,6 +12,13 @@
     text-align: right;
 }
 
+.mat-content{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 table {
     width: 100%;
 }
@@ -81,5 +88,19 @@ mat-form-field {
 
 .button-container{
     display: flex;
+}
+
+.option-order-bottons{
+    padding: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    button:first-child{
+        margin-right: 10px;
+    }
+    button{
+        z-index: 1;
+        color: $primary-color;
+    }
 }
 

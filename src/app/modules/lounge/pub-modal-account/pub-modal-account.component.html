@@ -24,46 +24,76 @@
                             </div>
                         </mat-card-header>
                         <mat-card-content class="mat-body">
-                            <mat-accordion>                        
-                                <mat-expansion-panel *ngFor="let order of orders; index as i">
-                                    <mat-expansion-panel-header>
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <mat-panel-title>
-                                                        {{i+1}} ({{order.date | date: 'shortTime'}}) - {{order.description}}
-                                                    </mat-panel-title>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <mat-panel-description>
-                                                        Sub Total {{order.sumOrder | currency:'USD':'symbol':'1.0-0'}}
-                                                    </mat-panel-description>
-                                                </div>
-                                            </div>
+                            <mat-accordion>
+                                <div class="container">
+                                    <div class="row" *ngFor="let order of orders; index as i">
+                                        <div class="col-md-11">
+                                            <mat-expansion-panel >
+                                                <mat-expansion-panel-header>
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <mat-panel-title>
+                                                                    {{i+1}} ({{order.date | date: 'shortTime'}}) - {{order.description}}
+                                                                </mat-panel-title>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <mat-panel-description>
+                                                                    Sub Total {{order.sumOrder | currency:'USD':'symbol':'1.0-0'}}
+                                                                </mat-panel-description>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </mat-expansion-panel-header>
+                                                <table mat-table [dataSource]="order.orders" class="mat-elevation-z8">
+            
+                                                    <!--- Note that these columns can be defined in any order.
+                                                            The actual rendered columns are set as a property on the row definition" -->
+                                                                                            
+                                                    <!-- Name Column -->
+                                                    <ng-container matColumnDef="name">
+                                                        <th mat-header-cell *matHeaderCellDef> Producto </th>
+                                                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                                    </ng-container>
+                                                    
+                                                    <!-- Weight Column -->
+                                                    <ng-container matColumnDef="price">
+                                                        <th mat-header-cell *matHeaderCellDef> Precio </th>
+                                                        <td mat-cell *matCellDef="let element"> {{element.price | currency:'USD':'symbol':'1.0-0'}} </td>
+                                                    </ng-container>
+                                                    
+                                                    <!-- Symbol Column -->
+                                                    <ng-container matColumnDef="options">
+                                                        <th mat-header-cell *matHeaderCellDef> Opciones </th>
+                                                        <td mat-cell *matCellDef="let element"> options </td>
+                                                    </ng-container>  
+                                                    
+                                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                                </table>
+                                            </mat-expansion-panel>
                                         </div>
-                                        </mat-expansion-panel-header>
+                                        <div class="col-md-1 option-order-bottons">
+                                            <button 
+                                            mat-mini-fab
+                                            (click)="cancelOrder(order.id)"
+                                            title="Cancelar Orden"
+                                            data-toggle="tooltip" data-placement="top"
+                                            matTooltip="CancelarOrden">
+                                            <mat-icon>cancel</mat-icon>
+                                            </button>
                                         
-                                        <mat-table mat-table [dataSource]="order.orders" class="mat-elevation-z2">                                                
-                                            <ng-container matColumnDef="name">
-                                                <th mat-header-cell *matHeaderCellDef> Producto </th>
-                                                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                                            </ng-container>
-
-                                            <ng-container matColumnDef="price">
-                                                <th mat-header-cell *matHeaderCellDef> Precio </th>
-                                                <td mat-cell *matCellDef="let element"> {{element.price | currency:'USD':'symbol':'1.0-0'}} </td>
-                                            </ng-container>
-
-                                            <ng-container matColumnDef="options">
-                                                <th mat-header-cell *matHeaderCellDef> Opciones </th>
-                                                <td mat-cell *matCellDef="let element"> options </td>
-                                            </ng-container>                                            
-
-                                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                                        </mat-table>
-                                        
-                                </mat-expansion-panel>
+                                            <button 
+                                            mat-mini-fab
+                                            (click)="payOrder(order.id)"
+                                            title="Pagar Orden"
+                                            data-toggle="tooltip" data-placement="top"
+                                            matTooltip="PagarOrden">
+                                            <mat-icon>monetization_on</mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </mat-accordion>
                         </mat-card-content>
                     </mat-card>
@@ -73,6 +103,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-dark" (click)="modal.close($event)" >Cerrar </button>
+            <button type="button" class="btn btn-outline-dark" (click)="onCancel($event)" >Cancelar </button>
             <button type="button" ngbAutofocus class="btn btn-light" [disabled]="!accountForm.valid || buttonAccept"
             (click)="onSubmit($event)" > Pagar Todo </button>
         </div>

@@ -8,6 +8,7 @@ import { Observable, of, Observer } from 'rxjs';
 import { tap, catchError, map } from 'rxjs/operators';
 import { Message } from 'src/app/models/Message';
 import { Service } from 'src/app/models/Service';
+import { IOrder } from 'src/app/models/Order';
 
 @Injectable({
   providedIn: 'root'
@@ -32,9 +33,22 @@ export class OrderService {
         params: {},
       };
 
-      return this.http.post<any>(`${this.url}/api/order/index`, obj , options).pipe(
+      return this.http.post<IOrder[]>(`${this.url}/api/order/index`, obj , options)
+        .pipe(
           tap(orders => {
           // console.log(`Tab ${prods}`);
+          }),
+          map(orders => {
+            return orders.map(ord => {
+              return {
+                id: ord.id,
+                date: ord.date,
+                description: ord.description,
+                name: ord.name,
+                price: ord.price,
+                status_paid: ord.status_paid,
+              };
+            });
           }),
           catchError(this.handleError<any>(`Consulta Fallida`))
       );
