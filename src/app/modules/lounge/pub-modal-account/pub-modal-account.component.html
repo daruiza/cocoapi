@@ -18,7 +18,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <b> por pagar: {{sumPrice | currency:'USD':'symbol':'1.0-0'}} </b>
+                                        <strong> por pagar: {{sumPrice | currency:'USD':'symbol':'1.0-0'}} </strong>
                                     </div>
                                 </div>
                             </div>
@@ -45,11 +45,14 @@
                                                         </div>
                                                     </div>
                                                 </mat-expansion-panel-header>
-                                                <table mat-table [dataSource]="order.orders" class="mat-elevation-z8">
-            
-                                                    <!--- Note that these columns can be defined in any order.
-                                                            The actual rendered columns are set as a property on the row definition" -->
+                                                <table mat-table [dataSource]="order.orders" class="mat-elevation-z8">                                                    
                                                                                             
+                                                    <!-- Nro Column -->
+                                                    <ng-container matColumnDef="nro">
+                                                        <th mat-header-cell *matHeaderCellDef> Nro. </th>
+                                                        <td mat-cell *matCellDef="let element; index as i"> {{i+1}} </td>
+                                                    </ng-container>
+
                                                     <!-- Name Column -->
                                                     <ng-container matColumnDef="name">
                                                         <th mat-header-cell *matHeaderCellDef> Producto </th>
@@ -62,14 +65,35 @@
                                                         <td mat-cell *matCellDef="let element"> {{element.price | currency:'USD':'symbol':'1.0-0'}} </td>
                                                     </ng-container>
                                                     
-                                                    <!-- Symbol Column -->
+                                                    <!-- Options Column -->
                                                     <ng-container matColumnDef="options">
                                                         <th mat-header-cell *matHeaderCellDef> Opciones </th>
-                                                        <td mat-cell *matCellDef="let element"> options </td>
+                                                        <td mat-cell  *matCellDef="let element">
+                                                            <div *ngIf="!element.status_paid" class="option-order-bottons product-bottons">
+                                                                <button 
+                                                                mat-mini-fab
+                                                                (click)="cancelProduct(order.id, element.poduct_id)"
+                                                                title="Cancelar Producto"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                matTooltip="Cancelar Producto">
+                                                                <mat-icon>cancel</mat-icon>
+                                                                </button>
+
+                                                                <button 
+                                                                mat-mini-fab
+                                                                (click)="payProduct(order.id, element.poduct_id)"
+                                                                title="Pagar Producto"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                matTooltip="Pagar Producto">
+                                                                <mat-icon>monetization_on</mat-icon>
+                                                                </button>
+                                                            </div>
+                                                            
+                                                        </td>
                                                     </ng-container>  
                                                     
                                                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                                    <tr mat-row [ngClass]="{'row-paid': row.status_paid}" *matRowDef="let row; columns: displayedColumns"></tr>
                                                 </table>
                                             </mat-expansion-panel>
                                         </div>
@@ -79,7 +103,7 @@
                                             (click)="cancelOrder(order.id)"
                                             title="Cancelar Orden"
                                             data-toggle="tooltip" data-placement="top"
-                                            matTooltip="CancelarOrden">
+                                            matTooltip="Cancelar Orden">
                                             <mat-icon>cancel</mat-icon>
                                             </button>
                                         
@@ -88,7 +112,7 @@
                                             (click)="payOrder(order.id)"
                                             title="Pagar Orden"
                                             data-toggle="tooltip" data-placement="top"
-                                            matTooltip="PagarOrden">
+                                            matTooltip="Pagar Orden">
                                             <mat-icon>monetization_on</mat-icon>
                                             </button>
                                         </div>

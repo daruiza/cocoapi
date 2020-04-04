@@ -36,12 +36,13 @@ export class OrderService {
       return this.http.post<IOrder[]>(`${this.url}/api/order/index`, obj , options)
         .pipe(
           tap(orders => {
-          // console.log(`Tab ${prods}`);
+          // console.log(orders);
           }),
           map(orders => {
             return orders.map(ord => {
               return {
                 id: ord.id,
+                poduct_id: ord.order_poduct_id,
                 date: ord.date,
                 description: ord.description,
                 name: ord.name,
@@ -66,6 +67,23 @@ export class OrderService {
             }),
             catchError(this.handleError<any>(`Consulta Fallida`))
         );
+    }
+
+    public payOrder(id: number): Observable<any> {
+      const options = {
+        headers: this.httpHeaders,
+        params: {},
+      };
+      return this.http.post<any>(`${this.url}/api/order/payorder`, {idOrder: `${id}`} , options);
+    }
+
+    // 
+    // cancelorder
+    // payproduct
+    // cancelproduct
+
+    public cancelOrder(id: number): Observable<any> {
+      return of({});
     }
 
     private handleError<T>(operation = 'operation', result?: T) {

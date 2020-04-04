@@ -96,4 +96,14 @@ mat-form-field {
   color: var(--primary-color);
 }
 
+.option-order-bottons.product-bottons {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.row-paid {
+  background-color: var(--accent-color);
+}
+
 /*# sourceMappingURL=lounge_pub_modal_account.css.map */

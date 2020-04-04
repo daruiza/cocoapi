@@ -65,11 +65,9 @@ export class PubTableComponent implements OnInit, OnChanges {
                 }
                 const elementOrder = this.orders.find(e => e.id === ord.id);
                 if (elementOrder) {
-                  elementOrder.description = ord.description;
-                  elementOrder.date = ord.date;
                   elementOrder.orders.push(ord);
                 } else {
-                  // primer orden
+                  // primer push orden
                   this.orders.push({
                     id: ord.id,
                     description: ord.description,
