@@ -4,6 +4,6 @@ export interface IOrder {
     description?: string;
     name?: string;
     price?: number;
-    status_paid?: string;
+    status_paid?: number;
     order_poduct_id?: number;
 }

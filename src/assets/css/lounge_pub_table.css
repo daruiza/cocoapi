@@ -51,4 +51,10 @@
   color: var(--primary-color);
 }
 
+.service-conteiner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /*# sourceMappingURL=lounge_pub_table.css.map */

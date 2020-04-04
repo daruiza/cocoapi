@@ -15,6 +15,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 
@@ -35,6 +36,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatCardModule,
     MatRippleModule,
     MatTooltipModule,
+    MatProgressBarModule,
   ],
   exports: [
     CommonModule,
@@ -51,6 +53,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatCardModule,
     MatRippleModule,
     MatTooltipModule,
+    MatProgressBarModule,
   ]
 })
 export class SharedModule { }

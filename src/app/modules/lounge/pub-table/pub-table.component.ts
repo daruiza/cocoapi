@@ -9,6 +9,7 @@ import { ModalAlertService } from 'src/app/services/components/modal-alert/modal
 import { Message } from 'src/app/models/Message';
 import { CurrencyPipe } from '@angular/common';
 import { PubModalAccountComponent } from '../pub-modal-account/pub-modal-account.component';
+import { IOrderList } from 'src/app/models/OrderList';
 
 @Component({
   selector: 'app-pub-table',
@@ -22,9 +23,12 @@ export class PubTableComponent implements OnInit, OnChanges {
   @Input() control: number;
   @Output() order = new EventEmitter<any>();
   service: Service;
-  orders: {id: number, description: string, date: string,  orders: any[]}[];
+  orders: IOrderList[];
 
   sumPrice: number;
+
+  // Auxiliares
+  orderservice: boolean;
 
   constructor(
     private readonly currencypipe: CurrencyPipe,
@@ -35,6 +39,8 @@ export class PubTableComponent implements OnInit, OnChanges {
   ) {
     this.sumPrice = 0;
     this.orders = [];
+
+    this.orderservice = false;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -53,31 +59,36 @@ export class PubTableComponent implements OnInit, OnChanges {
     this.tableService.tableServiceOpen(this.table.id).subscribe(
       serv => {
         if (serv) {
-           this.service = serv;
-           // vamos a por las ordenes
-           this.orderService.orderByService({
-             service: this.service,
-             table: this.table
-           }).subscribe( ordersresp => {
-              ordersresp.forEach((ord: any) => {
-                if (ord.status_paid === 0) {
-                  this.sumPrice = this.sumPrice + ord.price;
-                }
-                const elementOrder = this.orders.find(e => e.id === ord.id);
-                if (elementOrder) {
-                  elementOrder.orders.push(ord);
-                } else {
-                  // primer push orden
-                  this.orders.push({
-                    id: ord.id,
-                    description: ord.description,
-                    date: ord.date,
-                    orders: [ord]});
-                }
-              });
-           });
+          this.service = serv;
+          // vamos a por las ordenes
+          this.orderService.orderByService({
+            service: this.service,
+            table: this.table
+          }).subscribe(ordersresp => {
+            ordersresp.forEach((ord: any) => {
+              if (ord.status_paid === 0) {
+                this.sumPrice = this.sumPrice + ord.price;
+              }
+              const elementOrder = this.orders.find(e => e.id === ord.id);
+              if (elementOrder) {
+                elementOrder.orders.push(ord);
+              } else {
+                // primer push orden
+                this.orders.push({
+                  id: ord.id,
+                  description: ord.description,
+                  date: ord.date,
+                  orders: [ord]
+                });
+              }
+            });
+
+            this.orderservice = true;
+          });
+        } else {
+          this.orderservice = true;
         }
-     });
+      });
   }
 
   public selectTable(evt: Event) {
@@ -97,7 +108,7 @@ export class PubTableComponent implements OnInit, OnChanges {
         if (typeof (result) === 'object') {
           // abemus calback service
           this.service = result;
-          this.order.emit({table: this.table, service: this.service});
+          this.order.emit({ table: this.table, service: this.service });
         }
       },
       reason => console.log(reason)
@@ -106,7 +117,7 @@ export class PubTableComponent implements OnInit, OnChanges {
 
   public openOrder(evt: Event) {
     // Siempre seleccionado ante una orden
-    this.order.emit({table: this.table, service: this.service});
+    this.order.emit({ table: this.table, service: this.service });
   }
 
   public showService(evt: Event) {
@@ -154,24 +165,24 @@ export class PubTableComponent implements OnInit, OnChanges {
           cancelButton: 'Cancelar'
         });
         this.messagesAlertService.openAlert(messge)
-        .result.then(
-          result => {
-            this.tableService.tableServiceClose(this.table.id, this.service.id, true).subscribe(
-              resp => {
-                // Reniniciamos los servicios
-                this.service = undefined;
-                const messgeOk = new Message({
-                  type: 'success',
-                  title: `Operación Exitosa`,
-                  text: `Listo el pollo, en la mesa ${this.table.name} el servicio de ${resp.name} ha sido cerrado correctamente`,
-                  confirmButton: 'Aceptar',
-                });
-                this.messagesAlertService.openAlert(messgeOk);
-              }
-            );
-          },
-          err => {}
-        );
+          .result.then(
+            result => {
+              this.tableService.tableServiceClose(this.table.id, this.service.id, true).subscribe(
+                resp => {
+                  // Reniniciamos los servicios
+                  this.service = undefined;
+                  const messgeOk = new Message({
+                    type: 'success',
+                    title: `Operación Exitosa`,
+                    text: `Listo el pollo, en la mesa ${this.table.name} el servicio de ${resp.name} ha sido cerrado correctamente`,
+                    confirmButton: 'Aceptar',
+                  });
+                  this.messagesAlertService.openAlert(messgeOk);
+                }
+              );
+            },
+            err => { }
+          );
       } else {
         // hay un error se debe cerrar el servicio
         this.tableService.tableServiceClose(this.table.id, this.service.id).subscribe(

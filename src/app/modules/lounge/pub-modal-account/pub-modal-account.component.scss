@@ -112,4 +112,9 @@ mat-form-field {
 
 .row-paid{
     background-color: $accent-color;
+    text-decoration: line-through;
+}
+
+.th-options{
+    text-align: center;
 }

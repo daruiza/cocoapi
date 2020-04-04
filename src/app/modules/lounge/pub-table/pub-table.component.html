@@ -10,36 +10,54 @@
     </div>
   </div>
 
-  <div class="row" *ngIf="service">
-    <div class="col-md-12 table-name align-table-center">
-      {{service.name}}
+  <div *ngIf="!orderservice; else serviceConteiner" class="service-conteiner">
+    <div class="spinner-grow" role="status">
+      <span class="sr-only">Loading...</span>
     </div>
-    <div class="col-md-12 table-name align-table-center">
-      Deuda {{sumPrice |  currency:'USD':'symbol':'1.0-0'}}
+    <div class="spinner-grow" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow" role="status">
+      <span class="sr-only">Loading...</span>
     </div>
   </div>
+  <ng-template #serviceConteiner>
+    <div class="row" *ngIf="sumPrice">
+      <div class="col-md-12 table-name align-table-center">
+        {{service.name}}
+      </div>
+      <div class="col-md-12 table-name align-table-center">
+        Por Pagar {{sumPrice |  currency:'USD':'symbol':'1.0-0'}}
+      </div>
+    </div>
+  
+    <!-- Opciones de servicio -->
+    <p></p>
+    <div *ngIf="sumPrice" class="row buttons-table">
+      <button 
+        mat-mini-fab
+        (click)="showService($event)"
+        matTooltip="Servicio">
+        <mat-icon>date_range</mat-icon>
+      </button>
+  
+      <button mat-mini-fab (click)="addMusicTrack($event)" matTooltip="Musiquita">
+        <mat-icon>headset</mat-icon>
+      </button>
+  
+      <button mat-mini-fab (click)="openOrder($event)" matTooltip="Nueva Orden">
+        <mat-icon>note_add</mat-icon>
+      </button>
+  
+      <button mat-mini-fab (click)="closeService($event)" matTooltip="Cerrar Servicio">
+        <mat-icon>cancel</mat-icon>
+      </button>
+  
+    </div>
+  </ng-template>
 
-  <!-- Opciones de servicio -->
-  <p></p>
-  <div *ngIf="service" class="row buttons-table">
-    <button 
-      mat-mini-fab
-      (click)="showService($event)"
-      matTooltip="Servicio">
-      <mat-icon>date_range</mat-icon>
-    </button>
-
-    <button mat-mini-fab (click)="addMusicTrack($event)" matTooltip="Musiquita">
-      <mat-icon>headset</mat-icon>
-    </button>
-
-    <button mat-mini-fab (click)="openOrder($event)" matTooltip="Nueva Orden">
-      <mat-icon>note_add</mat-icon>
-    </button>
-
-    <button mat-mini-fab (click)="closeService($event)" matTooltip="Cerrar Servicio">
-      <mat-icon>cancel</mat-icon>
-    </button>
-
-  </div>
+  
 </div>

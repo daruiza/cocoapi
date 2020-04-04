@@ -6,6 +6,8 @@ import { TableService } from 'src/app/services/entities/table.service';
 import { OrderService } from 'src/app/services/entities/order.service';
 import { Table } from 'src/app/models/Table';
 import { Subscription } from 'rxjs';
+import { ModalAlertService } from 'src/app/services/components/modal-alert/modal-alert.service';
+import { Message } from 'src/app/models/Message';
 
 @Component({
   selector: 'app-pub-modal-account',
@@ -33,7 +35,8 @@ export class PubModalAccountComponent implements OnInit, OnDestroy {
     public readonly modal: NgbActiveModal,
     public readonly appService: AppService,
     public readonly tableService: TableService,
-    public readonly orderService: OrderService
+    public readonly orderService: OrderService,
+    private readonly messagesAlertService: ModalAlertService,
   ) {
     this.accountForm = this.fb.group({});
     this.buttonAccept = false;
@@ -43,7 +46,7 @@ export class PubModalAccountComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     console.log(this.orders);
-    
+
     this.orders.forEach((el: any) => {
       let sumOrder = 0;
 
@@ -75,7 +78,23 @@ export class PubModalAccountComponent implements OnInit, OnDestroy {
     );
   }
 
-  payProduct(idOrder: number, idproduct: number) {
+  statusPayProduct(idOrder: number, idproduct: number, statusPaid: number) {
+    if (statusPaid) {
+      const messge = new Message({
+        type: 'warning',
+        title: `Alerta!`,
+        text: `¿Segurito que quieres retornar este producto a la orden de servicio?`,
+        confirmButton: 'Si estoy seguro',
+        cancelButton: 'Mejor no'
+      });
+      this.messagesAlertService.openAlert(messge).result.then(
+        result => console.log('sisas'),
+        reason => console.log('menor no')
+      );
+    } else {
+
+    }
+
   }
 
   cancelProduct(idOrder: number, idproduct: number) {

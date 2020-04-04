@@ -104,6 +104,11 @@ mat-form-field {
 
 .row-paid {
   background-color: var(--accent-color);
+  text-decoration: line-through;
+}
+
+.th-options {
+  text-align: center;
 }
 
 /*# sourceMappingURL=lounge_pub_modal_account.css.map */
