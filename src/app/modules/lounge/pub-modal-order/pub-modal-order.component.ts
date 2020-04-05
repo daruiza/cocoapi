@@ -100,7 +100,7 @@ export class PubModalOrderComponent implements OnInit {
           }
         }).subscribe(
         res => {
-          this.modal.close({resp: res, table: this.table});
+          this.modal.close(res);
         },
         err => console.log(err)
       );
@@ -108,7 +108,7 @@ export class PubModalOrderComponent implements OnInit {
   }
 
   dismiss(evt: any) {
-    this.modal.dismiss({resp: 'reason', table: this.table});
+    this.modal.dismiss({});
   }
 
   validControl() {

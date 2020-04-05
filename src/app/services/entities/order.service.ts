@@ -42,7 +42,7 @@ export class OrderService {
           return orders.map(ord => {
             return {
               id: ord.id,
-              poduct_id: ord.order_product_product_id,
+              poduct_id: ord.product_id,
               order_product_id: ord.order_product_id,
               date: ord.date,
               description: ord.description,

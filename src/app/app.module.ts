@@ -20,6 +20,7 @@ import { ModalAlertComponent } from './components/modal-alert/modal-alert.compon
 import { SharedModule } from './shared/shared.module';
 
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 
 // import { ActionReducer } from '@ngrx/store';
@@ -72,6 +73,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     ModalAlertComponent,
   ],
   providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]

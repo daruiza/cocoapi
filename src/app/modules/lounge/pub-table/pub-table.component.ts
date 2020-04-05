@@ -10,6 +10,7 @@ import { Message } from 'src/app/models/Message';
 import { CurrencyPipe } from '@angular/common';
 import { PubModalAccountComponent } from '../pub-modal-account/pub-modal-account.component';
 import { IOrderList } from 'src/app/models/OrderList';
+import { IOrder } from 'src/app/models/Order';
 
 @Component({
   selector: 'app-pub-table',
@@ -45,7 +46,8 @@ export class PubTableComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.control.currentValue.table === this.table) {
-      this.services();
+      this.orders.push(changes.control.currentValue.order);
+      this.mapOrders();
     }
 
   }
@@ -59,7 +61,6 @@ export class PubTableComponent implements OnInit, OnChanges {
     this.orders = [];
     this.sumPrice = 0;
     this.orderservice = false;
-
     this.tableService.tableServiceOpen(this.table.id).subscribe(
       serv => {
         if (serv) {
@@ -69,30 +70,51 @@ export class PubTableComponent implements OnInit, OnChanges {
             service: this.service,
             table: this.table
           }).subscribe(ordersresp => {
-            ordersresp.forEach((ord: any) => {
-              if (ord.status_paid === 0) {
-                this.sumPrice = this.sumPrice + ord.price;
-              }
-              const elementOrder = this.orders.find(e => e.id === ord.id);
-              if (elementOrder) {
-                elementOrder.orders.push(ord);
-              } else {
-                // primer push orden
-                this.orders.push({
-                  id: ord.id,
-                  description: ord.description,
-                  date: ord.date,
-                  status_id: ord.status_id,
-                  orders: [ord]
-                });
-              }
-            });
-            this.orderservice = true;
+            this.mapOrdersService(ordersresp);
           });
         } else {
           this.orderservice = true;
         }
       });
+  }
+
+  mapOrdersService(ordersresp: IOrder[]): void {
+    this.orders = [];
+    this.sumPrice = 0;
+    this.orderservice = false;
+    ordersresp.forEach((ord: any) => {
+      if (ord.status_paid === 0) {
+        this.sumPrice = this.sumPrice + ord.price;
+      }
+      const elementOrder = this.orders.find(e => e.id === ord.id);
+      if (elementOrder) {
+        elementOrder.orders.push(ord);
+      } else {
+        // primer push orden
+        this.orders.push({
+          id: ord.id,
+          description: ord.description,
+          date: ord.date,
+          status_id: ord.status_id,
+          orders: [ord]
+        });
+      }
+    });
+    this.orderservice = true;
+  }
+
+  mapOrders(): void {
+    // sumPrice
+    this.sumPrice = 0;
+    this.orderservice = false;
+    this.orders.forEach((ordlist: IOrderList) => {
+      ordlist.orders.forEach((ord: IOrder) => {
+        if (ord.status_paid === 0) {
+          this.sumPrice = this.sumPrice + ord.price;
+        }
+      });
+    });
+    this.orderservice = true;
   }
 
   public selectTable(evt: Event) {
@@ -121,7 +143,6 @@ export class PubTableComponent implements OnInit, OnChanges {
 
   public openOrder(evt: Event) {
     // Siempre seleccionado ante una orden
-    // this.orderservice = false;
     this.order.emit({ table: this.table, service: this.service });
   }
 
@@ -136,8 +157,8 @@ export class PubTableComponent implements OnInit, OnChanges {
     modalRef.componentInstance.service = this.service;
     modalRef.componentInstance.orders = this.orders;
     modalRef.result.then(
-      result => {this.ngOnInit(); },
-      reason => {this.ngOnInit(); }
+      result => { this.mapOrders(); },
+      reason => { this.mapOrders(); }
     );
   }
 

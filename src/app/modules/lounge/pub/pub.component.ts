@@ -6,6 +6,8 @@ import { PubModalOrderComponent } from '../pub-modal-order/pub-modal-order.compo
 import { ModalAlertService } from 'src/app/services/components/modal-alert/modal-alert.service';
 import { Message } from 'src/app/models/Message';
 import { forkJoin } from 'rxjs';
+import { IOrder } from 'src/app/models/Order';
+import { IOrderList } from 'src/app/models/OrderList';
 
 @Component({
   selector: 'app-pub',
@@ -19,14 +21,14 @@ export class PubComponent implements OnInit {
   categories: any = {};
   waiters: any = {};
 
-  control: { control: number, table: ITable };
+  control: { control: number, table: ITable, order: IOrderList };
 
   constructor(
     private readonly messagesAlertService: ModalAlertService,
     private readonly welcomeService: WelcomeService,
     private readonly modalService: NgbModal
   ) {
-    this.control = { control: 0, table: {} };
+    this.control = { control: 0, table: {}, order: {} };
   }
 
   ngOnInit() {
@@ -72,25 +74,27 @@ export class PubComponent implements OnInit {
     modalRef.result.then(result => {
       console.log(result);
       if ('table' in result) {
-        this.control = {
-          control: this.control.control += 1,
-          table: this.pubTables.find(e => e.id === result.table.id)
-        };
-
         this.messagesAlertService.openAlert(new Message(
           {
             type: 'success',
             title: `Nueva Orden Para: ${result.table.name}`,
-            text: `La orden se creo correctamente, usuario: ${result.resp.order_form.user}. 
-              Serial: ${result.resp.order.serial}. TOTAL: ${result.resp.total}`
+            text: `La orden se creo correctamente, usuario:
+            ${result.order_form.user}. TOTAL: ${result.total}`
           }
-        ));
+        )).result.then(resultmessage => {
+          this.control = {
+            control: this.control.control += 1,
+            table: this.pubTables.find(e => e.id === result.table.id),
+            order: result.order
+          };
+        });
       }
     }, reason => {
       if ('table' in reason) {
         this.control = {
           control: this.control.control += 1,
-          table: this.pubTables.find(e => e.id === reason.table.id)
+          table: {},
+          order: {}
         };
       }
     }
