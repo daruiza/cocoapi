@@ -107,6 +107,13 @@ mat-form-field {
   text-decoration: line-through;
 }
 
+.order-paid .mat-expansion-panel {
+  background-color: var(--accent-color);
+}
+.order-paid .mat-expansion-panel .mat-expansion-panel-header {
+  text-decoration: line-through;
+}
+
 .th-options {
   text-align: center;
 }

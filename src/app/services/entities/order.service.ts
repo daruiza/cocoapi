@@ -15,95 +15,110 @@ import { IOrder } from 'src/app/models/Order';
 })
 export class OrderService {
 
-    public url = `${environment.baseAPI}`;
-    public httpHeaders: HttpHeaders;
+  public url = `${environment.baseAPI}`;
+  public httpHeaders: HttpHeaders;
 
-    constructor(
-        protected http: HttpClient,
-        private readonly messagesAlertService: ModalAlertService,
-    ) {
-        this.httpHeaders = new HttpHeaders({
-        'Content-Type': 'application/json',
-        });
-    }
+  constructor(
+    protected http: HttpClient,
+    private readonly messagesAlertService: ModalAlertService,
+  ) {
+    this.httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+  }
 
-    public orderByService(obj: any): Observable<any> {
-      const options = {
-        headers: this.httpHeaders,
-        params: {},
-      };
+  public orderByService(obj: any): Observable<any> {
+    const options = {
+      headers: this.httpHeaders,
+      params: {},
+    };
 
-      return this.http.post<IOrder[]>(`${this.url}/api/order/index`, obj , options)
-        .pipe(
-          tap(orders => {
+    return this.http.post<IOrder[]>(`${this.url}/api/order/index`, obj, options)
+      .pipe(
+        tap(orders => {
           // console.log(orders);
-          }),
-          map(orders => {
-            return orders.map(ord => {
-              return {
-                id: ord.id,
-                poduct_id: ord.order_poduct_id,
-                date: ord.date,
-                description: ord.description,
-                name: ord.name,
-                price: ord.price,
-                status_paid: ord.status_paid,
-              };
-            });
-          }),
-          catchError(this.handleError<any>(`Consulta Fallida`))
+        }),
+        map(orders => {
+          return orders.map(ord => {
+            return {
+              id: ord.id,
+              poduct_id: ord.order_product_product_id,
+              order_product_id: ord.order_product_id,
+              date: ord.date,
+              description: ord.description,
+              name: ord.name,
+              price: ord.price,
+              status_id: ord.status_id,
+              status_paid: ord.status_paid,
+            };
+          });
+        }),
+        catchError(this.handleError<any>(`Consulta Fallida`))
       );
-    }
+  }
 
-    public orderSave(obj: any): Observable<any> {
-        const options = {
-            headers: this.httpHeaders,
-            params: {},
-        };
+  public orderSave(obj: any): Observable<any> {
+    const options = {
+      headers: this.httpHeaders,
+      params: {},
+    };
 
-        return this.http.post<any>(`${this.url}/api/order/store`, obj , options).pipe(
-            tap(prods => {
-            // console.log(`Tab ${prods}`);
-            }),
-            catchError(this.handleError<any>(`Consulta Fallida`))
-        );
-    }
+    return this.http.post<any>(`${this.url}/api/order/store`, obj, options).pipe(
+      tap(prods => {
+        // console.log(`Tab ${prods}`);
+      }),
+      catchError(this.handleError<any>(`Consulta Fallida`))
+    );
+  }
 
-    public payOrder(id: number): Observable<any> {
-      const options = {
-        headers: this.httpHeaders,
-        params: {},
-      };
-      return this.http.post<any>(`${this.url}/api/order/payorder`, {idOrder: `${id}`} , options);
-    }
+  public statusOrder(idOrder: number, idStatus: number): Observable<any> {
+    const options = {
+      headers: this.httpHeaders,
+      params: {},
+    };
+    return this.http.post<any>(`${this.url}/api/order/statusorder`,
+      {
+        idOrder: `${idOrder}`,
+        idStatus: `${idStatus}`
+      }, options);
+  }
 
-    // 
-    // cancelorder
-    // payproduct
-    // cancelproduct
+  public statusPayProduct(idOrder: number, idOrderProduct: number, statusPaid: number): Observable<any> {
+    const options = {
+      headers: this.httpHeaders,
+      params: {},
+    };
+    return this.http.post<any>(`${this.url}/api/order/statuspayproduct`,
+      {
+        idOrder: `${idOrder}`,
+        idOrderProduct: `${idOrderProduct}`,
+        statusPaid: `${statusPaid}`
+      },
+      options);
+  }
 
-    public cancelOrder(id: number): Observable<any> {
-      return of({});
-    }
+  public cancelOrder(id: number): Observable<any> {
+    return of({});
+  }
 
-    private handleError<T>(operation = 'operation', result?: T) {
-        return (error: any): Observable<T> => {
-          console.log(error);
-          let messageError = error.error.message;
-          if ('errors' in error.error) {
-            for (const key in error.error.errors) {
-              if (error.error.errors.hasOwnProperty(key)) {
-                messageError = `${messageError} ${error.error.errors[key]}`;
-              }
-            }
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.log(error);
+      let messageError = error.error.message;
+      if ('errors' in error.error) {
+        for (const key in error.error.errors) {
+          if (error.error.errors.hasOwnProperty(key)) {
+            messageError = `${messageError} ${error.error.errors[key]}`;
           }
-          // envio de mensajes
-          this.messagesAlertService.openAlert(new Message({
-            type: 'danger',
-            title: operation,
-            text: `${messageError}`
-          }));
-          return of(result as T);
-        };
-    }
+        }
+      }
+      // envio de mensajes
+      this.messagesAlertService.openAlert(new Message({
+        type: 'danger',
+        title: operation,
+        text: `${messageError}`
+      }));
+      return of(result as T);
+    };
+  }
 }

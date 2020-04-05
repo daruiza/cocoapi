@@ -1,3 +1,7 @@
+.alert-container {
+  z-index: 2001;
+}
+
 .modal-header, .container-icon {
   display: flex;
   align-items: center;

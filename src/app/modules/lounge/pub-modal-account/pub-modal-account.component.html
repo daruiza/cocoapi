@@ -27,7 +27,7 @@
                             <mat-accordion>
                                 <div class="container">
                                     <div class="row" *ngFor="let order of orders; index as i">
-                                        <div class="col-md-11">
+                                        <div [ngClass]="{'order-paid': order.status_id === 3}" class="col-md-11">
                                             <mat-expansion-panel >
                                                 <mat-expansion-panel-header>
                                                     <div class="container">
@@ -69,7 +69,7 @@
                                                     <ng-container matColumnDef="options">
                                                         <th mat-header-cell *matHeaderCellDef class="th-options"> Opciones </th>
                                                         <td mat-cell  *matCellDef="let element">
-                                                            <div *ngIf="!element.status_paid; else reOptions" class="option-order-bottons product-bottons">
+                                                            <div *ngIf="!element.status_paid; else reProductOptions" class="option-order-bottons product-bottons">
                                                                 <button 
                                                                 mat-mini-fab
                                                                 (click)="cancelProduct(order.id, element.poduct_id)"
@@ -81,14 +81,14 @@
 
                                                                 <button 
                                                                 mat-mini-fab
-                                                                (click)="statusPayProduct(order.id, element.poduct_id, element.status_paid)"
+                                                                (click)="statusProduct(order.id, element.order_product_id, element.status_paid)"
                                                                 title="Pagar Producto"
                                                                 data-toggle="tooltip" data-placement="top"
                                                                 matTooltip="Pagar Producto">
                                                                 <mat-icon>monetization_on</mat-icon>
                                                                 </button>
                                                             </div>
-                                                            <ng-template #reOptions>
+                                                            <ng-template #reProductOptions>
                                                                 <div class="option-order-bottons product-bottons">
                                                                     <button 
                                                                     mat-mini-fab
@@ -100,16 +100,14 @@
                                                                     </button>
                                                                     <button 
                                                                     mat-mini-fab
-                                                                    (click)="statusPayProduct(order.id, element.poduct_id, element.status_paid)"
+                                                                    (click)="statusProduct(order.id, element.order_product_id, element.status_paid)"
                                                                     title="Debolver Producto"
                                                                     data-toggle="tooltip" data-placement="top"
                                                                     matTooltip="Debolver Producto">
                                                                     <mat-icon>history</mat-icon>
                                                                     </button>
                                                                 </div>
-                                                            </ng-template>
-                                                            
-                                                            
+                                                            </ng-template>                                                            
                                                         </td>
                                                     </ng-container>  
                                                     
@@ -118,7 +116,7 @@
                                                 </table>
                                             </mat-expansion-panel>
                                         </div>
-                                        <div class="col-md-1 option-order-bottons">
+                                        <div *ngIf="order.status_id === 1; else reOrderOptions" class="col-md-1 option-order-bottons">
                                             <button 
                                             mat-mini-fab
                                             (click)="cancelOrder(order.id)"
@@ -130,13 +128,34 @@
                                         
                                             <button 
                                             mat-mini-fab
-                                            (click)="payOrder(order.id)"
+                                            (click)="statusOrder(order.id,3)"
                                             title="Pagar Orden"
                                             data-toggle="tooltip" data-placement="top"
                                             matTooltip="Pagar Orden">
                                             <mat-icon>monetization_on</mat-icon>
                                             </button>
                                         </div>
+                                        <ng-template #reOrderOptions>
+                                            <div class="col-md-1 option-order-bottons">
+                                                <button 
+                                                mat-mini-fab
+                                                (click)="cancelOrder(order.id)"
+                                                title="Cancelar Orden"
+                                                data-toggle="tooltip" data-placement="top"
+                                                matTooltip="Cancelar Orden">
+                                                <mat-icon>cancel</mat-icon>
+                                                </button>
+                                            
+                                                <button 
+                                                mat-mini-fab
+                                                (click)="statusOrder(order.id,1)"
+                                                title="Debolver Orden"
+                                                data-toggle="tooltip" data-placement="top"
+                                                matTooltip="Debolver Orden">
+                                                <mat-icon>history</mat-icon>
+                                                </button>
+                                            </div>
+                                        </ng-template>
                                     </div>
                                 </div>
                             </mat-accordion>

@@ -70,6 +70,7 @@ export class PubComponent implements OnInit {
     modalRef.componentInstance.waiters = this.waiters;
 
     modalRef.result.then(result => {
+      console.log(result);
       if ('table' in result) {
         this.control = {
           control: this.control.control += 1,
@@ -84,6 +85,13 @@ export class PubComponent implements OnInit {
               Serial: ${result.resp.order.serial}. TOTAL: ${result.resp.total}`
           }
         ));
+      }
+    }, reason => {
+      if ('table' in reason) {
+        this.control = {
+          control: this.control.control += 1,
+          table: this.pubTables.find(e => e.id === reason.table.id)
+        };
       }
     }
     );

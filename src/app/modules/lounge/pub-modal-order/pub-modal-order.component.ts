@@ -107,6 +107,10 @@ export class PubModalOrderComponent implements OnInit {
     }
   }
 
+  dismiss(evt: any) {
+    this.modal.dismiss({resp: 'reason', table: this.table});
+  }
+
   validControl() {
     // tslint:disable-next-line: forin
     for (const inner in this.orderForm.controls) {

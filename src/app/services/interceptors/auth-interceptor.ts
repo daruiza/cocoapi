@@ -19,16 +19,13 @@ export class AuthInterceptor implements HttpInterceptor {
     private readonly authService: AuthService,
     private readonly messagesAlertService: ModalAlertService,
     private readonly loadingService: LoadingService
-    ) { }
+  ) { }
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-
-    setTimeout(() => {
-      this.loadingService.showLoading();
-    });
+    this.loadingService.showLoading();
     let newHeaders = req.headers;
     if (this.authService.checkLogin()) {
       newHeaders = newHeaders.append(
@@ -39,9 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(authReq).pipe(
       catchError(this.handleError<any>(`Operación Fallida [I]`)),
       finalize(() => {
-        setTimeout(() => {
-          this.loadingService.hideLoading();
-        });
+        this.loadingService.hideLoading();
       })
     );
   }

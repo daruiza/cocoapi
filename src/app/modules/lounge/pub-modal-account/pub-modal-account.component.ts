@@ -8,6 +8,8 @@ import { Table } from 'src/app/models/Table';
 import { Subscription } from 'rxjs';
 import { ModalAlertService } from 'src/app/services/components/modal-alert/modal-alert.service';
 import { Message } from 'src/app/models/Message';
+import { IOrder } from 'src/app/models/Order';
+import { IOrderList } from 'src/app/models/OrderList';
 
 @Component({
   selector: 'app-pub-modal-account',
@@ -46,6 +48,7 @@ export class PubModalAccountComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     console.log(this.orders);
+    this.sumPrice = 0;
 
     this.orders.forEach((el: any) => {
       let sumOrder = 0;
@@ -68,17 +71,52 @@ export class PubModalAccountComponent implements OnInit, OnDestroy {
     console.log(id);
   }
 
-  payOrder(id: number) {
-    this.payOrderSubscription = this.orderService.payOrder(id).subscribe(
+  statusOrder(idOrder: number, idStatus: number) {
+    if (idStatus === 1) {
+      const messge = new Message({
+        type: 'warning',
+        title: `Alerta!`,
+        text: `¿Segurito que quieres retornar esta orden de servicio?`,
+        confirmButton: 'Si estoy seguro',
+        cancelButton: 'Mejor no'
+      });
+      this.messagesAlertService.openAlert(messge).result.then(
+        result => this.statusOrderService(idOrder, idStatus),
+        reason => { }
+      );
+    } else {
+      this.statusOrderService(idOrder, idStatus);
+    }
+  }
+
+  statusOrderService(idOrder: number, idStatus: number) {
+    this.orderService.statusOrder(idOrder, idStatus).subscribe(
       res => {
-        console.log(res);
         // Actualizamos el this.order
-        // se debe actualizar this.ngOnInit
+        if (res) {
+          const order: IOrderList = this.orders.find((ord: IOrderList) => ord.id === idOrder);
+          order.status_id = idStatus;
+          // Actualizamos todo los productos
+          if (idStatus === 3) {
+            order.orders = order.orders.map((ord: IOrder) => {
+              ord.status_paid = 1;
+              ord.status_id = idStatus;
+              return ord;
+            });
+          } else {
+            order.orders = order.orders.map((ord: IOrder) => {
+              ord.status_paid = 0;
+              ord.status_id = idStatus;
+              return ord;
+            });
+          }
+          this.ngOnInit();
+        }
       }
     );
   }
 
-  statusPayProduct(idOrder: number, idproduct: number, statusPaid: number) {
+  statusProduct(idOrder: number, idOrderProduct: number, statusPaid: number) {
     if (statusPaid) {
       const messge = new Message({
         type: 'warning',
@@ -88,13 +126,27 @@ export class PubModalAccountComponent implements OnInit, OnDestroy {
         cancelButton: 'Mejor no'
       });
       this.messagesAlertService.openAlert(messge).result.then(
-        result => console.log('sisas'),
-        reason => console.log('menor no')
+        result => this.statusProductService(idOrder, idOrderProduct, statusPaid),
+        reason => { }
       );
     } else {
-
+      this.statusProductService(idOrder, idOrderProduct, statusPaid);
     }
 
+  }
+
+  statusProductService(idOrder: number, idOrderProduct: number, statusPaid: number) {
+    this.orderService.statusPayProduct(idOrder, idOrderProduct, statusPaid).subscribe(res => {
+      if (res) {
+        // Actualizamos la order_product
+        // se debe actualizar this.ngOnInit
+        const order: IOrder = this.orders.find((ord: IOrderList) => ord.id === idOrder)
+          .orders.find((prodOrd: IOrder) => prodOrd.order_product_id === idOrderProduct);
+        order.status_paid = statusPaid === 0 ? 1 : 0;
+        this.ngOnInit();
+
+      }
+    });
   }
 
   cancelProduct(idOrder: number, idproduct: number) {
@@ -103,7 +155,7 @@ export class PubModalAccountComponent implements OnInit, OnDestroy {
   }
 
   onCancel(evt: Event) {
-
+    this.modal.dismiss(evt);
   }
 
   onSubmit(evt: Event) {

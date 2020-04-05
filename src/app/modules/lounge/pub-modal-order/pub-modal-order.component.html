@@ -5,7 +5,7 @@
             <h5 class="table-name"> <i class="{{table.icon}}"></i>{{table.name}}</h5>
             <h5> Nueva Orden </h5>
         </div>
-        <button type="button" class="close" aria-label="Close" (click)="modal.close($event)">
+        <button type="button" class="close" aria-label="Close" (click)="dismiss($event)">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -87,7 +87,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close($event)" >Cerrar </button>
+        <button type="button" class="btn btn-outline-dark" (click)="dismiss($event)" >Cerrar </button>
         <button type="button" ngbAutofocus class="btn btn-light" [disabled]="!orderForm.valid || buttonAccept"
         (click)="onSubmit($event)" > Crear </button>
     </div>

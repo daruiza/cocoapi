@@ -35,7 +35,7 @@ export class PubTableComponent implements OnInit, OnChanges {
     private readonly modalService: NgbModal,
     public readonly tableService: TableService,
     public readonly orderService: OrderService,
-    private readonly messagesAlertService: ModalAlertService,
+    private readonly messagesAlertService: ModalAlertService
   ) {
     this.sumPrice = 0;
     this.orders = [];
@@ -56,6 +56,10 @@ export class PubTableComponent implements OnInit, OnChanges {
   }
 
   public services() {
+    this.orders = [];
+    this.sumPrice = 0;
+    this.orderservice = false;
+
     this.tableService.tableServiceOpen(this.table.id).subscribe(
       serv => {
         if (serv) {
@@ -78,11 +82,11 @@ export class PubTableComponent implements OnInit, OnChanges {
                   id: ord.id,
                   description: ord.description,
                   date: ord.date,
+                  status_id: ord.status_id,
                   orders: [ord]
                 });
               }
             });
-
             this.orderservice = true;
           });
         } else {
@@ -117,6 +121,7 @@ export class PubTableComponent implements OnInit, OnChanges {
 
   public openOrder(evt: Event) {
     // Siempre seleccionado ante una orden
+    // this.orderservice = false;
     this.order.emit({ table: this.table, service: this.service });
   }
 
@@ -130,6 +135,10 @@ export class PubTableComponent implements OnInit, OnChanges {
     modalRef.componentInstance.table = this.table;
     modalRef.componentInstance.service = this.service;
     modalRef.componentInstance.orders = this.orders;
+    modalRef.result.then(
+      result => {this.ngOnInit(); },
+      reason => {this.ngOnInit(); }
+    );
   }
 
   public closeService(evt: Event) {
