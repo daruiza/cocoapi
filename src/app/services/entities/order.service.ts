@@ -97,8 +97,29 @@ export class OrderService {
       options);
   }
 
-  public cancelOrder(id: number): Observable<any> {
-    return of({});
+  public cancelOrder(idOrder: number): Observable<any> {
+    const options = {
+      headers: this.httpHeaders,
+      params: {},
+    };
+    return this.http.post<any>(`${this.url}/api/order/cancelorder`,
+      {
+        idOrder: `${idOrder}`
+      },
+      options);
+  }
+
+  public cancelProduct(idOrder: number, idOrderProduct: number): Observable<any> {
+    const options = {
+      headers: this.httpHeaders,
+      params: {},
+    };
+    return this.http.post<any>(`${this.url}/api/order/cancelproduct`,
+      {
+        idOrder: `${idOrder}`,
+        idOrderProduct: `${idOrderProduct}`
+      },
+      options);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

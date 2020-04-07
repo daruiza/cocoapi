@@ -5,7 +5,7 @@
                 <h5 class="table-name"> <i class="{{table.icon}}"></i>{{table.name}}</h5>
                 <h5> Reporte - {{service.name}} </h5>
             </div>
-            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss($event)">
+            <button type="button" class="close" aria-label="Close" (click)="onCancel($event)">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -70,9 +70,9 @@
                                                         <th mat-header-cell *matHeaderCellDef class="th-options"> Opciones </th>
                                                         <td mat-cell  *matCellDef="let element">
                                                             <div *ngIf="!element.status_paid; else reProductOptions" class="option-order-bottons product-bottons">
-                                                                <button 
+                                                                <button
                                                                 mat-mini-fab
-                                                                (click)="cancelProduct(order.id, element.poduct_id)"
+                                                                (click)="cancelProduct(order.id, element.order_product_id)"
                                                                 title="Cancelar Producto"
                                                                 data-toggle="tooltip" data-placement="top"
                                                                 matTooltip="Cancelar Producto">
@@ -89,15 +89,7 @@
                                                                 </button>
                                                             </div>
                                                             <ng-template #reProductOptions>
-                                                                <div class="option-order-bottons product-bottons">
-                                                                    <button 
-                                                                    mat-mini-fab
-                                                                    (click)="cancelProduct(order.id, element.poduct_id)"
-                                                                    title="Cancelar Producto"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    matTooltip="Cancelar Producto">
-                                                                    <mat-icon>cancel</mat-icon>
-                                                                    </button>
+                                                                <div class="option-order-bottons product-bottons">                                                                   
                                                                     <button 
                                                                     mat-mini-fab
                                                                     (click)="statusProduct(order.id, element.order_product_id, element.status_paid)"
@@ -139,15 +131,6 @@
                                             <div class="col-md-1 option-order-bottons">
                                                 <button 
                                                 mat-mini-fab
-                                                (click)="cancelOrder(order.id)"
-                                                title="Cancelar Orden"
-                                                data-toggle="tooltip" data-placement="top"
-                                                matTooltip="Cancelar Orden">
-                                                <mat-icon>cancel</mat-icon>
-                                                </button>
-                                            
-                                                <button 
-                                                mat-mini-fab
                                                 (click)="statusOrder(order.id,1)"
                                                 title="Debolver Orden"
                                                 data-toggle="tooltip" data-placement="top"
@@ -166,10 +149,10 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="modal.close($event)" >Cerrar </button>
-            <button type="button" class="btn btn-outline-dark" (click)="onCancel($event)" >Cancelar </button>
-            <button type="button" ngbAutofocus class="btn btn-light" [disabled]="!accountForm.valid || buttonAccept"
-            (click)="onSubmit($event)" > Pagar Todo </button>
+            <button type="button" class="btn btn-outline-dark" (click)="onCancel($event)" >Cerrar </button>
+            <button type="button" *ngIf="sumPrice" class="btn btn-outline-dark" (click)="onCancel($event)" >Cancelar </button>
+            <button type="button" *ngIf="sumPrice" ngbAutofocus class="btn btn-light" [disabled]="!accountForm.valid || buttonAccept"
+            (click)="onSubmit($event)"> Pagar Todo </button>
         </div>
     </mat-card>
 </div>

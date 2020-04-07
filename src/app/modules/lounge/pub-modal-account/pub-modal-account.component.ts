@@ -64,10 +64,6 @@ export class PubModalAccountComponent implements OnInit, OnDestroy {
     // this.payOrderSubscription.unsubscribe();
   }
 
-  cancelOrder(id: number) {
-    console.log(id);
-  }
-
   statusOrder(idOrder: number, idStatus: number) {
     if (idStatus === 1) {
       const messge = new Message({
@@ -137,22 +133,45 @@ export class PubModalAccountComponent implements OnInit, OnDestroy {
       if (res) {
         // Actualizamos la order_product
         // se debe actualizar this.ngOnInit
-        const order: IOrder = this.orders.find((ord: IOrderList) => ord.id === idOrder)
+        const orderProduct: IOrder = this.orders.find((ord: IOrderList) => ord.id === idOrder)
           .orders.find((prodOrd: IOrder) => prodOrd.order_product_id === idOrderProduct);
-        order.status_paid = statusPaid === 0 ? 1 : 0;
+        orderProduct.status_paid = statusPaid === 0 ? 1 : 0;
         this.ngOnInit();
 
       }
     });
   }
 
-  cancelProduct(idOrder: number, idproduct: number) {
-    console.log(idOrder);
-    console.log(idproduct);
+  cancelOrder(idOrder: number) {
+    this.orderService.cancelOrder(idOrder).subscribe(
+      res => {
+        if (res) {
+          const order: IOrderList = this.orders.find((ord: IOrderList) => ord.id === idOrder);
+          this.orders = this.orders.filter((item: IOrderList) => item.orders !== order.orders);
+          console.log(this.orders);
+          this.ngOnInit();
+        }
+    });
+  }
+
+  cancelProduct(idOrder: number, idOrderProduct: number) {
+    this.orderService.cancelProduct(idOrder, idOrderProduct).subscribe(
+      res => {
+        if (res) {
+          const order: IOrderList = this.orders.find((ord: IOrderList) => ord.id === idOrder);
+          order.orders = order.orders.filter(item => item.order_product_id !== idOrderProduct);
+          // Borramos la orden en caso de quedar sin productos
+          if (!order.orders.length) {
+            this.orders = this.orders.filter((item: IOrderList) => item.orders !== order.orders);
+          }
+          this.ngOnInit();
+        }
+      }
+    );
   }
 
   onCancel(evt: Event) {
-    this.modal.dismiss(evt);
+    this.modal.dismiss(this.orders);
   }
 
   onSubmit(evt: Event) {

@@ -107,6 +107,7 @@ export class PubTableComponent implements OnInit, OnChanges {
     // sumPrice
     this.sumPrice = 0;
     this.orderservice = false;
+    console.log(this.orders);
     this.orders.forEach((ordlist: IOrderList) => {
       ordlist.orders.forEach((ord: IOrder) => {
         if (ord.status_paid === 0) {
@@ -157,8 +158,15 @@ export class PubTableComponent implements OnInit, OnChanges {
     modalRef.componentInstance.service = this.service;
     modalRef.componentInstance.orders = this.orders;
     modalRef.result.then(
-      result => { this.mapOrders(); },
-      reason => { this.mapOrders(); }
+      result => {
+        this.mapOrders();
+      },
+      reason => {
+        if (typeof(reason) === 'object') {
+          this.orders = reason;
+          this.mapOrders();
+        }
+      }
     );
   }
 

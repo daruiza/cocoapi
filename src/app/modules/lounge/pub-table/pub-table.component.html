@@ -26,7 +26,7 @@
   </div>
   
   <ng-template #serviceConteiner>
-    <div class="row" *ngIf="orders.length">
+    <div class="row" *ngIf="service">
       <div class="col-md-12 table-name align-table-center">
         {{service.name}}
       </div>
@@ -37,7 +37,7 @@
   
     <!-- Opciones de servicio -->
     <p></p>
-    <div *ngIf="orders.length" class="row buttons-table">
+    <div *ngIf="service" class="row buttons-table">
       <button 
         mat-mini-fab
         (click)="showService($event)"

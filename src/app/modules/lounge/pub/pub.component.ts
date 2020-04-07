@@ -72,7 +72,6 @@ export class PubComponent implements OnInit {
     modalRef.componentInstance.waiters = this.waiters;
 
     modalRef.result.then(result => {
-      console.log(result);
       if ('table' in result) {
         this.messagesAlertService.openAlert(new Message(
           {
