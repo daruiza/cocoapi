@@ -122,6 +122,30 @@ export class OrderService {
       options);
   }
 
+  public cancelOrders(idService: number): Observable<any> {
+    const options = {
+      headers: this.httpHeaders,
+      params: {},
+    };
+    return this.http.post<any>(`${this.url}/api/order/cancelorders`,
+      {
+        idService: `${idService}`
+      },
+      options);
+  }
+
+  public payOrders(idService: number): Observable<any> {
+    const options = {
+      headers: this.httpHeaders,
+      params: {},
+    };
+    return this.http.post<any>(`${this.url}/api/order/payorders`,
+      {
+        idService: `${idService}`
+      },
+      options);
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.log(error);

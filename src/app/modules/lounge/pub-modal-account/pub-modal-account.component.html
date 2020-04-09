@@ -5,7 +5,7 @@
                 <h5 class="table-name"> <i class="{{table.icon}}"></i>{{table.name}}</h5>
                 <h5> Reporte - {{service.name}} </h5>
             </div>
-            <button type="button" class="close" aria-label="Close" (click)="onCancel($event)">
+            <button type="button" class="close" aria-label="Close" (click)="onClose($event)">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -149,10 +149,10 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="onCancel($event)" >Cerrar </button>
+            <button type="button" class="btn btn-outline-dark" (click)="onClose($event)" >Cerrar </button>
             <button type="button" *ngIf="sumPrice" class="btn btn-outline-dark" (click)="onCancel($event)" >Cancelar </button>
             <button type="button" *ngIf="sumPrice" ngbAutofocus class="btn btn-light" [disabled]="!accountForm.valid || buttonAccept"
-            (click)="onSubmit($event)"> Pagar Todo </button>
+            (click)="onPayOrders($event)"> Pagar Todo </button>
         </div>
     </mat-card>
 </div>

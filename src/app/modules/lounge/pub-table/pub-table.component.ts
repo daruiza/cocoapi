@@ -107,7 +107,6 @@ export class PubTableComponent implements OnInit, OnChanges {
     // sumPrice
     this.sumPrice = 0;
     this.orderservice = false;
-    console.log(this.orders);
     this.orders.forEach((ordlist: IOrderList) => {
       ordlist.orders.forEach((ord: IOrder) => {
         if (ord.status_paid === 0) {

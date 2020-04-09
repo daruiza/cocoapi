@@ -137,7 +137,6 @@ export class PubModalAccountComponent implements OnInit, OnDestroy {
           .orders.find((prodOrd: IOrder) => prodOrd.order_product_id === idOrderProduct);
         orderProduct.status_paid = statusPaid === 0 ? 1 : 0;
         this.ngOnInit();
-
       }
     });
   }
@@ -151,7 +150,7 @@ export class PubModalAccountComponent implements OnInit, OnDestroy {
           console.log(this.orders);
           this.ngOnInit();
         }
-    });
+      });
   }
 
   cancelProduct(idOrder: number, idOrderProduct: number) {
@@ -170,12 +169,39 @@ export class PubModalAccountComponent implements OnInit, OnDestroy {
     );
   }
 
-  onCancel(evt: Event) {
+  onClose(evt: Event) {
     this.modal.dismiss(this.orders);
   }
 
-  onSubmit(evt: Event) {
-
+  onCancel(evt: Event) {
+    // Cancela todas las ordenes existentes
+    // del servicio en curso
+    const messge = new Message({
+      type: 'warning',
+      title: `Alerta!`,
+      text: `¿Segurito que quieres cancelar todas las ordenes del servicio?`,
+      confirmButton: 'Si estoy seguro',
+      cancelButton: 'Mejor no'
+    });
+    this.messagesAlertService.openAlert(messge).result.then(
+      result => this.cancelAllOrdersService(this.service.id),
+      reason => { }
+    );
   }
 
+  cancelAllOrdersService(idService: number) {
+    this.orderService.cancelOrders(idService).subscribe(
+      res => this.callOninitOnClose);
+  }
+
+  onPayOrders(evt: Event) {
+    this.orderService.payOrders(this.service.id).subscribe(
+      res => this.callOninitOnClose);
+  }
+
+  callOninitOnClose(): void {
+    this.orders = [];
+    this.ngOnInit();
+    this.onClose(new Event(''));
+  }
 }
