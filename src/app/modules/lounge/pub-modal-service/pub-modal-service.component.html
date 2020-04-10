@@ -18,13 +18,13 @@
         <form [formGroup]="serviceForm" (ngSubmit)="onSubmit($event)">
             <div class="form-group example-container">
                 <mat-form-field >
-                    <input matInput type="text" placeholder="Nombre:" value="" formControlName="name" autofocus>
+                    <input matInput type="text" placeholder="Nombre:" value="" formControlName="name" [autofocus]="'true'">
                 </mat-form-field>            
             </div>
 
             <div class="form-group example-container">
                 <mat-form-field >
-                    <textarea matInput placeholder="Description:" value="" formControlName="description" autofocus></textarea>
+                    <textarea matInput placeholder="Description:" value="" formControlName="description"></textarea>
                 </mat-form-field>
             </div>
 

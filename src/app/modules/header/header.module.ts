@@ -2,18 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HeaderRoutingModule } from './header-routing.module';
-import { MenuTopComponent } from './menu-top/menu-top.component';
+import { ClosureModalComponent } from './closure-modal/closure-modal.component';
 
 @NgModule({
   declarations: [
-    // MenuTopComponent
+    ClosureModalComponent
   ],
   imports: [
     CommonModule,
     HeaderRoutingModule,
   ],
   exports: [
-    // MenuTopComponent
-  ]
+  ],
+  entryComponents: [ClosureModalComponent]
 })
 export class HeaderModule { }

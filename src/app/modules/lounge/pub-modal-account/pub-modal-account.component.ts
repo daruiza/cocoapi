@@ -64,6 +64,7 @@ export class PubModalAccountComponent implements OnInit, OnDestroy {
     // this.payOrderSubscription.unsubscribe();
   }
 
+  // Pagar y retornar una Orden
   statusOrder(idOrder: number, idStatus: number) {
     if (idStatus === 1) {
       const messge = new Message({
@@ -136,6 +137,18 @@ export class PubModalAccountComponent implements OnInit, OnDestroy {
         const orderProduct: IOrder = this.orders.find((ord: IOrderList) => ord.id === idOrder)
           .orders.find((prodOrd: IOrder) => prodOrd.order_product_id === idOrderProduct);
         orderProduct.status_paid = statusPaid === 0 ? 1 : 0;
+
+        // Actualizar la orden en caso de haber pagado todos los productos
+        const orderProductStatusPad: IOrder[] = this.orders.find((ord: IOrderList) => ord.id === idOrder)
+          .orders.filter((prodOrd: IOrder) => prodOrd.status_paid === 0);
+        // const order: IOrderList = this.orders.find((ord: IOrderList) => ord.id === idOrder);
+        // order.status_id = idStatus;
+        if (!orderProductStatusPad.length) {
+          const order: IOrder = this.orders.find((ord: IOrderList) => ord.id === idOrder);
+          order.status_id = 3;
+        }
+
+
         this.ngOnInit();
       }
     });

@@ -3,7 +3,8 @@
     <mat-icon 
         aria-hidden="false" 
         aria-label="notifications"
-        title = "Bar"
+        matTooltip="Bar"
+        [matTooltipPosition]="'right'"
         [routerLink]="['lounge']">
         web
     </mat-icon>
@@ -13,7 +14,8 @@
         id = "{{permit.id}}"
         aria-hidden="false" 
         aria-label="Example home icon"
-        title = "{{permit.name}}"
+        matTooltip="{{permit.name}}"
+        [matTooltipPosition]="'right'"
         (click) = "toModule($event)">
         {{permit.label.maticon}}
     </mat-icon>

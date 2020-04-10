@@ -1,5 +1,5 @@
 <div>
-  <mat-icon [matMenuTriggerFor]="menu">fiber_manual_record</mat-icon>
+  <mat-icon [matMenuTriggerFor]="menu" matTooltip="Tema">fiber_manual_record</mat-icon>
   <mat-menu #menu="matMenu">
     <div class="container">
       <div class="row">
@@ -28,20 +28,23 @@
     </div>
   </mat-menu>
 
-  <mat-icon aria-hidden="false" aria-label="notifications" [routerLink]="['home/welcome']">
+  <mat-icon aria-hidden="false" aria-label="notifications" matTooltip="Notificaciones" [routerLink]="['home/welcome']">
     notifications
   </mat-icon>
 
   <ng-container *ngIf="!getAuthService().checkLogin() ; else loggedOut">
-    <mat-icon class="power-on" aria-hidden="false" aria-label="power" routerLink="/acces/login">
+    <mat-icon class="power-on" aria-hidden="false" aria-label="power" matTooltip="Iniciar Sesión" routerLink="/acces/login">
       power_settings_new
     </mat-icon>
   </ng-container>
   <ng-template #loggedOut>
-    <mat-icon aria-hidden="false" aria-label="person">
+    <mat-icon aria-hidden="false" aria-label="donut"  matTooltip="Cierres">
+      donut_small
+    </mat-icon>
+    <mat-icon aria-hidden="false" aria-label="person" matTooltip="Perfil">
       person
     </mat-icon>
-    <mat-icon class="power-off" aria-hidden="false" aria-label="power" routerLink="/acces/logout">
+    <mat-icon class="power-off" aria-hidden="false" aria-label="power" matTooltip="Cerrar Sesión" routerLink="/acces/logout">
       power_settings_new
     </mat-icon>
   </ng-template>

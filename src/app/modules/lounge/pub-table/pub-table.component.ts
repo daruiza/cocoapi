@@ -100,6 +100,7 @@ export class PubTableComponent implements OnInit, OnChanges {
         });
       }
     });
+    // console.log(this.orders);
     this.orderservice = true;
   }
 
@@ -161,7 +162,7 @@ export class PubTableComponent implements OnInit, OnChanges {
         this.mapOrders();
       },
       reason => {
-        if (typeof(reason) === 'object') {
+        if (typeof (reason) === 'object') {
           this.orders = reason;
           this.mapOrders();
         }
