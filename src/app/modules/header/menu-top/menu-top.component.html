@@ -38,7 +38,7 @@
     </mat-icon>
   </ng-container>
   <ng-template #loggedOut>
-    <mat-icon aria-hidden="false" aria-label="donut"  matTooltip="Cierres">
+    <mat-icon aria-hidden="false" aria-label="donut"  matTooltip="Cierres" (click)="closureOpen($event)">
       donut_small
     </mat-icon>
     <mat-icon aria-hidden="false" aria-label="person" matTooltip="Perfil">

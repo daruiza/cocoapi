@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { LoungeRoutingModule } from './lounge-routing.module';
 import { PubComponent } from './pub/pub.component';
@@ -16,7 +17,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 
 import { PubModalServiceComponent } from './pub-modal-service/pub-modal-service.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PubModalOrderComponent } from './pub-modal-order/pub-modal-order.component';
 import { PubProductComponent } from './pub-product/pub-product.component';
 import { PubModalAccountComponent } from './pub-modal-account/pub-modal-account.component';

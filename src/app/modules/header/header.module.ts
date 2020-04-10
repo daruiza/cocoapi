@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { HeaderRoutingModule } from './header-routing.module';
 import { ClosureModalComponent } from './closure-modal/closure-modal.component';
 
+import { SharedModule } from 'src/app/shared/shared.module';
+
 @NgModule({
   declarations: [
     ClosureModalComponent
@@ -11,9 +13,9 @@ import { ClosureModalComponent } from './closure-modal/closure-modal.component';
   imports: [
     CommonModule,
     HeaderRoutingModule,
+    SharedModule,
   ],
-  exports: [
-  ],
+  exports: [ClosureModalComponent],
   entryComponents: [ClosureModalComponent]
 })
 export class HeaderModule { }
