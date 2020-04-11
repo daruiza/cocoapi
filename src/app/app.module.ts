@@ -21,6 +21,7 @@ import { SharedModule } from './shared/shared.module';
 
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { ClosureModalComponent } from './components/closure-modal/closure-modal.component';
 
 
 // import { ActionReducer } from '@ngrx/store';
@@ -49,6 +50,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     SidenavComponent,
     ModalAlertComponent,
     SpinnerComponent,
+    ClosureModalComponent,
   ],
   imports: [
     BrowserModule,

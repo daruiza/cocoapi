@@ -1,0 +1,43 @@
+<div [class]="appService.theme">
+    <mat-card class="mat-card-content">
+        <div class="modal-header">
+            <div class="modal-title">
+                <h5>Adminstrador de Cierres</h5>
+            </div>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <mat-tab-group>
+                <mat-tab label="Cerrar Labor">
+                    <form [formGroup]="closureForm" (ngSubmit)="onSubmit($event)">
+                        <div class="form-group example-container">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Nombre:" value="" formControlName="name"
+                                    [autofocus]="'true'">
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group example-container">
+                            <mat-form-field>
+                                <textarea matInput placeholder="Description:" value=""
+                                    formControlName="description"></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="closure-button-container">
+                            <button type="button" ngbAutofocus class="btn btn-light" (click)="onSubmit($event)"> Enviar </button>
+                        </div>
+                    </form>
+                </mat-tab>
+                <mat-tab label="Lista de Cierres">
+                    Content 2
+                </mat-tab>
+            </mat-tab-group>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')"> Cerrar </button>
+        </div>
+    </mat-card>
+</div>

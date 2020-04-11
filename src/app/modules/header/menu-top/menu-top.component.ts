@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { AppService } from 'src/app/services/app.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ClosureModalComponent } from '../closure-modal/closure-modal.component';
+import { ClosureModalComponent } from 'src/app/components/closure-modal/closure-modal.component';
 
 @Component({
   selector: 'app-menu-top',

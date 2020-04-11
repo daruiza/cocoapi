@@ -16,6 +16,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTableModule } from '@angular/material/table';
 
 
 
@@ -37,6 +40,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatRippleModule,
     MatTooltipModule,
     MatProgressBarModule,
+    MatTabsModule,
+    MatExpansionModule,
+    MatTableModule
   ],
   exports: [
     CommonModule,
@@ -54,6 +60,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatRippleModule,
     MatTooltipModule,
     MatProgressBarModule,
+    MatTabsModule,
+    MatExpansionModule,
+    MatTableModule
   ]
 })
 export class SharedModule { }
