@@ -70,4 +70,21 @@
   justify-content: center;
 }
 
+.customer-container {
+  width: 100%;
+}
+
+.card-customer {
+  padding: 2px;
+  padding-right: 5px;
+  padding-left: 15px;
+  margin-bottom: 5px;
+  z-index: 1;
+  color: var(--primary-color);
+  background-color: var(--accent-color);
+}
+.card-customer:hover {
+  box-shadow: 0px 3px 5px -1px var(--primary-color), 0px 6px 10px 0px var(--primary-color), 0px 1px 18px 0px var(--primary-color);
+}
+
 /*# sourceMappingURL=lounge_pub_table.css.map */

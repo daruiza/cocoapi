@@ -27,6 +27,7 @@ export class PubTableComponent implements OnInit, OnChanges {
   orders: IOrderList[];
 
   sumPrice: number;
+  customers: { name: string, sumPrice: number }[];
 
   // Auxiliares
   orderservice: boolean;
@@ -40,6 +41,7 @@ export class PubTableComponent implements OnInit, OnChanges {
   ) {
     this.sumPrice = 0;
     this.orders = [];
+    this.customers = [];
 
     this.orderservice = false;
   }
@@ -79,13 +81,28 @@ export class PubTableComponent implements OnInit, OnChanges {
   }
 
   mapOrdersService(ordersresp: IOrder[]): void {
-    this.orders = [];
     this.sumPrice = 0;
+    this.orders = [];
     this.orderservice = false;
     ordersresp.forEach((ord: any) => {
+
       if (ord.status_paid === 0) {
+        // SumPrice
         this.sumPrice = this.sumPrice + ord.price;
+
+        // THIS.CUSTOMES
+        const elementCustomer = this.customers.find(e => e.name === ord.description);
+        if (elementCustomer) {
+          elementCustomer.sumPrice = elementCustomer.sumPrice + ord.price;
+        } else {
+          this.customers.push({
+            name: ord.description,
+            sumPrice: ord.price
+          });
+        }
       }
+
+      // THIS.ORDESR
       const elementOrder = this.orders.find(e => e.id === ord.id);
       if (elementOrder) {
         elementOrder.orders.push(ord);
@@ -100,18 +117,30 @@ export class PubTableComponent implements OnInit, OnChanges {
         });
       }
     });
-    // console.log(this.orders);
     this.orderservice = true;
   }
 
   mapOrders(): void {
     // sumPrice
     this.sumPrice = 0;
+    this.customers = [];
     this.orderservice = false;
     this.orders.forEach((ordlist: IOrderList) => {
       ordlist.orders.forEach((ord: IOrder) => {
         if (ord.status_paid === 0) {
+          // SumPrice
           this.sumPrice = this.sumPrice + ord.price;
+
+          // THIS.CUSTOMES
+          const elementCustomer = this.customers.find(e => e.name === ord.description);
+          if (elementCustomer) {
+            elementCustomer.sumPrice = elementCustomer.sumPrice + ord.price;
+          } else {
+            this.customers.push({
+              name: ord.description,
+              sumPrice: ord.price
+            });
+          }
         }
       });
     });
@@ -127,7 +156,6 @@ export class PubTableComponent implements OnInit, OnChanges {
     const modalRef = this.modalService.open(PubModalServiceComponent, {
       windowClass: 'modal-holder',
       backdrop: 'static'
-      // centered: true,
     });
     modalRef.componentInstance.table = this.table;
     modalRef.result.then(
@@ -144,7 +172,7 @@ export class PubTableComponent implements OnInit, OnChanges {
 
   public openOrder(evt: Event) {
     // Siempre seleccionado ante una orden
-    this.order.emit({ table: this.table, service: this.service });
+    this.order.emit({ table: this.table, service: this.service, event: evt });
   }
 
   public showService(evt: Event) {

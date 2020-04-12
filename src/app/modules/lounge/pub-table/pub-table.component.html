@@ -1,6 +1,5 @@
 <div [appHighlight]="tableService.table.id === table.id" [ngClass]="{'service-open': service}"
-  class="container pub-table-conteiner noselect"
-  (dblclick)="service ? openOrder($event) : openService($event)">
+  class="container pub-table-conteiner noselect" (dblclick)="service ? openOrder($event) : openService($event)">
   <div class="row">
     <div (click)="selectTable($event)" class="col-md-2 table-name">
       <i class="{{table.icon}}"></i>
@@ -24,41 +23,50 @@
       <span class="sr-only">Loading...</span>
     </div>
   </div>
-  
+
   <ng-template #serviceConteiner>
     <div class="row" *ngIf="service">
-      <div class="col-md-12 table-name align-table-center">
-        {{service.name}}
+      <div *ngIf="customers.length; else customerContainer" class="customer-container">
+        <div class="col-md-12 table-name align-table-center">
+          Por Pagar {{sumPrice |  currency:'USD':'symbol':'1.0-0'}}
+        </div>
+        <mat-card *ngFor="let customer of customers" class="col-md-12 card-customer">
+          <div class="row" (click)="openOrder(customer.name)">            
+            <div class="col-md-7 table-name">{{customer.name}}</div>
+            <div class="col-md-5">{{customer.sumPrice |  currency:'USD':'symbol':'1.0-0'}}</div>
+          </div>
+        </mat-card>
       </div>
-      <div class="col-md-12 table-name align-table-center">
-        Por Pagar {{sumPrice |  currency:'USD':'symbol':'1.0-0'}}
-      </div>
+
+      <ng-template #customerContainer>
+        <div class="col-md-12 table-name align-table-center">
+          {{service.name}}
+        </div>
+        <div class="col-md-12 table-name align-table-center">
+          Por Pagar {{sumPrice |  currency:'USD':'symbol':'1.0-0'}}
+        </div>
+      </ng-template>
     </div>
-  
+
     <!-- Opciones de servicio -->
     <p></p>
     <div *ngIf="service" class="row buttons-table">
-      <button 
-        mat-mini-fab
-        (click)="showService($event)"
-        matTooltip="Servicio">
+      <button mat-mini-fab (click)="showService($event)" matTooltip="Servicio">
         <mat-icon>date_range</mat-icon>
       </button>
-  
+
       <button mat-mini-fab (click)="addMusicTrack($event)" matTooltip="Musiquita">
         <mat-icon>headset</mat-icon>
       </button>
-  
+
       <button mat-mini-fab (click)="openOrder($event)" matTooltip="Nueva Orden">
         <mat-icon>note_add</mat-icon>
       </button>
-  
+
       <button mat-mini-fab (click)="closeService($event)" matTooltip="Cerrar Servicio">
         <mat-icon>cancel</mat-icon>
       </button>
-  
+
     </div>
   </ng-template>
-
-  
 </div>

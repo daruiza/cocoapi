@@ -15,13 +15,15 @@ export class PubModalOrderComponent implements OnInit {
 
   @Input() table: Table;
   @Input() service: any;
+  @Input() customer: any;
   @Input() products: any[];
   @Input() categories: any[];
   @Input() waiters: any[];
 
   sumPrice: number;
   orderproducts: any[];
-  resumeproducts: {product: any, count: number}[];
+  resumeproducts: { product: any, count: number }[];
+  userCustomer: string;
 
   orderForm: FormGroup;
   buttonAccept: boolean;
@@ -32,15 +34,16 @@ export class PubModalOrderComponent implements OnInit {
     public readonly appService: AppService,
     public readonly tableService: TableService,
     public readonly orderService: OrderService) {
-      this.orderForm = this.fb.group({});
-      this.buttonAccept = false;
-      this.sumPrice = 0;
-      this.orderproducts = [];
-      this.resumeproducts = [];
-    }
+    this.orderForm = this.fb.group({});
+    this.buttonAccept = false;
+    this.sumPrice = 0;
+    this.orderproducts = [];
+    this.resumeproducts = [];
+  }
 
   ngOnInit() {
     this.services();
+    this.setCustomer();
     this.formConstructor();
   }
 
@@ -52,13 +55,17 @@ export class PubModalOrderComponent implements OnInit {
 
     this.orderForm.addControl('basicInformation',
       new FormGroup({
-        user: new FormControl(this.service.name, { validators: [Validators.required] }),
+        user: new FormControl(this.userCustomer, { validators: [Validators.required] }),
         waiter: new FormControl(null, { validators: [Validators.required] }),
       }));
 
     if (this.waiters.length) {
-      this.orderForm.get('basicInformation').patchValue({waiter: this.waiters[0]});
+      this.orderForm.get('basicInformation').patchValue({ waiter: this.waiters[0] });
     }
+  }
+
+  setCustomer() {
+    this.userCustomer = typeof this.customer === 'string' ? this.customer : this.service.name;
   }
 
   addProduct(evt: Event) {
@@ -81,7 +88,7 @@ export class PubModalOrderComponent implements OnInit {
       if (this.resumeproducts.find(resprod => resprod.product === prod)) {
         this.resumeproducts.find(resprod => resprod.product === prod).count += 1;
       } else {
-        this.resumeproducts.push({product: prod, count: 1});
+        this.resumeproducts.push({ product: prod, count: 1 });
       }
     });
   }
@@ -99,11 +106,11 @@ export class PubModalOrderComponent implements OnInit {
             products: this.orderproducts
           }
         }).subscribe(
-        res => {
-          this.modal.close(res);
-        },
-        err => console.log(err)
-      );
+          res => {
+            this.modal.close(res);
+          },
+          err => console.log(err)
+        );
     }
   }
 

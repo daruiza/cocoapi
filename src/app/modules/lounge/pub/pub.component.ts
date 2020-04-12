@@ -67,6 +67,7 @@ export class PubComponent implements OnInit {
     });
     modalRef.componentInstance.table = evt.table;
     modalRef.componentInstance.service = evt.service;
+    modalRef.componentInstance.customer = evt.event;
     modalRef.componentInstance.products = this.products;
     modalRef.componentInstance.categories = this.categories;
     modalRef.componentInstance.waiters = this.waiters;
