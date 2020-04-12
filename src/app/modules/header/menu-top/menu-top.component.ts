@@ -78,7 +78,5 @@ export class MenuTopComponent implements OnInit {
         this.closureReadyOk();
       });
     }
-
   }
-
 }

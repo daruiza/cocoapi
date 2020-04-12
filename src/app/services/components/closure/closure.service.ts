@@ -43,6 +43,20 @@ export class ClosureService {
     options);
   }
 
+  // Crea una nueva closure
+  public closureSave(name: string, description: string): Observable<any> {
+    const options = {
+      headers: this.httpHeaders,
+      params: {
+        name: `${name}`,
+        description: `${description}`,
+      },
+    };
+    return this.http.post<any>(`${this.url}/api/closure/create`,
+    {},
+    options);
+  }
+
   public closures(): Observable<any> {
     const options = {
       headers: this.httpHeaders,

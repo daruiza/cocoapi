@@ -9,35 +9,37 @@
             </button>
         </div>
         <div class="modal-body">
-            <mat-card class="current-work">
+            <mat-card *ngIf="closure.name" class="current-work">
                 <div class="row">
                     <div class="col-md-3">
                         Labor actual:
                     </div>
                     <div class="col-md-9">
-                        {{closure.name}} - {{closure.date_open}}
+                        {{closure?.name}} - {{closure?.date_open}}
                     </div>
                     <div class="col-md-9 offset-md-3">{{closure.description}}</div>
                     <div class="col-md-12 button-close-work">
-                        <button type="button" ngbAutofocus class="btn btn-light" (click)="closeWork($event)">Cerrar labor </button>
+                        <button type="button" ngbAutofocus class="btn btn-light" (click)="closeWork($event)">Cerrar
+                            labor </button>
                     </div>
                 </div>
             </mat-card>
             <mat-tab-group (selectedIndexChange)="changeTab($event)">
-                <mat-tab label="Crear Labor">
+                <mat-tab *ngIf="!closure.name" label="Crear Labor">
                     <br>
-                    <form [formGroup]="closureForm"  (ngSubmit)="onSubmit($event)">
+                    <form [formGroup]="closureForm" (ngSubmit)="onSubmit($event)">
                         <div class="form-group example-container">
                             <mat-form-field>
-                                <input appControlRequired matInput type="text" placeholder="Nombre:" value="" formControlName="name"
-                                    [autofocus]="'true'">
+                                <input appControlRequired matInput type="text" placeholder="Nombre:" value=""
+                                    formControlName="name" [autofocus]="'true'">
                                 <mat-error>El campo es <strong>requerido</strong></mat-error>
                             </mat-form-field>
                         </div>
                         <div class="form-group example-container">
                             <mat-form-field>
-                                <textarea matInput placeholder="Description:" value=""
+                                <textarea appControlRequired matInput placeholder="Description:" value=""
                                     formControlName="description"></textarea>
+                                <mat-error>El campo es <strong>requerido</strong></mat-error>
                             </mat-form-field>
                         </div>
                     </form>

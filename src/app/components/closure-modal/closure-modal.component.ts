@@ -7,6 +7,8 @@ import { Service } from 'src/app/models/Service';
 import { forkJoin } from 'rxjs';
 import { IClosure } from 'src/app/models/Closure';
 import { RequiredDirective } from 'src/app/directives/validators/required.directive';
+import { ModalAlertService } from 'src/app/services/components/modal-alert/modal-alert.service';
+import { Message } from 'src/app/models/Message';
 
 @Component({
   selector: 'app-closure-modal',
@@ -27,6 +29,7 @@ export class ClosureModalComponent implements OnInit {
     public readonly appService: AppService,
     public readonly closureService: ClosureService,
     public readonly modal: NgbActiveModal,
+    private readonly messagesAlertService: ModalAlertService
   ) {
     this.closureForm = this.fb.group({});
     this.buttonAccept = false;
@@ -54,14 +57,38 @@ export class ClosureModalComponent implements OnInit {
 
   closeWork(evt: Event) {
     this.closureService.closureClose().subscribe(
-      res => console.log(res)
+      res => {
+        this.closure = {};
+        const messge = new Message({
+          type: 'success',
+          title: `Operación Exitosa`,
+          text: `Listo el pollo, la labor fue cerrada exitosamente`,
+          confirmButton: 'Aceptar',
+        });
+        this.messagesAlertService.openAlert(messge);
+      }
     );
   }
 
   onSubmit(evt: Event) {
     this.validControl(this.closureForm);
     if (this.closureForm.valid) {
-      console.log('Valid');
+      this.closureService.closureSave(
+        this.closureForm.value.name,
+        this.closureForm.value.description
+        ).subscribe(res => {
+          this.closure = res;
+          const messge = new Message({
+            type: 'success',
+            title: `Operación Exitosa`,
+            text: `¡Super, ya tenemos labor para iniciar a trabajar!`,
+            confirmButton: 'Aceptar',
+          });
+          this.messagesAlertService.openAlert(messge);
+          // Limpiamos el formulario
+          this.closureForm.patchValue({name: null});
+          this.closureForm.patchValue({description: null});
+        });
     }
   }
 

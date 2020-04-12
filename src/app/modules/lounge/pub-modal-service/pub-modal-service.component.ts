@@ -38,15 +38,12 @@ export class PubModalServiceComponent implements OnInit {
 
   onSubmit(evt: any) {
     // 0. Bloqueamos el botón
-    this.buttonAccept = true;
-
+    // this.buttonAccept = true;
     this.tableService.tableServiceSave(
       this.table.id,
       this.serviceForm.get('name').value,
-      this.serviceForm.get('description').value).subscribe(res => {
-        this.modal.close(res);
-      });
-
+      this.serviceForm.get('description').value).subscribe(
+        res => {this.modal.close(res); }
+      );
   }
-
 }
