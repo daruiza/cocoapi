@@ -8,7 +8,6 @@
     background: $primary-color;
     padding: 5px 15px 0px 15px;
     
-
     h5{
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -20,20 +19,22 @@
     }
     .table-name{
         font-weight: 300;
-        
     }
-    
 }
 
 mat-form-field {
     width: 100%;
 }
 
-.mat-tab-header{
-    margin-bottom: 15px;    
+.current-work{
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 .closure-button-container{
     text-align: right;
 }
 
+.button-close-work{
+    text-align: right;
+}

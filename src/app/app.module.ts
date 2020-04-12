@@ -22,6 +22,7 @@ import { SharedModule } from './shared/shared.module';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { ClosureModalComponent } from './components/closure-modal/closure-modal.component';
+import { RequiredDirective } from './directives/validators/required.directive';
 
 
 // import { ActionReducer } from '@ngrx/store';
@@ -51,6 +52,7 @@ import { ClosureModalComponent } from './components/closure-modal/closure-modal.
     ModalAlertComponent,
     SpinnerComponent,
     ClosureModalComponent,
+    RequiredDirective,
   ],
   imports: [
     BrowserModule,

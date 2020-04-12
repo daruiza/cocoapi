@@ -21,15 +21,35 @@ export class ClosureService {
     });
   }
 
-  public closureByStore(idStore: any): Observable<any> {
+  // Consulta la closure actual
+  public closureOpen(): Observable<any> {
+    const options = {
+      headers: this.httpHeaders,
+      params: {},
+    };
+    return this.http.post<any>(`${this.url}/api/closure/open`,
+    {},
+    options);
+  }
+
+  // Cierra la closure actual
+  public closureClose(): Observable<any> {
+    const options = {
+      headers: this.httpHeaders,
+      params: {},
+    };
+    return this.http.post<any>(`${this.url}/api/closure/close`,
+    {},
+    options);
+  }
+
+  public closures(): Observable<any> {
     const options = {
       headers: this.httpHeaders,
       params: {},
     };
     return this.http.post<any>(`${this.url}/api/closure/index`,
-    {
-      idStore: `${idStore}`,
-    },
+    {},
     options);
   }
 }

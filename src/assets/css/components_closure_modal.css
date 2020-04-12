@@ -24,11 +24,16 @@ mat-form-field {
   width: 100%;
 }
 
-.mat-tab-header {
-  margin-bottom: 15px;
+.current-work {
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
 .closure-button-container {
+  text-align: right;
+}
+
+.button-close-work {
   text-align: right;
 }
 

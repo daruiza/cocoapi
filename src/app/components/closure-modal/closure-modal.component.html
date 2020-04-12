@@ -9,14 +9,29 @@
             </button>
         </div>
         <div class="modal-body">
-
-            <mat-tab-group>
-                <mat-tab label="Cerrar Labor">
-                    <form [formGroup]="closureForm" (ngSubmit)="onSubmit($event)">
+            <mat-card class="current-work">
+                <div class="row">
+                    <div class="col-md-3">
+                        Labor actual:
+                    </div>
+                    <div class="col-md-9">
+                        {{closure.name}} - {{closure.date_open}}
+                    </div>
+                    <div class="col-md-9 offset-md-3">{{closure.description}}</div>
+                    <div class="col-md-12 button-close-work">
+                        <button type="button" ngbAutofocus class="btn btn-light" (click)="closeWork($event)">Cerrar labor </button>
+                    </div>
+                </div>
+            </mat-card>
+            <mat-tab-group (selectedIndexChange)="changeTab($event)">
+                <mat-tab label="Crear Labor">
+                    <br>
+                    <form [formGroup]="closureForm"  (ngSubmit)="onSubmit($event)">
                         <div class="form-group example-container">
                             <mat-form-field>
-                                <input matInput type="text" placeholder="Nombre:" value="" formControlName="name"
+                                <input appControlRequired matInput type="text" placeholder="Nombre:" value="" formControlName="name"
                                     [autofocus]="'true'">
+                                <mat-error>El campo es <strong>requerido</strong></mat-error>
                             </mat-form-field>
                         </div>
                         <div class="form-group example-container">
@@ -24,9 +39,6 @@
                                 <textarea matInput placeholder="Description:" value=""
                                     formControlName="description"></textarea>
                             </mat-form-field>
-                        </div>
-                        <div class="closure-button-container">
-                            <button type="button" ngbAutofocus class="btn btn-light" (click)="onSubmit($event)"> Enviar </button>
                         </div>
                     </form>
                 </mat-tab>
@@ -38,6 +50,8 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')"> Cerrar </button>
+            <button *ngIf="showAccept" type="button" ngbAutofocus class="btn btn-light" (click)="onSubmit($event)">
+                Crear nueva labor </button>
         </div>
     </mat-card>
 </div>
