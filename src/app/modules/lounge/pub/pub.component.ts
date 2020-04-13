@@ -6,13 +6,12 @@ import { PubModalOrderComponent } from '../pub-modal-order/pub-modal-order.compo
 import { ModalAlertService } from 'src/app/services/components/modal-alert/modal-alert.service';
 import { Message } from 'src/app/models/Message';
 import { forkJoin } from 'rxjs';
-import { IOrder } from 'src/app/models/Order';
 import { IOrderList } from 'src/app/models/OrderList';
 
 @Component({
   selector: 'app-pub',
   templateUrl: './pub.component.html',
-  styleUrls: ['./pub.component.scss']
+  styleUrls: ['../../../../assets/css/lounge_pub.css'],
 })
 export class PubComponent implements OnInit {
 
