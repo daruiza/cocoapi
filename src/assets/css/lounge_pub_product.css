@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 .mat-card:hover {
   color: var(--primary-color);
@@ -17,17 +18,22 @@
 }
 .mat-card .mat-card-subtitle {
   margin-bottom: 8px;
+  text-align: center;
+  margin-top: 0px;
 }
 .mat-card .mat-card-image {
   width: calc(100%);
   margin: 0;
+  height: 130px;
+  max-height: 140px;
 }
-
-.mat-card-title {
-  font-size: 16px !important;
+.mat-card .mat-card-title {
+  font-size: 14px !important;
+  margin: 0 4px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  max-width: 85px;
 }
 
 /*# sourceMappingURL=lounge_pub_product.css.map */
