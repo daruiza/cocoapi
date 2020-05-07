@@ -1,0 +1,30 @@
+.mat-card-content{
+    padding: 0px;
+    margin: 0px;
+}
+
+.modal-header{
+    color:  $accent-color;
+    background: $primary-color;
+    padding: 5px 15px 0px 15px;
+    
+
+    h5{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    i{
+        margin-right: 10px;
+    }
+    .table-name{
+        font-weight: 300;
+        
+    }
+    
+}
+
+mat-form-field {
+    width: 100%;
+}

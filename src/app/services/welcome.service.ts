@@ -28,27 +28,28 @@ export class WelcomeService {
     const options = {
       headers: this.httpHeaders,
       params: {},
-      };
+    };
     return this.http.get<any>(`${this.url}/api/pub`, options)
       .pipe(
-      tap(pub => {
+        tap(pub => {
           // console.log(`Tab ${pub}`);
-      }),
-      catchError(this.handleError<any>(`Consulta Fallida`))
+        }),
+        catchError(this.handleError<any>(`Consulta Fallida`))
       );
   }
 
+  // Consultamos los productos del Pub - Index
   public products(): Observable<any> {
     const options = {
       headers: this.httpHeaders,
       params: {},
-      };
+    };
     return this.http.post<any>(`${this.url}/api/order/products`, options)
       .pipe(
-      tap(prods => {
+        tap(prods => {
           // console.log(`Tab ${prods}`);
-      }),
-      catchError(this.handleError<any>(`Consulta Fallida`))
+        }),
+        catchError(this.handleError<any>(`Consulta Fallida`))
       );
   }
 

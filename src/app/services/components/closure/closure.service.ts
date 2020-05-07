@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { ModalAlertService } from '../modal-alert/modal-alert.service';
 import { Observable } from 'rxjs';
+import { IClosure } from 'src/app/models/Closure';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +58,7 @@ export class ClosureService {
     options);
   }
 
+  // Consulta todos los cierres
   public closures(): Observable<any> {
     const options = {
       headers: this.httpHeaders,

@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/entities/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidenav',
@@ -14,7 +15,8 @@ export class SidenavComponent implements OnInit, AfterViewInit {
 
   constructor(
     public readonly authService: AuthService,
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    private readonly router: Router
     ) {
     this.user = new User();
   }
@@ -61,7 +63,8 @@ export class SidenavComponent implements OnInit, AfterViewInit {
 
   toModule(evt: any) {
     const moduleOne = this.user.permits.find((el: any) => el.id === +evt.target.id);
-    console.log(moduleOne.label.action);
+    console.log();
+    this.router.navigate([`/${moduleOne.label.action}`]);
   }
 
 }

@@ -83,12 +83,11 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
       // Consumo de servicio en caso de estar el form OK
       this.router.navigate(['/home/welcome']);
     }, (reason) => {
-      this.router.navigate(['/']);
+      // this.router.navigate(['/']);
     });
   }
 
   onSubmit(evt: any) {
-
     // 0. Bloqueamos el botón
     this.buttonAccept = true;
 
@@ -101,17 +100,20 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
         this.loginForm.get('remenber_me').value
       ).subscribe((res: any) => {
         if (res) {
-          this.router.navigate(['welcome']);
+          // this.router.navigate(['welcome']);
           // La redireccion se da al dar click en ingresar
           const messge = new Message({
             type: 'success',
             title: `Ingreso Exitoso`,
             text: `Super de nuevo por aqui!!. Nuevamente bienvend@.`
           });
-          this.messagesAlertService.openAlert(messge);
+          this.messagesAlertService.openAlert(messge)
+            .result.then(
+              result => { this.router.navigate(['welcome']); },
+              reason => { this.router.navigate(['welcome']); }
+            );
         }
       });
-
     }
     // Independiente si hay ingreso exitoso, de cierra el modal
     this.modalLogin.close();

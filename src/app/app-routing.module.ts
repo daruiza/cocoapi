@@ -18,6 +18,10 @@ const routes: Routes = [
     path: 'lounge',
     loadChildren: () => import('./modules/lounge/lounge.module').then(mod => mod.LoungeModule)
   },
+  {
+    path: 'table',
+    loadChildren: () => import('./modules/table/table.module').then(mod => mod.TableModule)
+  },
   { path: '', redirectTo: '/home',  pathMatch: 'full'},
   { path: '**', redirectTo: '/home' }
 

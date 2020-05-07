@@ -39,6 +39,7 @@ export class MenuTopComponent implements OnInit {
     forkJoin(observables).subscribe(([closure, closures]) => {
       this.closure = closure;
       this.closures = closures;
+      // console.log(this.closures);
     });
   }
 
@@ -56,6 +57,10 @@ export class MenuTopComponent implements OnInit {
       });
       this.messagesAlertService.openAlert(messge).result.then(
         result => this.closureOpen(new Event('')));
+    } else {
+      // esperamos un rarito para lanzar nuevamante el init
+      // esto porque es posible que se halla echo init antes estar logueado
+      setTimeout(() => { this.ngOnInit(); }, 2000);
     }
   }
 

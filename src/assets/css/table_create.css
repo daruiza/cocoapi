@@ -1,0 +1,27 @@
+.mat-card-content {
+  padding: 0px;
+  margin: 0px;
+}
+
+.modal-header {
+  color: var(--accent-color);
+  background: var(--primary-color);
+  padding: 5px 15px 0px 15px;
+}
+.modal-header h5 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.modal-header i {
+  margin-right: 10px;
+}
+.modal-header .table-name {
+  font-weight: 300;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+/*# sourceMappingURL=table_create.css.map */

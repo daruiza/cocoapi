@@ -21,7 +21,7 @@
 
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" ngbAutofocus
-            (click)="modal.close('Login click')">Cancelar</button>
+            (click)="modal.dismiss('Login click')">Cancelar</button>
         <button type="button" class="btn btn-light" [disabled]="!loginForm.valid || buttonAccept"
             (click)="onSubmit($event)">Aceptar</button>
     </div>
