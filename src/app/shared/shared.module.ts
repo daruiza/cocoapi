@@ -19,11 +19,12 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
+import { TableComponent } from './components/table/table.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [TableComponent],
   imports: [
     CommonModule,
     NgSelectModule,
@@ -45,6 +46,7 @@ import { MatTableModule } from '@angular/material/table';
     MatTableModule
   ],
   exports: [
+    TableComponent,
     CommonModule,
     NgSelectModule,
     MatToolbarModule,

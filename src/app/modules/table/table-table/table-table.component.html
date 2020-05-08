@@ -1,9 +1,8 @@
-<mat-icon
-    class="mat-icon-add"
-    aria-hidden="false"
-    aria-label="notifications"
-    matTooltip="New Table"
-    [matTooltipPosition]="'left'"
-    (click)="createTable($event)">
-    add
-</mat-icon>
+<div class="row pub-conteiner">
+    <div class="col-md-12">
+        <p></p>
+    </div>
+    <div class="col-md-12 align-items-center">
+        <app-table [sourceTable]="table"></app-table>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-icon-option {
+  cursor: pointer;
+}
+
+.conteiner-options {
+  padding-left: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.conteiner-options .mat-icon {
+  margin-right: 5px;
+}
+
+/*# sourceMappingURL=shared_table.css.map */
