@@ -7,6 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -20,7 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { TableComponent } from './components/table/table.component';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { TableComponent } from './components/table/table.component';
     MatSidenavModule,
     MatMenuModule,
     MatButtonModule,
+    MatCheckboxModule,
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
@@ -43,7 +45,9 @@ import { TableComponent } from './components/table/table.component';
     MatProgressBarModule,
     MatTabsModule,
     MatExpansionModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
+
   ],
   exports: [
     TableComponent,
@@ -54,6 +58,7 @@ import { TableComponent } from './components/table/table.component';
     MatSidenavModule,
     MatMenuModule,
     MatButtonModule,
+    MatCheckboxModule,
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
@@ -64,7 +69,8 @@ import { TableComponent } from './components/table/table.component';
     MatProgressBarModule,
     MatTabsModule,
     MatExpansionModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
   ]
 })
 export class SharedModule { }

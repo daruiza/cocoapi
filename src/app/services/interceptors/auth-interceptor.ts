@@ -61,7 +61,7 @@ export class AuthInterceptor implements HttpInterceptor {
       if (error.status === 401 || error.status === 403) {
         // logout Manual
         this.authService.logoutForce();
-        return of(result as T);
+        return throwError(error);
       }
 
       // envio de mensajes
@@ -70,8 +70,10 @@ export class AuthInterceptor implements HttpInterceptor {
         title: `${operation} ${error.statusText}`,
         text: `${messageError}`
       }));
-      return of(result as T);
+
+      return throwError(error);
     };
+
   }
 
 }

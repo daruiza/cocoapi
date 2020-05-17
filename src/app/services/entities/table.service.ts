@@ -8,6 +8,7 @@ import { Observable, of } from 'rxjs';
 import { tap, catchError, map } from 'rxjs/operators';
 import { Message } from 'src/app/models/Message';
 import { Service } from 'src/app/models/Service';
+import { ITable } from 'src/app/shared/models/ITable.';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,27 @@ export class TableService {
 
   public setTable(table: Table) {
     this.table = this.table !== table ? table : new Table();
+  }
+
+  // Consultamos el pub - Index, tambien en el servicio Welcome
+  public index(object: ITable<any>): Observable<any> {
+    const options = {
+      headers: this.httpHeaders,
+      params: {
+        key: `${object.key}`,
+        active: `${object.active}`,
+        limit: `${object.limit}`,
+        page: `${object.page}`,
+        sort: `${object.sort}`
+      }
+    };
+    return this.http.post<any>(`${this.url}/api/table/index`, object.object, options)
+      .pipe(
+        tap(pub => {
+          // console.log(`Tab ${pub}`);
+        }),
+        catchError(this.handleError<any>(`Consulta Fallida`))
+      );
   }
 
   // Consulta la existencia de un servicio

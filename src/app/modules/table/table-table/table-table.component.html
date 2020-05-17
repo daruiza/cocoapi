@@ -3,6 +3,6 @@
         <p></p>
     </div>
     <div class="col-md-12 align-items-center">
-        <app-table [sourceTable]="table"></app-table>
+        <app-table [sourceTable]="table" (searchTable)="searchTable($event)" (optionsTable)="optionsTable($event)"></app-table>
     </div>
 </div>

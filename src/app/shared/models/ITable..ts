@@ -4,11 +4,12 @@ export interface ITable<T> {
     flagSearch?: boolean;
     search?: string;
     searchPlaceholder?: string;
-    // columNameList?: string[];
-    // columNameSortList?: string[];
-    // rowNameList?: Array<keyof T>;
-    // buttonList?: any[];
-    // filter?: any;
-    // metadata?: any;
-    // rowStyle?: [];
+    // Filtros
+    object?: any; // para consultas especiales, object para POST
+    key?: string; // criterio de busqueda
+    limit?: number;
+    page?: number;
+    total?: number;
+    sort?: string;
+    active?: number;
 }
