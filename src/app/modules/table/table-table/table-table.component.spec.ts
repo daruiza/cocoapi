@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TableTableComponent } from './table-table.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TableTableComponent', () => {
   let component: TableTableComponent;
@@ -8,7 +9,10 @@ describe('TableTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TableTableComponent ]
+      declarations: [ TableTableComponent ],
+      imports: [
+        HttpClientTestingModule
+      ],
     })
     .compileComponents();
   }));

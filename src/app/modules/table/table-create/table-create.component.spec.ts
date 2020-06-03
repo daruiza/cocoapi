@@ -1,14 +1,24 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TableCreateComponent } from './table-create.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-describe('TableCreateComponent', () => {
+xdescribe('TableCreateComponent', () => {
   let component: TableCreateComponent;
   let fixture: ComponentFixture<TableCreateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TableCreateComponent ]
+      declarations: [ TableCreateComponent ],
+      imports: [
+        ReactiveFormsModule,
+        // HttpClientTestingModule
+      ],
+      providers: [
+        NgbActiveModal,
+      ]
+
     })
     .compileComponents();
   }));

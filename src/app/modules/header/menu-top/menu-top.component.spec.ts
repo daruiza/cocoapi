@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MenuTopComponent } from './menu-top.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppModule } from 'src/app/app.module';
 
 describe('AuthComponent', () => {
   let component: MenuTopComponent;
@@ -8,7 +11,12 @@ describe('AuthComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MenuTopComponent ]
+      declarations: [ MenuTopComponent ],
+      imports: [
+        AppModule,
+        RouterTestingModule,
+        HttpClientTestingModule
+      ]
     })
     .compileComponents();
   }));

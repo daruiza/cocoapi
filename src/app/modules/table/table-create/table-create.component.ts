@@ -31,7 +31,7 @@ export class TableCreateComponent implements OnInit {
       { name: 'Peligro Biológico', class: 'fas fa-biohazard' },
       { name: 'Bomba', class: 'fas fa-bomb' },
       { name: 'Boliche', class: 'fas fa-bowling-ball' },
-      { name: 'Bolas', class: 'fas fa-bullseye' },
+      { name: 'Diana', class: 'fas fa-bullseye' },
       { name: 'Rey y Reina', class: 'fas fa-chess' },
       { name: 'Café', class: 'fas fa-coffee' },
       { name: 'Comentario', class: 'fas fa-comment' },

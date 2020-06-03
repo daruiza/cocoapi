@@ -22,9 +22,7 @@ export class TableComponent implements OnInit, OnChanges {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(
-
-  ) {
+  constructor() {
     this.searchFlag = true;
   }
 

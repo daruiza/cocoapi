@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ClosureModalComponent } from './closure-modal.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { IClosure } from 'src/app/models/Closure';
 
 describe('ClosureModalComponent', () => {
   let component: ClosureModalComponent;
@@ -8,7 +12,14 @@ describe('ClosureModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ClosureModalComponent ]
+      declarations: [ ClosureModalComponent ],
+      imports: [
+        ReactiveFormsModule,
+        HttpClientTestingModule
+      ],
+      providers: [
+        NgbActiveModal,
+      ]
     })
     .compileComponents();
   }));
@@ -16,6 +27,8 @@ describe('ClosureModalComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ClosureModalComponent);
     component = fixture.componentInstance;
+    const closure: IClosure = {};
+    component.closure = closure;
     fixture.detectChanges();
   });
 

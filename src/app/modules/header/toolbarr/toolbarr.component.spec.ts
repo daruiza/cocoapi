@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ToolbarrComponent } from './toolbarr.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ToolbarrComponent', () => {
   let component: ToolbarrComponent;
@@ -8,7 +12,12 @@ describe('ToolbarrComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ToolbarrComponent ]
+      declarations: [ ToolbarrComponent ],
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        RouterTestingModule
+      ],
     })
     .compileComponents();
   }));

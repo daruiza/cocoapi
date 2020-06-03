@@ -1,10 +1,10 @@
 <mat-card (click)="addProduct($event)">
     <div matRipple [matRippleCentered]="'true'" >
     <mat-card-header>
-        <mat-card-title class="mat-card-title" >{{product.name}}</mat-card-title>
-        <mat-card-subtitle>{{product.price |  currency:'USD':'symbol':'1.0-0'}}</mat-card-subtitle>
+        <mat-card-title class="mat-card-title" >{{product?.name}}</mat-card-title>
+        <mat-card-subtitle>{{product?.price |  currency:'USD':'symbol':'1.0-0'}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="{{userService.url}}/users/{{userService.user.idadmin}}/products/{{product.image1}}" alt="Photo Product">
+    <img mat-card-image src="{{userService.url}}/users/{{userService.user?.idadmin}}/products/{{product?.image1}}" alt="Photo Product">
     </div>
 </mat-card>
 

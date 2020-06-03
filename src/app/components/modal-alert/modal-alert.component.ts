@@ -34,10 +34,7 @@ export class ModalAlertComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.setMessage();
-    // this.setMessageService(); para llamar via servicio
-
   }
 
   setMessage(): void {
