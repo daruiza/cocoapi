@@ -35,12 +35,14 @@ export class MenuTopComponent implements OnInit {
   }
 
   services() {
-    const observables = [this.closureService.closureOpen(), this.closureService.closures()];
-    forkJoin(observables).subscribe(([closure, closures]) => {
-      this.closure = closure;
-      this.closures = closures;
-      // console.log(this.closures);
-    });
+    // Solo si el usuario esta logueado
+    if (this.authService.getUser()) {
+      const observables = [this.closureService.closureOpen(), this.closureService.closures()];
+      forkJoin(observables).subscribe(([closure, closures]) => {
+        this.closure = closure;
+        this.closures = closures;
+      });
+    }
   }
 
   themeTogle(evt: any): void {

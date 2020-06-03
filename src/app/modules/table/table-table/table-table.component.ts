@@ -64,7 +64,20 @@ export class TableTableComponent implements OnInit, OnChanges {
 
   // Evento emición de las opcines
   optionsTable(event: any) {
-    console.log(event);
+    switch (event.action) {
+      case 'create':
+        const modalRef = this.modalService.open(TableCreateComponent, {
+          windowClass: 'modal-holder',
+          backdrop: 'static'
+        });
+        modalRef.result.then(
+          result => console.log(result),
+          reason => console.log(reason)
+        );
+        break;
+      default:
+        break;
+    }
   }
 
   createTable(evt: Event) {

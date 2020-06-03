@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TableRoutingModule } from './table-routing.module';
 import { TableTableComponent } from './table-table/table-table.component';
@@ -12,6 +13,7 @@ import { TableCreateComponent } from './table-create/table-create.component';
   imports: [
     CommonModule,
     TableRoutingModule,
+    FormsModule, ReactiveFormsModule,
     SharedModule
   ],
   entryComponents: [

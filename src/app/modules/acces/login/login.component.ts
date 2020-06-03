@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
       // Consumo de servicio en caso de estar el form OK
       this.router.navigate(['/home/welcome']);
     }, (reason) => {
-      // this.router.navigate(['/']);
+      this.router.navigate(['/']);
     });
   }
 

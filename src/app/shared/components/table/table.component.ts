@@ -95,7 +95,7 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   createElement(event: Event) {
-    this.optionsTable.emit({});
+    this.optionsTable.emit({ action: 'create'});
   }
 
   editElement(event: Event) {

@@ -9,7 +9,6 @@ import { WelcomeComponent } from './welcome/welcome.component';
 const routes: Routes = [
   {
     path: '',
-    canActivate: [ HomeGuard ],
     component: HomeComponent,
   },
   {

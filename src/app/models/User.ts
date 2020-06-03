@@ -11,6 +11,7 @@ export interface IUser {
   rol_id?: number;
   rel_store_id?: number;
   permits?: any[];
+  idadmin?: number;
 }
 
 export class User implements IUser {
@@ -25,4 +26,5 @@ export class User implements IUser {
   rol_id: number;
   rel_store_id: number;
   permits: any[];
+  idadmin: number;
 }
