@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { IUser } from '../../models/User';
@@ -104,7 +104,7 @@ export class AuthService {
       );
   }
 
-  public logoutForce(){
+  public logoutForce() {
     localStorage.removeItem(this.nameToken);
     this.userService.setUser(undefined);
     this.router.navigate(['/acces/login']);
@@ -123,12 +123,14 @@ export class AuthService {
       }
 
       // envio de mensajes
-      this.messagesAlertService.openAlert(new Message({
-        type: 'danger',
-        title: operation,
-        text: `${messageError}`
-      }));
-      return of(result as T);
+
+      return throwError(
+        this.messagesAlertService.openAlert(new Message({
+          type: 'danger',
+          title: operation,
+          text: `${messageError}`
+        }))
+      );
     };
   }
 }

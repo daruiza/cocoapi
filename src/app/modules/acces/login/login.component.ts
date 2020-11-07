@@ -12,6 +12,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ModalAlertService } from 'src/app/services/components/modal-alert/modal-alert.service';
 import { Message } from 'src/app/models/Message';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -113,6 +114,10 @@ export class LoginComponent implements OnInit, OnChanges, AfterViewInit {
               reason => { this.router.navigate(['welcome']); }
             );
         }
+      }, error => {
+        error.result.then(() => {
+          this.router.navigate(['/']);
+        });
       });
     }
     // Independiente si hay ingreso exitoso, de cierra el modal

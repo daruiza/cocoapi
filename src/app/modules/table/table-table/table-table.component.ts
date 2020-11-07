@@ -47,7 +47,7 @@ export class TableTableComponent implements OnInit, OnChanges {
         displayedColumns: ['select', 'name', 'description', 'icon', 'order', 'active'],
         ELEMENT_DATA: pub.data,
         // Filtros
-        page: parseInt(`${pub.current_page}`) - 1,
+        page: parseInt(`${pub.current_page}`, 1) - 1,
         limit: pub.per_page,
         total: pub.total,
         sort: 'ASC'
