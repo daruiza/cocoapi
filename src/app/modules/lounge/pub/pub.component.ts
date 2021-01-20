@@ -72,7 +72,7 @@ export class PubComponent implements OnInit {
     modalRef.componentInstance.waiters = this.waiters;
 
     modalRef.result.then(result => {
-      if ('table' in result) {
+      if (result && 'table' in result) {
         this.messagesAlertService.openAlert(new Message(
           {
             type: 'success',
@@ -89,7 +89,7 @@ export class PubComponent implements OnInit {
         });
       }
     }, reason => {
-      if ('table' in reason) {
+      if (reason && 'table' in reason) {
         this.control = {
           control: this.control.control += 1,
           table: {},
