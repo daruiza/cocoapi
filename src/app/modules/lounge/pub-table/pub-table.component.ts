@@ -85,7 +85,6 @@ export class PubTableComponent implements OnInit, OnChanges {
     this.orders = [];
     this.orderservice = false;
     ordersresp.forEach((ord: any) => {
-
       if (ord.status_paid === 0) {
         // SumPrice
         this.sumPrice = this.sumPrice + ord.price;
@@ -102,7 +101,7 @@ export class PubTableComponent implements OnInit, OnChanges {
         }
       }
 
-      // THIS.ORDESR
+      // THIS.ORDERS
       const elementOrder = this.orders.find(e => e.id === ord.id);
       if (elementOrder) {
         elementOrder.orders.push(ord);
@@ -124,7 +123,7 @@ export class PubTableComponent implements OnInit, OnChanges {
     // sumPrice
     this.sumPrice = 0;
     this.customers = [];
-    this.orderservice = false;
+    this.orderservice = false;    
     this.orders.forEach((ordlist: IOrderList) => {
       ordlist.orders.forEach((ord: IOrder) => {
         if (ord.status_paid === 0) {
@@ -211,7 +210,14 @@ export class PubTableComponent implements OnInit, OnChanges {
             text: `Listo el pollo, en la mesa ${this.table.name} el servicio de ${resp.name} ha sido cerrado correctamente`,
             confirmButton: 'Aceptar',
           });
-          this.messagesAlertService.openAlert(messge);
+          this.messagesAlertService.openAlert(messge).result.then(
+            result => { 
+              this.services();
+            },
+            err => { console.log(err) }
+          );
+          // Reiniciamos las ordenes
+
         }
       );
     } else {
@@ -237,6 +243,7 @@ export class PubTableComponent implements OnInit, OnChanges {
                 resp => {
                   // Reniniciamos los servicios
                   this.service = undefined;
+                  this.services();
                   const messgeOk = new Message({
                     type: 'success',
                     title: `Operación Exitosa`,
