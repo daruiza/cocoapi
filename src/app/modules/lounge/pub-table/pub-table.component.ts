@@ -123,7 +123,7 @@ export class PubTableComponent implements OnInit, OnChanges {
     // sumPrice
     this.sumPrice = 0;
     this.customers = [];
-    this.orderservice = false;    
+    this.orderservice = false;
     this.orders.forEach((ordlist: IOrderList) => {
       ordlist.orders.forEach((ord: IOrder) => {
         if (ord.status_paid === 0) {
@@ -181,9 +181,22 @@ export class PubTableComponent implements OnInit, OnChanges {
       size: 'xl'
       // centered: true,
     });
+
+    const orderSort = this.orders.sort((a: IOrderList, b: IOrderList) => {
+      if (a.description > b.description) {
+        return 1;
+      }
+      if (a.description < b.description) {
+        return -1;
+      }
+      // a must be equal to b
+      return 0;
+    });
+    console.log(orderSort);
+
     modalRef.componentInstance.table = this.table;
     modalRef.componentInstance.service = this.service;
-    modalRef.componentInstance.orders = this.orders;
+    modalRef.componentInstance.orders = orderSort;
     modalRef.result.then(
       result => {
         this.mapOrders();
@@ -211,7 +224,7 @@ export class PubTableComponent implements OnInit, OnChanges {
             confirmButton: 'Aceptar',
           });
           this.messagesAlertService.openAlert(messge).result.then(
-            result => { 
+            result => {
               this.services();
             },
             err => { console.log(err) }

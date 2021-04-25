@@ -48,6 +48,8 @@ export class PubModalAccountComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.sumPrice = 0;
+    console.log(this.orders);
+    
     this.orders.forEach((el: any) => {
       let sumOrder = 0;
       el.orders.forEach((ord: any) => {
